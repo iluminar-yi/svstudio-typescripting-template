@@ -1,0 +1,1 @@
+# svstudio-typescripting-template
