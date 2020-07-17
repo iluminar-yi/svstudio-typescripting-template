@@ -25,6 +25,7 @@ module.exports = {
     'no-var': 'error',
     'object-shorthand': ['error', 'always'],
     'one-var': ['error', 'never'],
+    'prefer-const': 'error',
     'sort-imports': [
       'error',
       {
