@@ -22,6 +22,7 @@ module.exports = {
   },
   rules: {
     eqeqeq: ['error', 'always'],
+    'no-var': 'error',
     'object-shorthand': ['error', 'always'],
     'one-var': ['error', 'never'],
     'sort-imports': [
