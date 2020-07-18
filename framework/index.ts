@@ -5,7 +5,8 @@ import log from './log';
 
 import './shim';
 
-const { getClientInfo, main } = factory({ ..._global, log });
+const { getClientInfo, main, getTranslations } = factory({ ..._global, log });
 
 _global.getClientInfo = getClientInfo;
 _global.main = main;
+_global.getTranslations = getTranslations;

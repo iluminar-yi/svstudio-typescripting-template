@@ -6,7 +6,7 @@ const MockHostInfo: HostInfo = {
   hostName: 'Synthesizer V Studio Pro',
   hostVersion: '',
   hostVersionNumber: 1,
-  languageCode: '',
+  languageCode: 'en-us',
 };
 
 export default MockHostInfo;
