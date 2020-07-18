@@ -1,5 +1,7 @@
 # svstudio-typescripting-template
 
+English | [简体中文](/README_zh-CN.md)
+
 This is a template repository that is set up to build scripts that can run in Synthesizer V Pro.
 This boilerplate configures TypeScript, Webpack, ESLint, Jest, and uses core-js to polyfill.
 Original scaffolding found at this [ts-loader example](https://github.com/TypeStrong/ts-loader/tree/master/examples/fork-ts-checker-webpack-plugin).
