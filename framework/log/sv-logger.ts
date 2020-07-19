@@ -11,7 +11,7 @@ export class SvLogger implements Logger {
 
   private log = (title: string, message: string, ...args: unknown[]): void => {
     try {
-      this.sv.showMessageBox(title, `${message}${args.length ? `:\n${JSON.stringify(args, null, 2)}` : ''}`);
+      this.sv.showMessageBoxAsync(title, `${message}${args.length ? `:\n${JSON.stringify(args, null, 2)}` : ''}`);
     } catch (e) {
       // There is nothing else we can do. Just ignore.
     }
