@@ -1,9 +1,9 @@
-import { ClientInfo, LanguageCode, SVObject, Translation } from 'svstudio-scripts-typing';
+import { ClientInfo, LanguageCode, SynthV, Translation } from 'svstudio-scripts-typing';
 
 import { Logger } from './log/types';
 
 export interface Global {
-  SV: SVObject;
+  SV: SynthV;
   [k1: string]: unknown;
 }
 
@@ -14,7 +14,7 @@ export interface SVScript {
 }
 
 export interface FrameworkEnvironment {
-  SV: SVObject;
+  SV: SynthV;
   log: Logger;
 }
 

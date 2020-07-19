@@ -1,17 +1,17 @@
-import { SVObject } from 'svstudio-scripts-typing';
+import { SynthV } from 'svstudio-scripts-typing';
 
 import { Logger } from './types';
 
 export class SvLogger implements Logger {
-  private readonly sv: SVObject;
+  private readonly sv: SynthV;
 
-  public constructor(sv: SVObject) {
+  public constructor(sv: SynthV) {
     this.sv = sv;
   }
 
   private log = (title: string, message: string, ...args: unknown[]): void => {
     try {
-      this.sv.showMessageBoxAsync(title, `${message}${args.length ? `:\n${JSON.stringify(args, null, 2)}` : ''}`);
+      this.sv.showMessageBox(title, `${message}${args.length ? `:\n${JSON.stringify(args, null, 2)}` : ''}`);
     } catch (e) {
       // There is nothing else we can do. Just ignore.
     }

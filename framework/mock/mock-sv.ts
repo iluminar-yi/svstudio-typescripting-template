@@ -8,7 +8,7 @@ import {
   NoteGroupReference,
   PlaybackControl,
   Project,
-  SVObject,
+  SynthV,
   TimeAxis,
   Track,
   WidgetAnswers,
@@ -28,7 +28,7 @@ import MockTimeAxis from './mock-time-axis';
 import MockTrack from './mock-track';
 import MockWidgetAnswers from './mock-widget-answers';
 
-const MockSv: SVObject = {
+const MockSv: SynthV = {
   QUARTER: 705600000,
 
   T(): string {
