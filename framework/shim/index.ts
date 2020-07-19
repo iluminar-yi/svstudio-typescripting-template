@@ -1,2 +1,2 @@
-import './imports';
 import './shims';
+import './imports';

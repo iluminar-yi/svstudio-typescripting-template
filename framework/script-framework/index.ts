@@ -1,5 +1,4 @@
-import { SynthV } from 'svstudio-scripts-typing';
-
+import lifeCycleManagerInstance from './life-cycle-manager-impl';
 import { ManagedSynthVImpl } from './managed-synthv-impl';
 
-export default (SV: SynthV): ManagedSynthVImpl => new ManagedSynthVImpl(SV.finish);
+export default (): ManagedSynthVImpl => new ManagedSynthVImpl(lifeCycleManagerInstance);

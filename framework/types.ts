@@ -28,7 +28,7 @@ export interface Global {
 
 export interface SVScript {
   getClientInfo(): ClientInfo;
-  main(): void;
+  main(): void | Promise<void>;
   getTranslations?(langCode: LanguageCode): Translation[];
 }
 
@@ -213,11 +213,11 @@ export interface ManagedSynthV {
   setTimeout(timeout: number, callback: () => void): void;
 
   /**
-   * The synchronous version of {@link SV#showCustomDialogAsync} that blocks the script execution until the user closes the dialog.
+   * The promise version of {@link SV#showCustomDialogAsync} that blocks the script execution until the user closes the dialog.
    * It returns the inputs (the completed form) from the user.
    * @param form
    */
-  showCustomDialog(form: CustomDialogForm): WidgetAnswers;
+  showCustomDialog(form: CustomDialogForm): Promise<WidgetAnswers>;
 
   /**
    * Display a custom dialog defined in form, without blocking the script execution.
@@ -232,13 +232,13 @@ export interface ManagedSynthV {
   showCustomDialogAsync(form: CustomDialogForm, callback: (answers: WidgetAnswers) => void): void;
 
   /**
-   * The synchronous version of {@link SV#showInputBoxAsync} that blocks the script execution until the user closes the dialog.
+   * The promise version of {@link SV#showInputBoxAsync} that blocks the script execution until the user closes the dialog.
    * It returns the text input from the user.
    * @param title
    * @param message
    * @param defaultText
    */
-  showInputBox(title: string, message: string, defaultText: string): string;
+  showInputBox(title: string, message: string, defaultText: string): Promise<string>;
 
   /**
    * Display a dialog with a text box and an "OK" button, without blocking the script execution.
@@ -253,11 +253,11 @@ export interface ManagedSynthV {
   showInputBoxAsync(title: string, message: string, defaultText: string, callback: (answer: string) => void): void;
 
   /**
-   * The synchronous version of {@link SV#showMessageBoxAsync} that blocks the script execution until the user closes the message box.
+   * The promise version of {@link SV#showMessageBoxAsync} that blocks the script execution until the user closes the message box.
    * @param title
    * @param message
    */
-  showMessageBox(title: string, message: string): void;
+  showMessageBox(title: string, message: string): Promise<void>;
 
   /**
    * Cause a message box to pop up without blocking the script execution.
@@ -270,12 +270,12 @@ export interface ManagedSynthV {
   showMessageBoxAsync(title: string, message: string, callback?: () => void): void;
 
   /**
-   * The synchronous version of {@link SV#showOkCancelBoxAsync} that blocks the script execution until the user closes the message box.
+   * The promise version of {@link SV#showOkCancelBoxAsync} that blocks the script execution until the user closes the message box.
    * It returns true if "OK" button is pressed.
    * @param title
    * @param message
    */
-  showOkCancelBox(title: string, message: string): boolean;
+  showOkCancelBox(title: string, message: string): Promise<boolean>;
 
   /**
    * Display a message box with an "OK" button and a "Cancel" button, without blocking the script execution.
@@ -289,11 +289,11 @@ export interface ManagedSynthV {
   showOkCancelBoxAsync(title: string, message: string, callback: (answer: boolean) => void): void;
 
   /**
-   * The synchronous version of {@link SV#showYesNoCancelBoxAsync} that blocks the script execution until the user closes the message box.
+   * The promise version of {@link SV#showYesNoCancelBoxAsync} that blocks the script execution until the user closes the message box.
    * @param title
    * @param message
    */
-  showYesNoCancelBox(title: string, message: string): YesNoCancelAnswer;
+  showYesNoCancelBox(title: string, message: string): Promise<YesNoCancelAnswer>;
 
   /**
    * Display a message box with a "Yes" button, an "No" button and a "Cancel" button, without blocking the script execution.

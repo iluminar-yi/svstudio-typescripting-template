@@ -4,48 +4,18 @@ import { SV } from '../_global';
 import log from '../log';
 import { ManagedSynthV } from '../types';
 
-export class ManagedSynthVImpl implements ManagedSynthV {
-  public readonly QUARTER: 705600000;
-  private readonly onFinish: () => void;
-  private readonly callbacks: Function[];
-  private finished: boolean = false;
+import { LifeCycleManager } from './types';
 
-  public constructor(onFinish: () => void) {
-    this.QUARTER = SV.QUARTER;
-    this.onFinish = onFinish;
-    this.callbacks = [];
+export class ManagedSynthVImpl implements ManagedSynthV {
+  public readonly QUARTER: 705600000 = SV.QUARTER;
+  public readonly lifeCycleManager: LifeCycleManager;
+
+  public constructor(lifeCycleManager: LifeCycleManager) {
+    this.lifeCycleManager = lifeCycleManager;
   }
 
   public start = (): void => {
-    setInterval((): void => {
-      if (!this.callbacks.length) {
-        SV.showMessageBoxAsync('Finishing', 'finishing');
-        this.finishUp();
-      }
-    }, 20);
-  };
-
-  private finishUp = (): void => {
-    this.finished = true;
-    this.callbacks.splice(0, this.callbacks.length);
-    this.onFinish();
-  };
-
-  private removeCallback = (callback: Function): void => {
-    const index = this.callbacks.indexOf(callback);
-    if (index < 0) {
-      throw new Error('Given callback not found in stored callbacks: ' + callback);
-    }
-    this.callbacks.splice(index, 1);
-  };
-
-  private getManagedCallback = (callback: Function): ((...args: unknown[]) => void) => {
-    return (...args: unknown[]): void => {
-      if (!this.finished) {
-        callback(...args);
-        this.removeCallback(callback);
-      }
-    };
+    this.lifeCycleManager.start();
   };
 
   public T = SV.T;
@@ -68,73 +38,107 @@ export class ManagedSynthVImpl implements ManagedSynthV {
   public quarter2Blick = SV.quarter2Blick;
   public seconds2Blick = SV.seconds2Blick;
   public setHostClipboard = SV.setHostClipboard;
-  public showCustomDialog = SV.showCustomDialog;
-  public showInputBox = SV.showInputBox;
-  public showMessageBox = SV.showMessageBox;
-  public showOkCancelBox = SV.showOkCancelBox;
-  public showYesNoCancelBox = SV.showYesNoCancelBox;
 
-  public setTimeout(timeout: number, callback: () => void): void {
-    this.callbacks.push(callback);
+  public setTimeout = (timeout: number, callback: () => void): void => {
+    const callbackId = this.lifeCycleManager.reserveNewCallback();
     try {
-      SV.setTimeout(timeout, this.getManagedCallback(callback));
+      SV.setTimeout(timeout, this.lifeCycleManager.getManagedCallback(callback, callbackId));
     } catch (e) {
-      log.error(String(e));
-      this.removeCallback(callback);
+      log.error('Error encountered', e);
+      this.lifeCycleManager.releaseCallback(callbackId);
     }
-  }
+  };
 
-  public showCustomDialogAsync(form: CustomDialogForm, callback: (answers: WidgetAnswers) => void): void {
-    this.callbacks.push(callback);
+  public showCustomDialogAsync = (form: CustomDialogForm, callback: (answers: WidgetAnswers) => void): void => {
+    const callbackId = this.lifeCycleManager.reserveNewCallback();
     try {
-      SV.showCustomDialogAsync(form, this.getManagedCallback(callback));
+      SV.showCustomDialogAsync(form, this.lifeCycleManager.getManagedCallback(callback, callbackId));
     } catch (e) {
-      this.removeCallback(callback);
+      log.error('Error encountered', e);
+      this.lifeCycleManager.releaseCallback(callbackId);
     }
-  }
+  };
 
-  public showInputBoxAsync(
+  public showInputBoxAsync = (
     title: string,
     message: string,
     defaultText: string,
     callback: (answer: string) => void,
-  ): void {
-    this.callbacks.push(callback);
+  ): void => {
+    const callbackId = this.lifeCycleManager.reserveNewCallback();
     try {
-      SV.showInputBoxAsync(title, message, defaultText, this.getManagedCallback(callback));
+      SV.showInputBoxAsync(title, message, defaultText, this.lifeCycleManager.getManagedCallback(callback, callbackId));
     } catch (e) {
-      this.removeCallback(callback);
+      log.error('Error encountered', e);
+      this.lifeCycleManager.releaseCallback(callbackId);
     }
-  }
+  };
 
-  public showMessageBoxAsync(title: string, message: string, callback?: () => void): void {
+  public showMessageBoxAsync = (title: string, message: string, callback?: () => void): void => {
     if (!callback) {
       SV.showMessageBoxAsync(title, message);
       return;
     }
-    this.callbacks.push(callback);
+    const callbackId = this.lifeCycleManager.reserveNewCallback();
     try {
-      SV.showMessageBoxAsync(title, message, this.getManagedCallback(callback));
+      SV.showMessageBoxAsync(title, message, this.lifeCycleManager.getManagedCallback(callback, callbackId));
     } catch (e) {
-      this.removeCallback(callback);
+      log.error('Error encountered', e);
+      this.lifeCycleManager.releaseCallback(callbackId);
     }
-  }
+  };
 
-  public showOkCancelBoxAsync(title: string, message: string, callback: (answer: boolean) => void): void {
-    this.callbacks.push(callback);
+  public showOkCancelBoxAsync = (title: string, message: string, callback: (answer: boolean) => void): void => {
+    const callbackId = this.lifeCycleManager.reserveNewCallback();
     try {
-      SV.showOkCancelBoxAsync(title, message, this.getManagedCallback(callback));
+      SV.showOkCancelBoxAsync(title, message, this.lifeCycleManager.getManagedCallback(callback, callbackId));
     } catch (e) {
-      this.removeCallback(callback);
+      log.error('Error encountered', e);
+      this.lifeCycleManager.releaseCallback(callbackId);
     }
-  }
+  };
 
-  public showYesNoCancelBoxAsync(title: string, message: string, callback: (answer: YesNoCancelAnswer) => void): void {
-    this.callbacks.push(callback);
+  public showYesNoCancelBoxAsync = (
+    title: string,
+    message: string,
+    callback: (answer: YesNoCancelAnswer) => void,
+  ): void => {
+    const callbackId = this.lifeCycleManager.reserveNewCallback();
     try {
-      SV.showYesNoCancelBoxAsync(title, message, this.getManagedCallback(callback));
+      SV.showYesNoCancelBoxAsync(title, message, this.lifeCycleManager.getManagedCallback(callback, callbackId));
     } catch (e) {
-      this.removeCallback(callback);
+      log.error('Error encountered', e);
+      this.lifeCycleManager.releaseCallback(callbackId);
     }
-  }
+  };
+
+  public showCustomDialog = async (form: CustomDialogForm): Promise<WidgetAnswers> => {
+    return new Promise((resolve): void => {
+      this.showCustomDialogAsync(form, resolve);
+    });
+  };
+
+  public showInputBox = async (title: string, message: string, defaultText: string): Promise<string> => {
+    return new Promise((resolve): void => {
+      this.showInputBoxAsync(title, message, defaultText, resolve);
+    });
+  };
+
+  public showMessageBox = async (title: string, message: string): Promise<void> => {
+    return new Promise((resolve): void => {
+      this.showMessageBoxAsync(title, message, resolve);
+    });
+  };
+
+  public showOkCancelBox = async (title: string, message: string): Promise<boolean> => {
+    return new Promise((resolve): void => {
+      this.showOkCancelBoxAsync(title, message, resolve);
+    });
+  };
+
+  public showYesNoCancelBox = async (title: string, message: string): Promise<YesNoCancelAnswer> => {
+    return new Promise((resolve): void => {
+      this.showYesNoCancelBoxAsync(title, message, resolve);
+    });
+  };
 }
