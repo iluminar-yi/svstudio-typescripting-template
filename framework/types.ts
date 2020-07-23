@@ -172,7 +172,7 @@ export interface ManagedSynthV {
    * Conversions between musical and physical time in the context of a project are done by {@link TimeAxis}.
    * @param p
    */
-  pitch2freq(p: number): number;
+  pitch2Freq(p: number): number;
 
   /**
    * Convert q from number of quarters into number of blick.
@@ -313,6 +313,21 @@ export interface ManagedSynthV {
    * @constructor
    */
   T(text: string): string;
+
+  /**
+   * Runs a handler repeatedly, at the specified interval.
+   * @param handler handler to run
+   * @param timeout length of interval in-between runs, in milliseconds
+   * @param args arguments to handler
+   * @returns id of this interval, can be used with {@link ManagedSynthV#clearInterval}
+   */
+  setInterval(handler: Function, timeout?: number, ...args: unknown[]): string;
+
+  /**
+   * Cancels firing of an interval.
+   * @param id interval id
+   */
+  clearInterval(id: string): void;
 }
 
 export interface FrameworkEnvironment {

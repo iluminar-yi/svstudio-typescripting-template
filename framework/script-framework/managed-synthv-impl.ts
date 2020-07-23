@@ -2,6 +2,7 @@ import { CustomDialogForm, WidgetAnswers, YesNoCancelAnswer } from 'svstudio-scr
 
 import { SV } from '../_global';
 import log from '../log';
+import { setTimeout } from '../shim/shims';
 import { ManagedSynthV } from '../types';
 
 import { LifeCycleManager } from './types';
@@ -18,31 +19,36 @@ export class ManagedSynthVImpl implements ManagedSynthV {
     this.lifeCycleManager.start();
   };
 
-  public T = SV.T;
-  public blackKey = SV.blackKey;
-  public blick2Quarter = SV.blick2Quarter;
-  public blick2Seconds = SV.blick2Seconds;
-  public blickRoundDiv = SV.blickRoundDiv;
-  public blickRoundTo = SV.blickRoundTo;
-  public create = SV.create;
-  public finish = SV.finish;
-  public freq2Pitch = SV.freq2Pitch;
-  public getArrangement = SV.getArrangement;
-  public getHostClipboard = SV.getHostClipboard;
-  public getHostInfo = SV.getHostInfo;
-  public getMainEditor = SV.getMainEditor;
-  public getPhonemesForGroup = SV.getPhonemesForGroup;
-  public getPlayback = SV.getPlayback;
-  public getProject = SV.getProject;
-  public pitch2freq = SV.pitch2freq;
-  public quarter2Blick = SV.quarter2Blick;
-  public seconds2Blick = SV.seconds2Blick;
-  public setHostClipboard = SV.setHostClipboard;
+  public T = SV.T.bind(SV);
+  public blackKey = SV.blackKey.bind(SV);
+  public blick2Quarter = SV.blick2Quarter.bind(SV);
+  public blick2Seconds = SV.blick2Seconds.bind(SV);
+  public blickRoundDiv = SV.blickRoundDiv.bind(SV);
+  public blickRoundTo = SV.blickRoundTo.bind(SV);
+  public create = SV.create.bind(SV);
+  public finish = SV.finish.bind(SV);
+  public freq2Pitch = SV.freq2Pitch.bind(SV);
+  public getArrangement = SV.getArrangement.bind(SV);
+  public getHostClipboard = SV.getHostClipboard.bind(SV);
+  public getHostInfo = SV.getHostInfo.bind(SV);
+  public getMainEditor = SV.getMainEditor.bind(SV);
+  public getPhonemesForGroup = SV.getPhonemesForGroup.bind(SV);
+  public getPlayback = SV.getPlayback.bind(SV);
+  public getProject = SV.getProject.bind(SV);
+  public pitch2Freq = SV.pitch2Freq.bind(SV);
+  public quarter2Blick = SV.quarter2Blick.bind(SV);
+  public seconds2Blick = SV.seconds2Blick.bind(SV);
+  public setHostClipboard = SV.setHostClipboard.bind(SV);
 
-  public setTimeout = (timeout: number, callback: () => void): void => {
+  public setTimeout = (timeout: number, callback: Function, ...args: unknown[]): void => {
     const callbackId = this.lifeCycleManager.reserveNewCallback();
     try {
-      SV.setTimeout(timeout, this.lifeCycleManager.getManagedCallback(callback, callbackId));
+      setTimeout(
+        this.lifeCycleManager.getManagedCallback((): void => {
+          callback(...args);
+        }, callbackId),
+        timeout,
+      );
     } catch (e) {
       log.error('Error encountered', e);
       this.lifeCycleManager.releaseCallback(callbackId);
@@ -140,5 +146,21 @@ export class ManagedSynthVImpl implements ManagedSynthV {
     return new Promise((resolve): void => {
       this.showYesNoCancelBoxAsync(title, message, resolve);
     });
+  };
+
+  public setInterval = (handler: Function, timeout?: number, ...args: unknown[]): string => {
+    const id = this.lifeCycleManager.reserveNewCallback();
+    const repeatedHandler = (): void => {
+      if (this.lifeCycleManager.isCallbackReserved(id)) {
+        handler(...args);
+        setTimeout(repeatedHandler, timeout);
+      }
+    };
+    setTimeout(repeatedHandler, timeout);
+    return id;
+  };
+
+  public clearInterval = (id: string): void => {
+    this.lifeCycleManager.releaseCallback(id);
   };
 }

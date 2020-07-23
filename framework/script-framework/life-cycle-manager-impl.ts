@@ -77,6 +77,10 @@ export class LifeCycleManagerImpl implements LifeCycleManager {
     return callbackId;
   };
 
+  public isCallbackReserved = (callbackId: string): boolean => {
+    return this.callbackIds.has(callbackId);
+  };
+
   public releaseCallback = (callbackId: string): void => {
     if (!this.callbackIds.has(callbackId)) {
       throw new Error('Given callback id not found in stored callback ids: ' + callbackId);
