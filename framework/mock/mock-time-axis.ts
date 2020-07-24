@@ -56,8 +56,8 @@ const MockTimeAxis: TimeAxis = {
     return false;
   },
 
-  removeMeasureMark(): number {
-    return 0;
+  removeMeasureMark(): boolean {
+    return false;
   },
 
   removeTempoMark(): boolean {

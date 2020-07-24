@@ -20,11 +20,21 @@ import {
 } from 'svstudio-scripts-typing';
 
 import { Logger } from './log/types';
+import { Context, SvSystem, Utils } from './script-framework/types';
 
 export interface Global {
   SV: SynthV;
   [k1: string]: unknown;
 }
+
+export type blick = number;
+export type quarter = number;
+export type measure = number;
+export type semitone = number;
+export type second = number;
+export type pixel = number;
+export type pixelPerBlick = number;
+export type pixelPerSemitone = number;
 
 export interface SVScript {
   getClientInfo(): ClientInfo;
@@ -104,6 +114,12 @@ export interface ManagedSynthV {
   create(type: 'Track'): Track;
   create(type: 'TimeAxis'): TimeAxis;
   create(type: 'Project'): Project;
+
+  /**
+   * Indicate to the framework that execution has started.
+   * This should not need to be called by user script.
+   */
+  start(): void;
 
   /**
    * Mark the finish of a script.
@@ -334,6 +350,9 @@ export interface FrameworkEnvironment {
   SV: ManagedSynthV;
   _SV: SynthV;
   log: Logger;
+  context: Context;
+  svSystem: SvSystem;
+  utils: Utils;
 }
 
 export type SVScriptFactory = (env: FrameworkEnvironment) => SVScript;

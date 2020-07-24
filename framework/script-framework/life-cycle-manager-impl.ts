@@ -59,7 +59,7 @@ export class LifeCycleManagerImpl implements LifeCycleManager {
   public start = (): void => {
     setInterval((): void => {
       if (!this.callbackIds.size) {
-        SV.showMessageBoxAsync('Finished', 'No more pending tasks detected. Exiting...');
+        // SV.showMessageBoxAsync('Finished', 'No more pending tasks detected. Exiting...');
         this.finishUp();
       }
     }, 20);

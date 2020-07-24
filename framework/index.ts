@@ -3,12 +3,18 @@ import factory from '../src';
 import './shim';
 import { SV, _global } from './_global';
 import log from './log';
-import getMangedSynthV from './script-framework';
+import { context, managedSynthV, svSystem, utils } from './script-framework';
 import { setImmediate } from './shim/shims';
 
-const managedSynthV = getMangedSynthV();
-
-const { getClientInfo, main, getTranslations } = factory({ ..._global, _SV: SV, log, SV: managedSynthV });
+const { getClientInfo, main, getTranslations } = factory({
+  ..._global,
+  _SV: SV,
+  log,
+  SV: managedSynthV,
+  svSystem,
+  context,
+  utils,
+});
 
 const onFatalError = (e: Error): void => {
   SV.showMessageBoxAsync('Fatal Error', e.stack || '');
