@@ -1,6 +1,6 @@
-import { Note, NoteGroup, NoteGroupReference, SynthV, Track } from 'svstudio-scripts-typing';
+import { Note, NoteGroup, NoteGroupReference, Track } from 'svstudio-scripts-typing';
 
-import { second } from '../../types';
+import { ManagedSynthV, second } from '../../types';
 
 export interface SvSystem {
   QUARTER: 705600000;
@@ -11,11 +11,11 @@ export interface SvSystem {
   finish(): void;
   newUndoRecord(): void;
   setTimeout(timeout: number, callback: () => void): void;
-  showCustomDialog: SynthV['showCustomDialog'];
-  showInputBox: SynthV['showInputBox'];
-  showMessageBox: SynthV['showMessageBox'];
-  showOkCancelBox: SynthV['showOkCancelBox'];
-  showYesNoCancelBox: SynthV['showYesNoCancelBox'];
+  showCustomDialog: ManagedSynthV['showCustomDialog'];
+  showInputBox: ManagedSynthV['showInputBox'];
+  showMessageBox: ManagedSynthV['showMessageBox'];
+  showOkCancelBox: ManagedSynthV['showOkCancelBox'];
+  showYesNoCancelBox: ManagedSynthV['showYesNoCancelBox'];
   convertTextToPhonemesForNoteGroup(group: NoteGroupReference): string[];
   T(text: string): string;
   loop(tBegin: second, tEnd: second): void;
