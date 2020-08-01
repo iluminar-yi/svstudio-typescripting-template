@@ -13,24 +13,24 @@ export const noteProxyOf = (note: Note): NoteProxy => {
       note.setAttributes({ alt });
     },
 
-    get dF0Left(): semitone {
+    get dF0Left(): semitone | undefined {
       return note.getAttributes().dF0Left;
     },
-    set dF0Left(dF0Left: semitone) {
+    set dF0Left(dF0Left: semitone | undefined) {
       note.setAttributes({ dF0Left });
     },
 
-    get dF0Right(): semitone {
+    get dF0Right(): semitone | undefined {
       return note.getAttributes().dF0Right;
     },
-    set dF0Right(dF0Right: semitone) {
+    set dF0Right(dF0Right: semitone | undefined) {
       note.setAttributes({ dF0Right });
     },
 
-    get dF0Vbr(): semitone {
+    get dF0Vbr(): semitone | undefined {
       return note.getAttributes().dF0Vbr;
     },
-    set dF0Vbr(dF0Vbr: semitone) {
+    set dF0Vbr(dF0Vbr: semitone | undefined) {
       note.setAttributes({ dF0Vbr });
     },
 
@@ -55,10 +55,10 @@ export const noteProxyOf = (note: Note): NoteProxy => {
       note.setAttributes({ exprGroup });
     },
 
-    get fF0Vbr(): Hz {
+    get fF0Vbr(): Hz | undefined {
       return note.getAttributes().fF0Vbr;
     },
-    set fF0Vbr(fF0Vbr: Hz) {
+    set fF0Vbr(fF0Vbr: Hz | undefined) {
       note.setAttributes({ fF0Vbr });
     },
 
@@ -76,10 +76,10 @@ export const noteProxyOf = (note: Note): NoteProxy => {
       note.setOnset(onset);
     },
 
-    get pF0Vbr(): number {
+    get pF0Vbr(): number | undefined {
       return note.getAttributes().pF0Vbr;
     },
-    set pF0Vbr(pF0Vbr: number) {
+    set pF0Vbr(pF0Vbr: number | undefined) {
       note.setAttributes({ pF0Vbr });
     },
 
@@ -90,52 +90,52 @@ export const noteProxyOf = (note: Note): NoteProxy => {
       note.setPitch(pitch);
     },
 
-    get tF0Left(): second {
+    get tF0Left(): second | undefined {
       return note.getAttributes().tF0Left;
     },
-    set tF0Left(tF0Left: second) {
+    set tF0Left(tF0Left: second | undefined) {
       note.setAttributes({ tF0Left });
     },
 
-    get tF0Offset(): second {
+    get tF0Offset(): second | undefined {
       return note.getAttributes().tF0Offset;
     },
-    set tF0Offset(tF0Offset: second) {
+    set tF0Offset(tF0Offset: second | undefined) {
       note.setAttributes({ tF0Offset });
     },
 
-    get tF0Right(): second {
+    get tF0Right(): second | undefined {
       return note.getAttributes().tF0Right;
     },
-    set tF0Right(tF0Right: second) {
+    set tF0Right(tF0Right: second | undefined) {
       note.setAttributes({ tF0Right });
     },
 
-    get tF0VbrLeft(): second {
+    get tF0VbrLeft(): second | undefined {
       return note.getAttributes().tF0VbrLeft;
     },
-    set tF0VbrLeft(tF0VbrLeft: second) {
+    set tF0VbrLeft(tF0VbrLeft: second | undefined) {
       note.setAttributes({ tF0VbrLeft });
     },
 
-    get tF0VbrRight(): second {
+    get tF0VbrRight(): second | undefined {
       return note.getAttributes().tF0VbrRight;
     },
-    set tF0VbrRight(tF0VbrRight: second) {
+    set tF0VbrRight(tF0VbrRight: second | undefined) {
       note.setAttributes({ tF0VbrRight });
     },
 
-    get tF0VbrStart(): second {
+    get tF0VbrStart(): second | undefined {
       return note.getAttributes().tF0VbrStart;
     },
-    set tF0VbrStart(tF0VbrStart: second) {
+    set tF0VbrStart(tF0VbrStart: second | undefined) {
       note.setAttributes({ tF0VbrStart });
     },
 
-    get tNoteOffset(): second {
+    get tNoteOffset(): second | undefined {
       return note.getAttributes().tNoteOffset;
     },
-    set tNoteOffset(tNoteOffset: second) {
+    set tNoteOffset(tNoteOffset: second | undefined) {
       note.setAttributes({ tNoteOffset });
     },
 
