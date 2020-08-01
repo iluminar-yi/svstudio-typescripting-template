@@ -1,24 +1,23 @@
-import {
-  HostInfo,
-  LanguageCode,
-  MeasureMark,
-  Note,
-  NoteGroup,
-  NoteGroupReference,
-  PlaybackStatus,
-  TempoMark,
-  Track,
-} from 'svstudio-scripts-typing';
+import { HostInfo, LanguageCode, MeasureMark, PlaybackStatus, TempoMark } from 'svstudio-scripts-typing';
 
 import { ManagedSynthV, blick, measure, pixel, pixelPerBlick, pixelPerSemitone, second, semitone } from '../types';
 
-import { Context } from './types';
+import { NoteGroupProxyImpl } from './note-group-proxy';
+import { NoteGroupReferenceProxyImpl } from './note-group-reference-proxy';
+import { NoteProxyImpl } from './note-proxy';
+import { TrackProxyImpl } from './track-proxy';
 import {
   ArrangementViewDisplay,
   ArrangementViewUserSelection,
+  Context,
   MainEditorDisplay,
   MainEditorUserSelection,
-} from './types/context';
+  NoteGroupProxy,
+  NoteGroupProxyBuilder,
+  NoteGroupReferenceProxy,
+  NoteProxy,
+} from './types';
+import { TrackProxy, TrackProxyBuilder } from './types/track-proxy';
 
 export const contextFactory = (SV: ManagedSynthV): Context => {
   const project = SV.getProject();
@@ -67,11 +66,11 @@ export const contextFactory = (SV: ManagedSynthV): Context => {
       return playbackControl.getStatus();
     },
     mainEditor: {
-      get currentGroupReference(): NoteGroupReference {
-        return mainEditor.getCurrentGroup();
+      get currentGroupReference(): NoteGroupReferenceProxy {
+        return NoteGroupReferenceProxyImpl.of(mainEditor.getCurrentGroup());
       },
-      get currentTrack(): Track {
-        return mainEditor.getCurrentTrack();
+      get currentTrack(): TrackProxy {
+        return TrackProxyImpl.of(mainEditor.getCurrentTrack());
       },
       get selection(): MainEditorUserSelection {
         return {
@@ -82,13 +81,16 @@ export const contextFactory = (SV: ManagedSynthV): Context => {
             return mainEditor.getSelection().clearAll();
           },
           noteGroupReferences: mainEditor.getSelection().hasSelectedGroups()
-            ? mainEditor.getSelection().getSelectedGroups()
+            ? mainEditor
+                .getSelection()
+                .getSelectedGroups()
+                .map(NoteGroupReferenceProxyImpl.of)
             : undefined,
-          addGroupReference(noteGroupReference: NoteGroupReference): void {
-            mainEditor.getSelection().selectGroup(noteGroupReference);
+          addGroupReference(noteGroupReference: NoteGroupReferenceProxy): void {
+            mainEditor.getSelection().selectGroup(noteGroupReference._rawNoteGroupReference());
           },
-          removeGroupReference(noteGroupReference: NoteGroupReference): boolean {
-            return mainEditor.getSelection().unselectGroup(noteGroupReference);
+          removeGroupReference(noteGroupReference: NoteGroupReferenceProxy): boolean {
+            return mainEditor.getSelection().unselectGroup(noteGroupReference._rawNoteGroupReference());
           },
           removeAllGroupReferences(): boolean {
             return mainEditor.getSelection().clearGroups();
@@ -96,13 +98,16 @@ export const contextFactory = (SV: ManagedSynthV): Context => {
           notes: SV.getMainEditor()
             .getSelection()
             .hasSelectedNotes()
-            ? mainEditor.getSelection().getSelectedNotes()
+            ? mainEditor
+                .getSelection()
+                .getSelectedNotes()
+                .map(NoteProxyImpl.of)
             : undefined,
-          addNote(note: Note): void {
-            mainEditor.getSelection().selectNote(note);
+          addNote(note: NoteProxy): void {
+            mainEditor.getSelection().selectNote(note._rawNote());
           },
-          removeNote(note: Note): boolean {
-            return mainEditor.getSelection().unselectNote(note);
+          removeNote(note: NoteProxy): boolean {
+            return mainEditor.getSelection().unselectNote(note._rawNote());
           },
           removeAllNotes(): boolean {
             return mainEditor.getSelection().clearNotes();
@@ -164,39 +169,42 @@ export const contextFactory = (SV: ManagedSynthV): Context => {
       },
     },
     project: {
-      get allNoteGroups(): NoteGroup[] {
-        const noteGroups: NoteGroup[] = [];
+      get allNoteGroups(): NoteGroupProxy[] {
+        const noteGroups: NoteGroupProxy[] = [];
         for (let i = 0; i < project.getNumNoteGroupsInLibrary(); i++) {
           const noteGroup = project.getNoteGroup(i);
           if (!noteGroup) {
             throw new Error(`It's impossible to have undefined NoteGroup here`);
           }
-          noteGroups.push(noteGroup);
+          noteGroups.push(NoteGroupProxyImpl.of(noteGroup));
         }
         return noteGroups;
       },
-      addNoteGroup(group: NoteGroup, suggestedIndex?: number): number {
-        return project.addNoteGroup(group, suggestedIndex);
+      addNoteGroup(group: NoteGroupProxy, suggestedIndex?: number): number {
+        return project.addNoteGroup(group._rawNoteGroup(), suggestedIndex);
       },
-      removeNoteGroup(noteGroup: NoteGroup): void {
-        project.removeNoteGroup(noteGroup.getIndexInParent());
+      removeNoteGroup(noteGroup: NoteGroupProxy): void {
+        project.removeNoteGroup(noteGroup._rawNoteGroup().getIndexInParent());
       },
-      findNoteGroupById(noteGroupId: string): NoteGroup | undefined {
-        return project.getNoteGroup(noteGroupId);
+      findNoteGroupById(noteGroupId: string): NoteGroupProxy | undefined {
+        const noteGroup = project.getNoteGroup(noteGroupId);
+        if (noteGroup) {
+          return NoteGroupProxyImpl.of(noteGroup);
+        }
       },
-      get allTracks(): Track[] {
-        const tracks: Track[] = [];
+      get allTracks(): TrackProxy[] {
+        const tracks: TrackProxy[] = [];
         for (let i = 0; i < project.getNumTracks(); i++) {
           const track = project.getTrack(i);
-          tracks.push(track);
+          tracks.push(TrackProxyImpl.of(track));
         }
-        return tracks.sort((a, b): number => a.getDisplayOrder() - b.getDisplayOrder());
+        return tracks.sort((a, b): number => a.displayOrder - b.displayOrder);
       },
-      addTrack(track: Track): void {
-        project.addTrack(track);
+      addTrack(track: TrackProxy): void {
+        project.addTrack(track._rawTrack());
       },
-      removeTrack(track: Track): void {
-        project.removeTrack(track.getIndexInParent());
+      removeTrack(track: TrackProxy): void {
+        project.removeTrack(track._rawTrack().getIndexInParent());
       },
       get allMeasureMarks(): MeasureMark[] {
         return project.getTimeAxis().getAllMeasureMarks();
@@ -225,6 +233,58 @@ export const contextFactory = (SV: ManagedSynthV): Context => {
       removeTempoMarkAt(timePoint: blick): boolean {
         return project.getTimeAxis().removeTempoMark(timePoint);
       },
+      newNoteGroup(): NoteGroupProxyBuilder {
+        const noteGroup = SV.create('NoteGroup');
+        const noteGroupProxy = NoteGroupProxyImpl.of(noteGroup);
+        return {
+          addNote(note: NoteProxy): NoteGroupProxyBuilder {
+            noteGroup.addNote(note._rawNote());
+            return this;
+          },
+          assignTo(noteGroupReference: NoteGroupReferenceProxy): NoteGroupProxyBuilder {
+            noteGroupReference.setTarget(noteGroupProxy);
+            return this;
+          },
+          removeNote(note: NoteProxy): NoteGroupProxyBuilder {
+            noteGroupProxy.removeNote(note);
+            return this;
+          },
+          setName(name: string): NoteGroupProxyBuilder {
+            noteGroup.setName(name);
+            return this;
+          },
+          create(): NoteGroupProxy {
+            project.addNoteGroup(noteGroup);
+            return noteGroupProxy;
+          },
+        };
+      },
+      newTrack(): TrackProxyBuilder {
+        const track = SV.create('Track');
+        const trackProxy = TrackProxyImpl.of(track);
+        return {
+          addNoteGroupReferences(...noteGroupReferences: NoteGroupReferenceProxy[]): TrackProxyBuilder {
+            trackProxy.addNoteGroupReferences(...noteGroupReferences);
+            return this;
+          },
+          setBounced(bounced: boolean): TrackProxyBuilder {
+            track.setBounced(bounced);
+            return this;
+          },
+          setDisplayColor(color: string): TrackProxyBuilder {
+            track.setDisplayColor(color);
+            return this;
+          },
+          setName(name: string): TrackProxyBuilder {
+            track.setName(name);
+            return this;
+          },
+          create(): TrackProxy {
+            project.addTrack(track);
+            return trackProxy;
+          },
+        };
+      },
     },
     arrangementView: {
       get selection(): ArrangementViewUserSelection {
@@ -236,13 +296,16 @@ export const contextFactory = (SV: ManagedSynthV): Context => {
             return arrangementView.getSelection().clearAll();
           },
           noteGroupReferences: arrangementView.getSelection().hasSelectedGroups()
-            ? arrangementView.getSelection().getSelectedGroups()
+            ? arrangementView
+                .getSelection()
+                .getSelectedGroups()
+                .map(NoteGroupReferenceProxyImpl.of)
             : undefined,
-          addGroupReference(noteGroupReference: NoteGroupReference): void {
-            arrangementView.getSelection().selectGroup(noteGroupReference);
+          addGroupReference(noteGroupReference: NoteGroupReferenceProxy): void {
+            arrangementView.getSelection().selectGroup(noteGroupReference._rawNoteGroupReference());
           },
-          removeGroupReference(noteGroupReference: NoteGroupReference): boolean {
-            return arrangementView.getSelection().unselectGroup(noteGroupReference);
+          removeGroupReference(noteGroupReference: NoteGroupReferenceProxy): boolean {
+            return arrangementView.getSelection().unselectGroup(noteGroupReference._rawNoteGroupReference());
           },
           removeAllGroupReferences(): boolean {
             return arrangementView.getSelection().clearGroups();

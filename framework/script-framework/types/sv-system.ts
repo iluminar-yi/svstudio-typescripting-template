@@ -1,13 +1,9 @@
-import { Note, NoteGroup, NoteGroupReference, Track } from 'svstudio-scripts-typing';
-
 import { ManagedSynthV, second } from '../../types';
+
+import { NoteGroupReferenceProxy } from './note-group-reference-proxy';
 
 export interface SvSystem {
   QUARTER: 705600000;
-  createNote(): Note;
-  createNoteGroup(): NoteGroup;
-  createNoteGroupReference(): NoteGroupReference;
-  createTrack(): Track;
   finish(): void;
   newUndoRecord(): void;
   setTimeout(timeout: number, callback: () => void): void;
@@ -16,7 +12,7 @@ export interface SvSystem {
   showMessageBox: ManagedSynthV['showMessageBox'];
   showOkCancelBox: ManagedSynthV['showOkCancelBox'];
   showYesNoCancelBox: ManagedSynthV['showYesNoCancelBox'];
-  convertTextToPhonemesForNoteGroup(group: NoteGroupReference): string[];
+  convertTextToPhonemesForNoteGroup(group: NoteGroupReferenceProxy): string[];
   T(text: string): string;
   loop(tBegin: second, tEnd: second): void;
   play(): void;

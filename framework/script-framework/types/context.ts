@@ -1,15 +1,11 @@
-import {
-  LanguageCode,
-  MeasureMark,
-  Note,
-  NoteGroup,
-  NoteGroupReference,
-  PlaybackStatus,
-  TempoMark,
-  Track,
-} from 'svstudio-scripts-typing';
+import { LanguageCode, MeasureMark, PlaybackStatus, TempoMark } from 'svstudio-scripts-typing';
 
 import { blick, measure, pixel, pixelPerBlick, pixelPerSemitone, second, semitone } from '../../types';
+
+import { NoteGroupProxy, NoteGroupProxyBuilder } from './note-group-proxy';
+import { NoteGroupReferenceProxy } from './note-group-reference-proxy';
+import { NoteProxy } from './note-proxy';
+import { TrackProxy, TrackProxyBuilder } from './track-proxy';
 
 export interface UserContentSelection {
   readonly hasUnfinishedEdits: boolean;
@@ -17,16 +13,16 @@ export interface UserContentSelection {
 }
 
 export interface UserNoteGroupSelection {
-  readonly noteGroupReferences?: NoteGroupReference[];
-  addGroupReference(noteGroupReference: NoteGroupReference): void;
-  removeGroupReference(noteGroupReference: NoteGroupReference): boolean;
+  readonly noteGroupReferences?: NoteGroupReferenceProxy[];
+  addGroupReference(noteGroupReference: NoteGroupReferenceProxy): void;
+  removeGroupReference(noteGroupReference: NoteGroupReferenceProxy): boolean;
   removeAllGroupReferences(): boolean;
 }
 
 export interface UserNoteSelection {
-  readonly notes?: Note[];
-  addNote(note: Note): void;
-  removeNote(note: Note): boolean;
+  readonly notes?: NoteProxy[];
+  addNote(note: NoteProxy): void;
+  removeNote(note: NoteProxy): boolean;
   removeAllNotes(): boolean;
 }
 
@@ -55,8 +51,8 @@ export interface MainEditorDisplay extends HorizontalDisplay, VerticalDisplay {}
 export type ArrangementViewDisplay = HorizontalDisplay;
 
 export interface MainEditorContext {
-  readonly currentGroupReference: NoteGroupReference;
-  readonly currentTrack: Track;
+  readonly currentGroupReference: NoteGroupReferenceProxy;
+  readonly currentTrack: TrackProxy;
   readonly selection: MainEditorUserSelection;
   readonly view: MainEditorDisplay;
 }
@@ -67,13 +63,13 @@ export interface ArrangementViewContext {
 }
 
 export interface ProjectContext {
-  readonly allNoteGroups: NoteGroup[];
-  addNoteGroup(group: NoteGroup, suggestedIndex?: number): number;
-  removeNoteGroup(noteGroup: NoteGroup): void;
-  findNoteGroupById(noteGroupId: string): NoteGroup | undefined;
-  readonly allTracks: Track[];
-  addTrack(track: Track): void;
-  removeTrack(track: Track): void;
+  readonly allNoteGroups: NoteGroupProxy[];
+  addNoteGroup(group: NoteGroupProxy, suggestedIndex?: number): number;
+  removeNoteGroup(noteGroup: NoteGroupProxy): void;
+  findNoteGroupById(noteGroupId: string): NoteGroupProxy | undefined;
+  readonly allTracks: TrackProxy[];
+  addTrack(track: TrackProxy): void;
+  removeTrack(track: TrackProxy): void;
   readonly allMeasureMarks: MeasureMark[];
   setMeasureMarkAt(measureNumber: measure, nomin: number, denom: number): void;
   getMeasureMarkAt(measureNumber: measure): MeasureMark;
@@ -83,6 +79,8 @@ export interface ProjectContext {
   setTempoMarkAt(timePoint: blick, bpm: number): void;
   getTempoMarkAt(timePoint: blick): TempoMark;
   removeTempoMarkAt(timePoint: blick): boolean;
+  newNoteGroup(): NoteGroupProxyBuilder;
+  newTrack(): TrackProxyBuilder;
 }
 
 export interface Context {

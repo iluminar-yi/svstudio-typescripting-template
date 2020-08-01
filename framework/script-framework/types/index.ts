@@ -7,6 +7,9 @@ export interface LifeCycleManager {
   getManagedCallback(callback: Function, id: string): (...args: unknown[]) => void;
 }
 
-export { SvSystem } from './sv-system';
-export { Context, MainEditorContext, ArrangementViewContext, ProjectContext } from './context';
-export { Utils } from './utils';
+export * from './sv-system';
+export * from './context';
+export * from './utils';
+export * from './note-proxy';
+export * from './note-group-proxy';
+export * from './note-group-reference-proxy';

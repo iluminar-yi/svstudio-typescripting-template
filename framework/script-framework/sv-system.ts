@@ -1,8 +1,6 @@
-import { Note, NoteGroup, NoteGroupReference, Track } from 'svstudio-scripts-typing';
-
 import { ManagedSynthV } from '../types';
 
-import { SvSystem } from './types';
+import { NoteGroupReferenceProxy, SvSystem } from './types';
 
 export const svSystemFactory = (SV: ManagedSynthV): SvSystem => {
   const project = SV.getProject();
@@ -10,10 +8,6 @@ export const svSystemFactory = (SV: ManagedSynthV): SvSystem => {
 
   return {
     QUARTER: SV.QUARTER,
-    createNote: (): Note => SV.create('Note'),
-    createNoteGroup: (): NoteGroup => SV.create('NoteGroup'),
-    createNoteGroupReference: (): NoteGroupReference => SV.create('NoteGroupReference'),
-    createTrack: (): Track => SV.create('Track'),
     finish: SV.finish.bind(SV),
     newUndoRecord: project.newUndoRecord.bind(project),
     setTimeout: SV.setTimeout.bind(SV),
@@ -22,7 +16,9 @@ export const svSystemFactory = (SV: ManagedSynthV): SvSystem => {
     showMessageBox: SV.showMessageBox.bind(SV),
     showOkCancelBox: SV.showOkCancelBox.bind(SV),
     showYesNoCancelBox: SV.showYesNoCancelBox.bind(SV),
-    convertTextToPhonemesForNoteGroup: SV.getPhonemesForGroup.bind(SV),
+    convertTextToPhonemesForNoteGroup: (group: NoteGroupReferenceProxy): string[] => {
+      return SV.getPhonemesForGroup(group._rawNoteGroupReference());
+    },
     T: SV.T.bind(SV),
     loop: playbackControl.loop.bind(playbackControl),
     pause: playbackControl.pause.bind(playbackControl),

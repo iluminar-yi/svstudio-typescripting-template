@@ -35,6 +35,7 @@ export type second = number;
 export type pixel = number;
 export type pixelPerBlick = number;
 export type pixelPerSemitone = number;
+export type Hz = number;
 
 export interface SVScript {
   getClientInfo(): ClientInfo;
