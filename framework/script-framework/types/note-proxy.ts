@@ -45,11 +45,6 @@ export interface NoteProxy {
   _rawNote(): Note;
 }
 
-export interface NoteProxyConstructor {
-  new (): NoteProxy;
-  of(note: Note): NoteProxy;
-}
-
 export interface NoteProxyBuilder {
   setDuration(duration: blick): this;
   setLyrics(lyrics: string): this;

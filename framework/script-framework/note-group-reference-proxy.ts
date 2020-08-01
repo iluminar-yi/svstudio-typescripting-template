@@ -2,7 +2,7 @@ import { NoteGroupReference } from 'svstudio-scripts-typing';
 
 import { Hz, blick, second, semitone } from '../types';
 
-import { NoteGroupProxyImpl } from './note-group-proxy';
+import { noteGroupProxyOf } from './note-group-proxy';
 import {
   InstrumentalReferenceProxy,
   NoteGroupProxy,
@@ -10,239 +10,238 @@ import {
   NoteGroupReferenceProxyBase,
 } from './types';
 
-abstract class AbstractNoteGroupReferenceProxyBase implements NoteGroupReferenceProxyBase {
-  protected readonly rawNoteGroupReference: NoteGroupReference;
-  public constructor(noteGroupReference: NoteGroupReference) {
-    this.rawNoteGroupReference = noteGroupReference;
-  }
+const noteGroupReferenceProxyBaseOf = (noteGroupReference: NoteGroupReference): NoteGroupReferenceProxyBase => {
+  return {
+    get timeOffset(): blick {
+      return noteGroupReference.getTimeOffset();
+    },
 
-  public get timeOffset(): blick {
-    return this.rawNoteGroupReference.getTimeOffset();
-  }
+    set timeOffset(timeOffset: blick) {
+      noteGroupReference.setTimeOffset(timeOffset);
+    },
 
-  public set timeOffset(timeOffset: blick) {
-    this.rawNoteGroupReference.setTimeOffset(timeOffset);
-  }
+    getDuration(): blick {
+      return noteGroupReference.getDuration();
+    },
 
-  public getDuration = (): blick => {
-    return this.rawNoteGroupReference.getDuration();
+    getEnd(): blick {
+      return noteGroupReference.getEnd();
+    },
+
+    getOnset(): blick {
+      return noteGroupReference.getOnset();
+    },
+  };
+};
+
+export const instrumentalReferenceProxyOf = (noteGroupReference: NoteGroupReference): InstrumentalReferenceProxy => {
+  if (!noteGroupReference.isInstrumental()) {
+    throw new Error('Not an instrumental note group reference');
+  }
+  return {
+    ...noteGroupReferenceProxyBaseOf(noteGroupReference),
+    instrumental: true,
+    main: true,
+  };
+};
+
+export const noteGroupReferenceProxyOf = (noteGroupReference: NoteGroupReference): NoteGroupReferenceProxy => {
+  if (noteGroupReference.isInstrumental()) {
+    throw new Error('Is an instrumental note group reference');
+  }
+  const noteGroupReferenceProxy: NoteGroupReferenceProxy = {
+    ...noteGroupReferenceProxyBaseOf(noteGroupReference),
+
+    instrumental: false,
+
+    get baseBreathiness(): number {
+      return noteGroupReference.getVoice().paramBreathiness;
+    },
+    set baseBreathiness(baseBreathiness: number) {
+      noteGroupReference.setVoice({ paramBreathiness: baseBreathiness });
+    },
+
+    get baseGender(): number {
+      return noteGroupReference.getVoice().paramGender;
+    },
+    set baseGender(baseGender: number) {
+      noteGroupReference.setVoice({ paramGender: baseGender });
+    },
+
+    get baseLoudness(): number {
+      return noteGroupReference.getVoice().paramLoudness;
+    },
+    set baseLoudness(baseLoudness: number) {
+      noteGroupReference.setVoice({ paramLoudness: baseLoudness });
+    },
+
+    get baseTension(): number {
+      return noteGroupReference.getVoice().paramTension;
+    },
+    set baseTension(baseTension: number) {
+      noteGroupReference.setVoice({ paramTension: baseTension });
+    },
+
+    get dF0Left(): semitone {
+      return noteGroupReference.getVoice().dF0Left;
+    },
+    set dF0Left(dF0Left: semitone) {
+      noteGroupReference.setVoice({ dF0Left });
+    },
+
+    get dF0Right(): semitone {
+      return noteGroupReference.getVoice().dF0Right;
+    },
+    set dF0Right(dF0Right: semitone) {
+      noteGroupReference.setVoice({ dF0Right });
+    },
+
+    get dF0Vbr(): semitone {
+      return noteGroupReference.getVoice().dF0Vbr;
+    },
+    set dF0Vbr(dF0Vbr: semitone) {
+      noteGroupReference.setVoice({ dF0Vbr });
+    },
+
+    get fF0Vbr(): Hz {
+      return noteGroupReference.getVoice().fF0Vbr;
+    },
+    set fF0Vbr(fF0Vbr: Hz) {
+      noteGroupReference.setVoice({ fF0Vbr });
+    },
+
+    get main(): boolean {
+      return noteGroupReference.isMain();
+    },
+
+    get pitchOffset(): semitone {
+      return noteGroupReference.getPitchOffset();
+    },
+    set pitchOffset(pitchOffset: semitone) {
+      noteGroupReference.setPitchOffset(pitchOffset);
+    },
+
+    get tF0Left(): second {
+      return noteGroupReference.getVoice().tF0Left;
+    },
+    set tF0Left(tF0Left: second) {
+      noteGroupReference.setVoice({ tF0Left });
+    },
+
+    get tF0Right(): second {
+      return noteGroupReference.getVoice().tF0Right;
+    },
+    set tF0Right(tF0Right: second) {
+      noteGroupReference.setVoice({ tF0Right });
+    },
+
+    get tF0VbrLeft(): second {
+      return noteGroupReference.getVoice().tF0VbrLeft;
+    },
+    set tF0VbrLeft(tF0VbrLeft: second) {
+      noteGroupReference.setVoice({ tF0VbrLeft });
+    },
+
+    get tF0VbrRight(): second {
+      return noteGroupReference.getVoice().tF0VbrRight;
+    },
+    set tF0VbrRight(tF0VbrRight: second) {
+      noteGroupReference.setVoice({ tF0VbrRight });
+    },
+
+    get tF0VbrStart(): second {
+      return noteGroupReference.getVoice().tF0VbrStart;
+    },
+    set tF0VbrStart(tF0VbrStart: second) {
+      noteGroupReference.setVoice({ tF0VbrStart });
+    },
+
+    get target(): NoteGroupProxy {
+      return noteGroupProxyOf(noteGroupReference.getTarget());
+    },
+    set target(target: NoteGroupProxy) {
+      noteGroupReference.setTarget(target._rawNoteGroup());
+    },
+
+    setBaseBreathiness(baseBreathiness: number): NoteGroupReferenceProxy {
+      noteGroupReferenceProxy.baseBreathiness = baseBreathiness;
+      return noteGroupReferenceProxy;
+    },
+
+    setBaseGender(baseGender: number): NoteGroupReferenceProxy {
+      noteGroupReferenceProxy.baseGender = baseGender;
+      return noteGroupReferenceProxy;
+    },
+
+    setBaseLoudness(baseLoudness: number): NoteGroupReferenceProxy {
+      noteGroupReferenceProxy.baseLoudness = baseLoudness;
+      return noteGroupReferenceProxy;
+    },
+
+    setBaseTension(baseTension: number): NoteGroupReferenceProxy {
+      noteGroupReferenceProxy.baseTension = baseTension;
+      return noteGroupReferenceProxy;
+    },
+
+    setDF0Left(dF0Left: semitone): NoteGroupReferenceProxy {
+      noteGroupReferenceProxy.dF0Left = dF0Left;
+      return noteGroupReferenceProxy;
+    },
+
+    setDF0Right(dF0Right: semitone): NoteGroupReferenceProxy {
+      noteGroupReferenceProxy.dF0Right = dF0Right;
+      return noteGroupReferenceProxy;
+    },
+
+    setDF0Vbr(dF0Vbr: semitone): NoteGroupReferenceProxy {
+      noteGroupReferenceProxy.dF0Vbr = dF0Vbr;
+      return noteGroupReferenceProxy;
+    },
+
+    setFF0Vbr(fF0Vbr: Hz): NoteGroupReferenceProxy {
+      noteGroupReferenceProxy.fF0Vbr = fF0Vbr;
+      return noteGroupReferenceProxy;
+    },
+
+    setPitchOffset(pitchOffset: semitone): NoteGroupReferenceProxy {
+      noteGroupReferenceProxy.pitchOffset = pitchOffset;
+      return noteGroupReferenceProxy;
+    },
+
+    setTF0Left(tF0Left: second): NoteGroupReferenceProxy {
+      noteGroupReferenceProxy.tF0Left = tF0Left;
+      return noteGroupReferenceProxy;
+    },
+
+    setTF0Right(tF0Right: second): NoteGroupReferenceProxy {
+      noteGroupReferenceProxy.tF0Right = tF0Right;
+      return noteGroupReferenceProxy;
+    },
+
+    setTF0VbrLeft(tF0VbrLeft: second): NoteGroupReferenceProxy {
+      noteGroupReferenceProxy.tF0VbrLeft = tF0VbrLeft;
+      return noteGroupReferenceProxy;
+    },
+
+    setTF0VbrRight(tF0VbrRight: second): NoteGroupReferenceProxy {
+      noteGroupReferenceProxy.tF0VbrRight = tF0VbrRight;
+      return noteGroupReferenceProxy;
+    },
+
+    setTF0VbrStart(tF0VbrStart: second): NoteGroupReferenceProxy {
+      noteGroupReferenceProxy.tF0VbrStart = tF0VbrStart;
+      return noteGroupReferenceProxy;
+    },
+
+    setTarget(target: NoteGroupProxy): NoteGroupReferenceProxy {
+      noteGroupReferenceProxy.target = target;
+      return noteGroupReferenceProxy;
+    },
+
+    _rawNoteGroupReference(): NoteGroupReference {
+      return noteGroupReference;
+    },
   };
 
-  public getEnd = (): blick => {
-    return this.rawNoteGroupReference.getEnd();
-  };
-
-  public getOnset = (): blick => {
-    return this.rawNoteGroupReference.getOnset();
-  };
-}
-
-export class InstrumentalReferenceProxyImpl extends AbstractNoteGroupReferenceProxyBase
-  implements InstrumentalReferenceProxy {
-  public readonly instrumental: true = true;
-  public readonly main: true = true;
-
-  public static of(noteGroupReference: NoteGroupReference): InstrumentalReferenceProxyImpl {
-    if (!noteGroupReference.isInstrumental()) {
-      throw new Error('Not an instrumental note group reference');
-    }
-    return new InstrumentalReferenceProxyImpl(noteGroupReference);
-  }
-}
-
-export class NoteGroupReferenceProxyImpl extends AbstractNoteGroupReferenceProxyBase
-  implements NoteGroupReferenceProxy {
-  public readonly instrumental: false = false;
-
-  public static of(noteGroupReference: NoteGroupReference): NoteGroupReferenceProxyImpl {
-    if (noteGroupReference.isInstrumental()) {
-      throw new Error('Is an instrumental note group reference');
-    }
-    return new NoteGroupReferenceProxyImpl(noteGroupReference);
-  }
-
-  public get baseBreathiness(): number {
-    return this.rawNoteGroupReference.getVoice().paramBreathiness;
-  }
-  public set baseBreathiness(baseBreathiness: number) {
-    this.rawNoteGroupReference.setVoice({ paramBreathiness: baseBreathiness });
-  }
-
-  public get baseGender(): number {
-    return this.rawNoteGroupReference.getVoice().paramGender;
-  }
-  public set baseGender(baseGender: number) {
-    this.rawNoteGroupReference.setVoice({ paramGender: baseGender });
-  }
-
-  public get baseLoudness(): number {
-    return this.rawNoteGroupReference.getVoice().paramLoudness;
-  }
-  public set baseLoudness(baseLoudness: number) {
-    this.rawNoteGroupReference.setVoice({ paramLoudness: baseLoudness });
-  }
-
-  public get baseTension(): number {
-    return this.rawNoteGroupReference.getVoice().paramTension;
-  }
-  public set baseTension(baseTension: number) {
-    this.rawNoteGroupReference.setVoice({ paramTension: baseTension });
-  }
-
-  public get dF0Left(): semitone {
-    return this.rawNoteGroupReference.getVoice().dF0Left;
-  }
-  public set dF0Left(dF0Left: semitone) {
-    this.rawNoteGroupReference.setVoice({ dF0Left });
-  }
-
-  public get dF0Right(): semitone {
-    return this.rawNoteGroupReference.getVoice().dF0Right;
-  }
-  public set dF0Right(dF0Right: semitone) {
-    this.rawNoteGroupReference.setVoice({ dF0Right });
-  }
-
-  public get dF0Vbr(): semitone {
-    return this.rawNoteGroupReference.getVoice().dF0Vbr;
-  }
-  public set dF0Vbr(dF0Vbr: semitone) {
-    this.rawNoteGroupReference.setVoice({ dF0Vbr });
-  }
-
-  public get fF0Vbr(): Hz {
-    return this.rawNoteGroupReference.getVoice().fF0Vbr;
-  }
-  public set fF0Vbr(fF0Vbr: Hz) {
-    this.rawNoteGroupReference.setVoice({ fF0Vbr });
-  }
-
-  public get main(): boolean {
-    return this.rawNoteGroupReference.isMain();
-  }
-
-  public get pitchOffset(): semitone {
-    return this.rawNoteGroupReference.getPitchOffset();
-  }
-  public set pitchOffset(pitchOffset: semitone) {
-    this.rawNoteGroupReference.setPitchOffset(pitchOffset);
-  }
-
-  public get tF0Left(): second {
-    return this.rawNoteGroupReference.getVoice().tF0Left;
-  }
-  public set tF0Left(tF0Left: second) {
-    this.rawNoteGroupReference.setVoice({ tF0Left });
-  }
-
-  public get tF0Right(): second {
-    return this.rawNoteGroupReference.getVoice().tF0Right;
-  }
-  public set tF0Right(tF0Right: second) {
-    this.rawNoteGroupReference.setVoice({ tF0Right });
-  }
-  public get tF0VbrLeft(): second {
-    return this.rawNoteGroupReference.getVoice().tF0VbrLeft;
-  }
-  public set tF0VbrLeft(tF0VbrLeft: second) {
-    this.rawNoteGroupReference.setVoice({ tF0VbrLeft });
-  }
-  public get tF0VbrRight(): second {
-    return this.rawNoteGroupReference.getVoice().tF0VbrRight;
-  }
-  public set tF0VbrRight(tF0VbrRight: second) {
-    this.rawNoteGroupReference.setVoice({ tF0VbrRight });
-  }
-  public get tF0VbrStart(): second {
-    return this.rawNoteGroupReference.getVoice().tF0VbrStart;
-  }
-  public set tF0VbrStart(tF0VbrStart: second) {
-    this.rawNoteGroupReference.setVoice({ tF0VbrStart });
-  }
-
-  public get target(): NoteGroupProxy {
-    return NoteGroupProxyImpl.of(this.rawNoteGroupReference.getTarget());
-  }
-  public set target(target: NoteGroupProxy) {
-    this.rawNoteGroupReference.setTarget(target._rawNoteGroup());
-  }
-
-  public setBaseBreathiness(baseBreathiness: number): this {
-    this.baseBreathiness = baseBreathiness;
-    return this;
-  }
-
-  public setBaseGender(baseGender: number): this {
-    this.baseGender = baseGender;
-    return this;
-  }
-
-  public setBaseLoudness(baseLoudness: number): this {
-    this.baseLoudness = baseLoudness;
-    return this;
-  }
-
-  public setBaseTension(baseTension: number): this {
-    this.baseTension = baseTension;
-    return this;
-  }
-
-  public setDF0Left(dF0Left: semitone): this {
-    this.dF0Left = dF0Left;
-    return this;
-  }
-
-  public setDF0Right(dF0Right: semitone): this {
-    this.dF0Right = dF0Right;
-    return this;
-  }
-
-  public setDF0Vbr(dF0Vbr: semitone): this {
-    this.dF0Vbr = dF0Vbr;
-    return this;
-  }
-
-  public setFF0Vbr(fF0Vbr: Hz): this {
-    this.fF0Vbr = fF0Vbr;
-    return this;
-  }
-
-  public setPitchOffset(pitchOffset: semitone): this {
-    this.pitchOffset = pitchOffset;
-    return this;
-  }
-
-  public setTF0Left(tF0Left: second): this {
-    this.tF0Left = tF0Left;
-    return this;
-  }
-
-  public setTF0Right(tF0Right: second): this {
-    this.tF0Right = tF0Right;
-    return this;
-  }
-
-  public setTF0VbrLeft(tF0VbrLeft: second): this {
-    this.tF0VbrLeft = tF0VbrLeft;
-    return this;
-  }
-
-  public setTF0VbrRight(tF0VbrRight: second): this {
-    this.tF0VbrRight = tF0VbrRight;
-    return this;
-  }
-
-  public setTF0VbrStart(tF0VbrStart: second): this {
-    this.tF0VbrStart = tF0VbrStart;
-    return this;
-  }
-
-  public setTarget(target: NoteGroupProxy): this {
-    this.target = target;
-    return this;
-  }
-
-  public _rawNoteGroupReference(): NoteGroupReference {
-    return this.rawNoteGroupReference;
-  }
-}
+  return noteGroupReferenceProxy;
+};

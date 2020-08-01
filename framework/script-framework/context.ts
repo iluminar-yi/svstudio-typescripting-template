@@ -2,9 +2,9 @@ import { HostInfo, LanguageCode, MeasureMark, PlaybackStatus, TempoMark } from '
 
 import { ManagedSynthV, blick, measure, pixel, pixelPerBlick, pixelPerSemitone, second, semitone } from '../types';
 
-import { NoteGroupProxyImpl } from './note-group-proxy';
-import { NoteGroupReferenceProxyImpl } from './note-group-reference-proxy';
-import { NoteProxyImpl } from './note-proxy';
+import { noteGroupProxyOf } from './note-group-proxy';
+import { noteGroupReferenceProxyOf } from './note-group-reference-proxy';
+import { noteProxyOf } from './note-proxy';
 import { TrackProxyImpl } from './track-proxy';
 import {
   ArrangementViewDisplay,
@@ -67,7 +67,7 @@ export const contextFactory = (SV: ManagedSynthV): Context => {
     },
     mainEditor: {
       get currentGroupReference(): NoteGroupReferenceProxy {
-        return NoteGroupReferenceProxyImpl.of(mainEditor.getCurrentGroup());
+        return noteGroupReferenceProxyOf(mainEditor.getCurrentGroup());
       },
       get currentTrack(): TrackProxy {
         return TrackProxyImpl.of(mainEditor.getCurrentTrack());
@@ -84,7 +84,7 @@ export const contextFactory = (SV: ManagedSynthV): Context => {
             ? mainEditor
                 .getSelection()
                 .getSelectedGroups()
-                .map(NoteGroupReferenceProxyImpl.of)
+                .map(noteGroupReferenceProxyOf)
             : undefined,
           addGroupReference(noteGroupReference: NoteGroupReferenceProxy): void {
             mainEditor.getSelection().selectGroup(noteGroupReference._rawNoteGroupReference());
@@ -101,7 +101,7 @@ export const contextFactory = (SV: ManagedSynthV): Context => {
             ? mainEditor
                 .getSelection()
                 .getSelectedNotes()
-                .map(NoteProxyImpl.of)
+                .map(noteProxyOf)
             : undefined,
           addNote(note: NoteProxy): void {
             mainEditor.getSelection().selectNote(note._rawNote());
@@ -176,7 +176,7 @@ export const contextFactory = (SV: ManagedSynthV): Context => {
           if (!noteGroup) {
             throw new Error(`It's impossible to have undefined NoteGroup here`);
           }
-          noteGroups.push(NoteGroupProxyImpl.of(noteGroup));
+          noteGroups.push(noteGroupProxyOf(noteGroup));
         }
         return noteGroups;
       },
@@ -189,7 +189,7 @@ export const contextFactory = (SV: ManagedSynthV): Context => {
       findNoteGroupById(noteGroupId: string): NoteGroupProxy | undefined {
         const noteGroup = project.getNoteGroup(noteGroupId);
         if (noteGroup) {
-          return NoteGroupProxyImpl.of(noteGroup);
+          return noteGroupProxyOf(noteGroup);
         }
       },
       get allTracks(): TrackProxy[] {
@@ -235,7 +235,7 @@ export const contextFactory = (SV: ManagedSynthV): Context => {
       },
       newNoteGroup(): NoteGroupProxyBuilder {
         const noteGroup = SV.create('NoteGroup');
-        const noteGroupProxy = NoteGroupProxyImpl.of(noteGroup);
+        const noteGroupProxy = noteGroupProxyOf(noteGroup);
         return {
           addNote(note: NoteProxy): NoteGroupProxyBuilder {
             noteGroup.addNote(note._rawNote());
@@ -299,7 +299,7 @@ export const contextFactory = (SV: ManagedSynthV): Context => {
             ? arrangementView
                 .getSelection()
                 .getSelectedGroups()
-                .map(NoteGroupReferenceProxyImpl.of)
+                .map(noteGroupReferenceProxyOf)
             : undefined,
           addGroupReference(noteGroupReference: NoteGroupReferenceProxy): void {
             arrangementView.getSelection().selectGroup(noteGroupReference._rawNoteGroupReference());
