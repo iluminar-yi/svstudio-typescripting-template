@@ -16,10 +16,10 @@ export const utilsFactory = (SV: ManagedSynthV): Utils => {
     freq2Pitch: SV.freq2Pitch.bind(SV),
     pitch2Freq: SV.pitch2Freq.bind(SV),
     getTimePointInSeconds(timePointInBlick: blick): second {
-      return timeAxis.getBlickFromSeconds(timePointInBlick);
+      return timeAxis.getSecondsFromBlick(timePointInBlick);
     },
     getTimePointInBlicks(timePointInSeconds: second): blick {
-      return timeAxis.getSecondsFromBlick(timePointInSeconds);
+      return timeAxis.getBlickFromSeconds(timePointInSeconds);
     },
     getMeasureAtTimePoint(timePoint: blick): measure {
       return timeAxis.getMeasureAt(timePoint);
