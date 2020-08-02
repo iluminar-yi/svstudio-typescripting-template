@@ -24,6 +24,7 @@ export const contextFactory = (SV: ManagedSynthV): Context => {
   const playbackControl = SV.getPlayback();
   const mainEditor = SV.getMainEditor();
   const arrangementView = SV.getArrangement();
+  const timeAxis = project.getTimeAxis();
 
   return {
     get clipboard(): string {
@@ -62,16 +63,22 @@ export const contextFactory = (SV: ManagedSynthV): Context => {
     set currentTime(time: second) {
       playbackControl.seek(time);
     },
+    get currentTimePoint(): blick {
+      return timeAxis.getBlickFromSeconds(playbackControl.getPlayhead());
+    },
+    set currentTimePoint(time: blick) {
+      playbackControl.seek(timeAxis.getSecondsFromBlick(time));
+    },
+    get currentNoteGroupReference(): NoteGroupReferenceProxy {
+      return noteGroupReferenceProxyOf(mainEditor.getCurrentGroup());
+    },
+    get currentTrack(): TrackProxy {
+      return TrackProxyImpl.of(mainEditor.getCurrentTrack());
+    },
     get playbackStatus(): PlaybackStatus {
       return playbackControl.getStatus();
     },
     mainEditor: {
-      get currentGroupReference(): NoteGroupReferenceProxy {
-        return noteGroupReferenceProxyOf(mainEditor.getCurrentGroup());
-      },
-      get currentTrack(): TrackProxy {
-        return TrackProxyImpl.of(mainEditor.getCurrentTrack());
-      },
       get selection(): MainEditorUserSelection {
         return {
           get hasUnfinishedEdits(): boolean {
@@ -207,31 +214,31 @@ export const contextFactory = (SV: ManagedSynthV): Context => {
         project.removeTrack(track._rawTrack().getIndexInParent());
       },
       get allMeasureMarks(): MeasureMark[] {
-        return project.getTimeAxis().getAllMeasureMarks();
+        return timeAxis.getAllMeasureMarks();
       },
       setMeasureMarkAt(measureNumber: measure, nomin: number, denom: number): void {
-        project.getTimeAxis().addMeasureMark(measureNumber, nomin, denom);
+        timeAxis.addMeasureMark(measureNumber, nomin, denom);
       },
       getMeasureMarkAt(measureNumber: measure): MeasureMark {
-        return project.getTimeAxis().getMeasureMarkAt(measureNumber);
+        return timeAxis.getMeasureMarkAt(measureNumber);
       },
       getMeasureMarkAtBlick(timePoint: blick): MeasureMark {
-        return project.getTimeAxis().getMeasureMarkAtBlick(timePoint);
+        return timeAxis.getMeasureMarkAtBlick(timePoint);
       },
       removeMeasureMarkAt(measureNumber: measure): boolean {
-        return project.getTimeAxis().removeMeasureMark(measureNumber);
+        return timeAxis.removeMeasureMark(measureNumber);
       },
       get allTempoMarks(): TempoMark[] {
-        return project.getTimeAxis().getAllTempoMarks();
+        return timeAxis.getAllTempoMarks();
       },
       setTempoMarkAt(timePoint: blick, bpm: number): void {
-        return project.getTimeAxis().addTempoMark(timePoint, bpm);
+        return timeAxis.addTempoMark(timePoint, bpm);
       },
       getTempoMarkAt(timePoint: blick): TempoMark {
-        return project.getTimeAxis().getTempoMarkAt(timePoint);
+        return timeAxis.getTempoMarkAt(timePoint);
       },
       removeTempoMarkAt(timePoint: blick): boolean {
-        return project.getTimeAxis().removeTempoMark(timePoint);
+        return timeAxis.removeTempoMark(timePoint);
       },
       newNoteGroup(): NoteGroupProxyBuilder {
         const noteGroup = SV.create('NoteGroup');

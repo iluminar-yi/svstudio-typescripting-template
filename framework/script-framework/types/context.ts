@@ -51,8 +51,6 @@ export interface MainEditorDisplay extends HorizontalDisplay, VerticalDisplay {}
 export type ArrangementViewDisplay = HorizontalDisplay;
 
 export interface MainEditorContext {
-  readonly currentGroupReference: NoteGroupReferenceProxy;
-  readonly currentTrack: TrackProxy;
   readonly selection: MainEditorUserSelection;
   readonly view: MainEditorDisplay;
 }
@@ -94,6 +92,9 @@ export interface Context {
   readonly fileName: string;
   readonly duration: blick;
   currentTime: second;
+  currentTimePoint: blick;
+  readonly currentNoteGroupReference: NoteGroupReferenceProxy;
+  readonly currentTrack: TrackProxy;
   readonly playbackStatus: PlaybackStatus;
   readonly mainEditor: MainEditorContext;
   readonly arrangementView: ArrangementViewContext;
