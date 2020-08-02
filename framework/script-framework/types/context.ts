@@ -3,7 +3,7 @@ import { LanguageCode, MeasureMark, PlaybackStatus, TempoMark } from 'svstudio-s
 import { blick, measure, pixel, pixelPerBlick, pixelPerSemitone, second, semitone } from '../../types';
 
 import { NoteGroupProxy, NoteGroupProxyBuilder } from './note-group-proxy';
-import { NoteGroupReferenceProxy } from './note-group-reference-proxy';
+import { InstrumentalReferenceProxy, NoteGroupReferenceProxy } from './note-group-reference-proxy';
 import { NoteProxy } from './note-proxy';
 import { TrackProxy, TrackProxyBuilder } from './track-proxy';
 
@@ -13,7 +13,7 @@ export interface UserContentSelection {
 }
 
 export interface UserNoteGroupSelection {
-  readonly noteGroupReferences?: NoteGroupReferenceProxy[];
+  readonly noteGroupReferences?: (InstrumentalReferenceProxy | NoteGroupReferenceProxy)[];
   addGroupReference(noteGroupReference: NoteGroupReferenceProxy): void;
   removeGroupReference(noteGroupReference: NoteGroupReferenceProxy): boolean;
   removeAllGroupReferences(): boolean;

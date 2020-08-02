@@ -3,7 +3,7 @@ import { NoteGroupReference, Track } from 'svstudio-scripts-typing';
 import { SV } from '../_global';
 import { Hz, blick, second, semitone } from '../types';
 
-import { instrumentalReferenceProxyOf, noteGroupReferenceProxyOf } from './note-group-reference-proxy';
+import { instrumentalOrNoteGroupReferenceProxyOf, noteGroupReferenceProxyOf } from './note-group-reference-proxy';
 import {
   InstrumentalReferenceProxy,
   NoteGroupProxy,
@@ -22,6 +22,10 @@ export class TrackProxyImpl implements TrackProxy {
 
   public constructor(track: Track) {
     this.rawTrack = track;
+  }
+
+  public mainNoteGroupReference(): NoteGroupReferenceProxy | InstrumentalReferenceProxy {
+    return this.noteGroupReferences.filter((noteGroupReference): boolean => noteGroupReference.main)[0];
   }
 
   public get bounced(): boolean {
@@ -53,13 +57,7 @@ export class TrackProxyImpl implements TrackProxy {
     for (let i = 0; i < this.rawTrack.getNumGroups(); i++) {
       noteGroupReferences.push(this.rawTrack.getGroupReference(i));
     }
-    return noteGroupReferences.map((noteGroup): NoteGroupReferenceProxy | InstrumentalReferenceProxy => {
-      if (noteGroup.isInstrumental()) {
-        return instrumentalReferenceProxyOf(noteGroup);
-      } else {
-        return noteGroupReferenceProxyOf(noteGroup);
-      }
-    });
+    return noteGroupReferences.map(instrumentalOrNoteGroupReferenceProxyOf);
   }
 
   public _rawTrack = (): Track => {

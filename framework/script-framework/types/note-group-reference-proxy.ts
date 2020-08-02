@@ -47,19 +47,9 @@ export interface NoteGroupReferenceProxy extends NoteGroupReferenceProxyBase {
   _rawNoteGroupReference(): NoteGroupReference;
 }
 
-export interface NoteGroupReferenceProxyConstructor {
-  new (noteGroupReference: NoteGroupReference): NoteGroupReferenceProxy;
-  of(noteGroupReference: NoteGroupReference): NoteGroupReferenceProxy;
-}
-
 export interface InstrumentalReferenceProxy extends NoteGroupReferenceProxyBase {
   readonly instrumental: true;
   readonly main: true;
-}
-
-export interface InstrumentalReferenceProxyConstructor {
-  new (noteGroupReference: NoteGroupReference): InstrumentalReferenceProxy;
-  of(instrumentalReference: NoteGroupReference): InstrumentalReferenceProxy;
 }
 
 export interface NoteGroupReferenceProxyBuilder {

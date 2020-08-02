@@ -3,7 +3,7 @@ import { HostInfo, LanguageCode, MeasureMark, PlaybackStatus, TempoMark } from '
 import { ManagedSynthV, blick, measure, pixel, pixelPerBlick, pixelPerSemitone, second, semitone } from '../types';
 
 import { noteGroupProxyOf } from './note-group-proxy';
-import { noteGroupReferenceProxyOf } from './note-group-reference-proxy';
+import { instrumentalOrNoteGroupReferenceProxyOf, noteGroupReferenceProxyOf } from './note-group-reference-proxy';
 import { noteProxyOf } from './note-proxy';
 import { TrackProxyImpl } from './track-proxy';
 import {
@@ -299,7 +299,7 @@ export const contextFactory = (SV: ManagedSynthV): Context => {
             ? arrangementView
                 .getSelection()
                 .getSelectedGroups()
-                .map(noteGroupReferenceProxyOf)
+                .map(instrumentalOrNoteGroupReferenceProxyOf)
             : undefined,
           addGroupReference(noteGroupReference: NoteGroupReferenceProxy): void {
             arrangementView.getSelection().selectGroup(noteGroupReference._rawNoteGroupReference());

@@ -1,5 +1,6 @@
-import { Automation, NoteGroup } from 'svstudio-scripts-typing';
+import { NoteGroup } from 'svstudio-scripts-typing';
 
+import { AutomationProxy } from './automation-proxy';
 import { NoteGroupReferenceProxy } from './note-group-reference-proxy';
 import { NoteProxy, NoteProxyBuilder } from './note-proxy';
 
@@ -9,21 +10,16 @@ export interface NoteGroupProxy {
   name: string;
   notes: NoteProxy[];
   removeNote(note: NoteProxy): void;
-  readonly pitchDelta: Automation;
-  readonly vibratoEnv: Automation;
-  readonly loudness: Automation;
-  readonly tension: Automation;
-  readonly breathiness: Automation;
-  readonly voicing: Automation;
-  readonly gender: Automation;
+  readonly pitchDelta: AutomationProxy;
+  readonly vibratoEnv: AutomationProxy;
+  readonly loudness: AutomationProxy;
+  readonly tension: AutomationProxy;
+  readonly breathiness: AutomationProxy;
+  readonly voicing: AutomationProxy;
+  readonly gender: AutomationProxy;
   newNote(): NoteProxyBuilder;
   assignTo(noteGroupReference: NoteGroupReferenceProxy): this;
   _rawNoteGroup(): NoteGroup;
-}
-
-export interface NoteGroupProxyConstructor {
-  new (): NoteGroupProxy;
-  of(note: NoteGroup): NoteGroupProxy;
 }
 
 export interface NoteGroupProxyBuilder {

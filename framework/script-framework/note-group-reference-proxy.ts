@@ -36,7 +36,7 @@ const noteGroupReferenceProxyBaseOf = (noteGroupReference: NoteGroupReference): 
 
 export const instrumentalReferenceProxyOf = (noteGroupReference: NoteGroupReference): InstrumentalReferenceProxy => {
   if (!noteGroupReference.isInstrumental()) {
-    throw new Error('Not an instrumental note group reference');
+    throw new Error('This is not an instrumental note group reference');
   }
   return {
     ...noteGroupReferenceProxyBaseOf(noteGroupReference),
@@ -47,7 +47,7 @@ export const instrumentalReferenceProxyOf = (noteGroupReference: NoteGroupRefere
 
 export const noteGroupReferenceProxyOf = (noteGroupReference: NoteGroupReference): NoteGroupReferenceProxy => {
   if (noteGroupReference.isInstrumental()) {
-    throw new Error('Is an instrumental note group reference');
+    throw new Error('This is an instrumental note group reference');
   }
   const noteGroupReferenceProxy: NoteGroupReferenceProxy = {
     ...noteGroupReferenceProxyBaseOf(noteGroupReference),
@@ -244,4 +244,14 @@ export const noteGroupReferenceProxyOf = (noteGroupReference: NoteGroupReference
   };
 
   return noteGroupReferenceProxy;
+};
+
+export const instrumentalOrNoteGroupReferenceProxyOf = (
+  noteGroupReference: NoteGroupReference,
+): InstrumentalReferenceProxy | NoteGroupReferenceProxy => {
+  if (noteGroupReference.isInstrumental()) {
+    return instrumentalReferenceProxyOf(noteGroupReference);
+  } else {
+    return noteGroupReferenceProxyOf(noteGroupReference);
+  }
 };

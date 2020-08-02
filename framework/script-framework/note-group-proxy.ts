@@ -1,10 +1,11 @@
-import { Automation, Note, NoteGroup } from 'svstudio-scripts-typing';
+import { Note, NoteGroup } from 'svstudio-scripts-typing';
 
 import { SV } from '../_global';
 import { Hz, blick, second, semitone } from '../types';
 
+import { automationProxyOf } from './automation-proxy';
 import { noteProxyOf } from './note-proxy';
-import { NoteGroupProxy, NoteGroupReferenceProxy, NoteProxy, NoteProxyBuilder } from './types';
+import { AutomationProxy, NoteGroupProxy, NoteGroupReferenceProxy, NoteProxy, NoteProxyBuilder } from './types';
 
 export const noteGroupProxyOf = (noteGroup: NoteGroup): NoteGroupProxy => {
   const clearNotes = (): void => {
@@ -14,20 +15,20 @@ export const noteGroupProxyOf = (noteGroup: NoteGroup): NoteGroupProxy => {
   };
 
   const noteGroupProxy: NoteGroupProxy = {
-    get breathiness(): Automation {
-      return noteGroup.getParameter('Breathiness');
+    get breathiness(): AutomationProxy {
+      return automationProxyOf(noteGroup.getParameter('Breathiness'));
     },
 
-    get gender(): Automation {
-      return noteGroup.getParameter('Gender');
+    get gender(): AutomationProxy {
+      return automationProxyOf(noteGroup.getParameter('Gender'));
     },
 
     get id(): string {
       return noteGroup.getUUID();
     },
 
-    get loudness(): Automation {
-      return noteGroup.getParameter('Loudness');
+    get loudness(): AutomationProxy {
+      return automationProxyOf(noteGroup.getParameter('Loudness'));
     },
 
     get name(): string {
@@ -51,20 +52,20 @@ export const noteGroupProxyOf = (noteGroup: NoteGroup): NoteGroupProxy => {
       notes.forEach(noteGroupProxy.addNote);
     },
 
-    get pitchDelta(): Automation {
-      return noteGroup.getParameter('PitchDelta');
+    get pitchDelta(): AutomationProxy {
+      return automationProxyOf(noteGroup.getParameter('PitchDelta'));
     },
 
-    get tension(): Automation {
-      return noteGroup.getParameter('Tension');
+    get tension(): AutomationProxy {
+      return automationProxyOf(noteGroup.getParameter('Tension'));
     },
 
-    get vibratoEnv(): Automation {
-      return noteGroup.getParameter('VibratoEnv');
+    get vibratoEnv(): AutomationProxy {
+      return automationProxyOf(noteGroup.getParameter('VibratoEnv'));
     },
 
-    get voicing(): Automation {
-      return noteGroup.getParameter('Voicing');
+    get voicing(): AutomationProxy {
+      return automationProxyOf(noteGroup.getParameter('Voicing'));
     },
 
     _rawNoteGroup: (): NoteGroup => {

@@ -15,15 +15,11 @@ export interface TrackProxy {
   readonly noteGroupReferences: (NoteGroupReferenceProxy | InstrumentalReferenceProxy)[];
   name: string;
   bounced: boolean;
+  mainNoteGroupReference(): NoteGroupReferenceProxy | InstrumentalReferenceProxy;
   addNoteGroupReferences(...noteGroupReferences: NoteGroupReferenceProxy[]): this;
   removeNoteGroupReferences(index: number): void;
   newNoteGroupReference(): NoteGroupReferenceProxyBuilder;
   _rawTrack(): Track;
-}
-
-export interface TrackProxyConstructor {
-  new (): TrackProxy;
-  of(track: Track): TrackProxy;
 }
 
 export interface TrackProxyBuilder {

@@ -10,6 +10,7 @@ export interface LifeCycleManager {
 export * from './sv-system';
 export * from './context';
 export * from './utils';
+export * from './automation-proxy';
 export * from './note-proxy';
 export * from './note-group-proxy';
 export * from './note-group-reference-proxy';
