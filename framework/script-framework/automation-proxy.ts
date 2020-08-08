@@ -5,6 +5,17 @@ import { blick } from '../types';
 import { AutomationProxy } from './types';
 
 export const automationProxyOf = (automation: Automation): AutomationProxy => {
+  /**
+   * Due to a SV bug, raw values from {@link SV#get} and {@link SV#getAllPoints} will show extremely large values
+   * where values are negative.
+   *
+   * @param timePoint Time point in blick
+   */
+  const getActualValueMapper = ([timePoint]: [blick, number]): [blick, number] => [
+    timePoint,
+    automation.get(timePoint),
+  ];
+
   return {
     get definition(): Definition {
       return automation.getDefinition();
@@ -16,7 +27,7 @@ export const automationProxyOf = (automation: Automation): AutomationProxy => {
       return automation.getType();
     },
     get controlPoints(): [blick, number][] {
-      return automation.getAllPoints();
+      return automation.getAllPoints().map(getActualValueMapper);
     },
     add(timePoint: blick, value: number): boolean {
       return automation.add(timePoint, value);
@@ -28,7 +39,9 @@ export const automationProxyOf = (automation: Automation): AutomationProxy => {
       return automation.getLinear(timePoint);
     },
     getPointsInRange(begin: blick, end: blick): [blick, number][] {
-      return automation.getPoints(begin, end);
+      return automation
+        .getPoints(begin, end)
+        .map(([timePoint]): [blick, number] => [timePoint, automation.get(timePoint)]);
     },
     removeAll(): void {
       automation.removeAll();

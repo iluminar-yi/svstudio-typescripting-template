@@ -2,7 +2,7 @@ import { NoteGroupReference } from 'svstudio-scripts-typing';
 
 import { Hz, blick, second, semitone } from '../../types';
 
-import { NoteGroupProxy } from './note-group-proxy';
+import { NoteGroupMeta, NoteGroupProxy } from './note-group-proxy';
 
 export interface NoteGroupReferenceProxyBase {
   getDuration(): blick;
@@ -11,11 +11,9 @@ export interface NoteGroupReferenceProxyBase {
   timeOffset: blick;
 }
 
-export interface NoteGroupReferenceProxy extends NoteGroupReferenceProxyBase {
-  readonly instrumental: false;
-  readonly main: boolean;
+export interface NoteGroupReferenceMeta {
   pitchOffset: semitone;
-  target: NoteGroupProxy;
+  target: NoteGroupMeta;
   tF0Left: second;
   tF0Right: second;
   dF0Left: semitone;
@@ -29,6 +27,12 @@ export interface NoteGroupReferenceProxy extends NoteGroupReferenceProxyBase {
   baseTension: number;
   baseBreathiness: number;
   baseGender: number;
+}
+
+export interface NoteGroupReferenceProxy extends NoteGroupReferenceProxyBase, NoteGroupReferenceMeta {
+  readonly instrumental: false;
+  readonly main: boolean;
+  target: NoteGroupProxy;
   setPitchOffset(pitchOffset: semitone): this;
   setTarget(target: NoteGroupProxy): this;
   setTF0Left(tF0Left: second): this;

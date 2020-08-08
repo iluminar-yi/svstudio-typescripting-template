@@ -1,22 +1,44 @@
 import { NoteGroup } from 'svstudio-scripts-typing';
 
-import { AutomationProxy } from './automation-proxy';
+import { AutomationMeta, AutomationProxy } from './automation-proxy';
 import { NoteGroupReferenceProxy } from './note-group-reference-proxy';
-import { NoteProxy, NoteProxyBuilder } from './note-proxy';
+import { NoteMeta, NoteProxy, NoteProxyBuilder } from './note-proxy';
 
-export interface NoteGroupProxy {
-  readonly id: string;
-  addNote(note: NoteProxy): number;
+export interface NoteGroupParameterMap {
+  pitchDelta: AutomationMeta;
+  vibratoEnv: AutomationMeta;
+  loudness: AutomationMeta;
+  tension: AutomationMeta;
+  breathiness: AutomationMeta;
+  voicing: AutomationMeta;
+  gender: AutomationMeta;
+}
+
+export interface NoteGroupMeta extends NoteGroupParameterMap {
+  id?: string;
   name: string;
+  notes: NoteMeta[];
+}
+
+export interface NoteGroupProxy extends NoteGroupMeta {
+  readonly id: string;
   notes: NoteProxy[];
+  addNote(note: NoteProxy): number;
   removeNote(note: NoteProxy): void;
-  readonly pitchDelta: AutomationProxy;
-  readonly vibratoEnv: AutomationProxy;
-  readonly loudness: AutomationProxy;
-  readonly tension: AutomationProxy;
-  readonly breathiness: AutomationProxy;
-  readonly voicing: AutomationProxy;
-  readonly gender: AutomationProxy;
+  pitchDelta: AutomationProxy;
+  vibratoEnv: AutomationProxy;
+  loudness: AutomationProxy;
+  tension: AutomationProxy;
+  breathiness: AutomationProxy;
+  voicing: AutomationProxy;
+  gender: AutomationProxy;
+  setPitchDelta(pitchDelta: NoteGroupParameterMap['pitchDelta']): this;
+  setVibratoEnv(vibratoEnv: NoteGroupParameterMap['vibratoEnv']): this;
+  setLoudness(loudness: NoteGroupParameterMap['loudness']): this;
+  setTension(tension: NoteGroupParameterMap['tension']): this;
+  setBreathiness(breathiness: NoteGroupParameterMap['breathiness']): this;
+  setVoicing(voicing: NoteGroupParameterMap['voicing']): this;
+  setGender(gender: NoteGroupParameterMap['gender']): this;
   newNote(): NoteProxyBuilder;
   assignTo(noteGroupReference: NoteGroupReferenceProxy): this;
   _rawNoteGroup(): NoteGroup;
@@ -26,6 +48,13 @@ export interface NoteGroupProxyBuilder {
   addNote(note: NoteProxy): this;
   setName(name: string): this;
   removeNote(note: NoteProxy): this;
+  setPitchDelta(pitchDelta: NoteGroupParameterMap['pitchDelta']): this;
+  setVibratoEnv(vibratoEnv: NoteGroupParameterMap['vibratoEnv']): this;
+  setLoudness(loudness: NoteGroupParameterMap['loudness']): this;
+  setTension(tension: NoteGroupParameterMap['tension']): this;
+  setBreathiness(breathiness: NoteGroupParameterMap['breathiness']): this;
+  setVoicing(voicing: NoteGroupParameterMap['voicing']): this;
+  setGender(gender: NoteGroupParameterMap['gender']): this;
   assignTo(noteGroupReference: NoteGroupReferenceProxy): this;
   create(): NoteGroupProxy;
 }

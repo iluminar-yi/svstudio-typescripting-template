@@ -1,11 +1,43 @@
-import { Note, NoteGroup } from 'svstudio-scripts-typing';
+import { Note, NoteGroup, ParameterType, Project } from 'svstudio-scripts-typing';
 
 import { SV } from '../_global';
-import { Hz, blick, second, semitone } from '../types';
 
 import { automationProxyOf } from './automation-proxy';
-import { noteProxyOf } from './note-proxy';
-import { AutomationProxy, NoteGroupProxy, NoteGroupReferenceProxy, NoteProxy, NoteProxyBuilder } from './types';
+import { createNoteProxyBuilder, fromNoteMeta, noteProxyOf } from './note-proxy';
+import {
+  AutomationMeta,
+  AutomationProxy,
+  NoteGroupMeta,
+  NoteGroupParameterMap,
+  NoteGroupProxy,
+  NoteGroupProxyBuilder,
+  NoteGroupReferenceProxy,
+  NoteProxy,
+  NoteProxyBuilder,
+  ProjectContext,
+} from './types';
+
+export const fromNoteGroupMeta = (noteGroupMeta: NoteGroupMeta, project: ProjectContext): NoteGroupProxy => {
+  const { name, notes, pitchDelta, vibratoEnv, loudness, tension, breathiness, voicing, gender } = noteGroupMeta;
+
+  const noteGroup = project
+    .newNoteGroup()
+    .setName(name)
+    .setPitchDelta(pitchDelta)
+    .setVibratoEnv(vibratoEnv)
+    .setLoudness(loudness)
+    .setTension(tension)
+    .setBreathiness(breathiness)
+    .setVoicing(voicing)
+    .setGender(gender)
+    .create();
+
+  notes.forEach((noteMeta): void => {
+    fromNoteMeta(noteMeta, noteGroup);
+  });
+
+  return noteGroup;
+};
 
 export const noteGroupProxyOf = (noteGroup: NoteGroup): NoteGroupProxy => {
   const clearNotes = (): void => {
@@ -14,13 +46,27 @@ export const noteGroupProxyOf = (noteGroup: NoteGroup): NoteGroupProxy => {
     }
   };
 
+  const overwriteParameters = (automationMeta: AutomationMeta, parameterType: ParameterType): void => {
+    const automation = automationProxyOf(noteGroup.getParameter(parameterType));
+    automation.removeAll();
+    automationMeta.controlPoints.forEach(([timePoint, value]): void => {
+      automation.add(timePoint, value);
+    });
+  };
+
   const noteGroupProxy: NoteGroupProxy = {
     get breathiness(): AutomationProxy {
       return automationProxyOf(noteGroup.getParameter('Breathiness'));
     },
+    set breathiness(breathiness: AutomationProxy) {
+      overwriteParameters(breathiness, 'Breathiness');
+    },
 
     get gender(): AutomationProxy {
       return automationProxyOf(noteGroup.getParameter('Gender'));
+    },
+    set gender(gender: AutomationProxy) {
+      overwriteParameters(gender, 'Gender');
     },
 
     get id(): string {
@@ -30,11 +76,13 @@ export const noteGroupProxyOf = (noteGroup: NoteGroup): NoteGroupProxy => {
     get loudness(): AutomationProxy {
       return automationProxyOf(noteGroup.getParameter('Loudness'));
     },
+    set loudness(loudness: AutomationProxy) {
+      overwriteParameters(loudness, 'Loudness');
+    },
 
     get name(): string {
       return noteGroup.getName();
     },
-
     set name(name: string) {
       noteGroup.setName(name);
     },
@@ -46,7 +94,6 @@ export const noteGroupProxyOf = (noteGroup: NoteGroup): NoteGroupProxy => {
       }
       return notes.map(noteProxyOf);
     },
-
     set notes(notes: NoteProxy[]) {
       clearNotes();
       notes.forEach(noteGroupProxy.addNote);
@@ -55,17 +102,58 @@ export const noteGroupProxyOf = (noteGroup: NoteGroup): NoteGroupProxy => {
     get pitchDelta(): AutomationProxy {
       return automationProxyOf(noteGroup.getParameter('PitchDelta'));
     },
+    set pitchDelta(pitchDelta: AutomationProxy) {
+      overwriteParameters(pitchDelta, 'PitchDelta');
+    },
 
     get tension(): AutomationProxy {
       return automationProxyOf(noteGroup.getParameter('Tension'));
+    },
+    set tension(tension: AutomationProxy) {
+      overwriteParameters(tension, 'Tension');
     },
 
     get vibratoEnv(): AutomationProxy {
       return automationProxyOf(noteGroup.getParameter('VibratoEnv'));
     },
+    set vibratoEnv(vibratoEnv: AutomationProxy) {
+      overwriteParameters(vibratoEnv, 'VibratoEnv');
+    },
 
     get voicing(): AutomationProxy {
       return automationProxyOf(noteGroup.getParameter('Voicing'));
+    },
+    set voicing(voicing: AutomationProxy) {
+      overwriteParameters(voicing, 'Voicing');
+    },
+
+    setBreathiness(breathiness: AutomationMeta): NoteGroupProxy {
+      this.breathiness = breathiness as AutomationProxy;
+      return this;
+    },
+    setGender(gender: AutomationMeta): NoteGroupProxy {
+      this.gender = gender as AutomationProxy;
+      return this;
+    },
+    setLoudness(loudness: AutomationMeta): NoteGroupProxy {
+      this.loudness = loudness as AutomationProxy;
+      return this;
+    },
+    setPitchDelta(pitchDelta: AutomationMeta): NoteGroupProxy {
+      this.pitchDelta = pitchDelta as AutomationProxy;
+      return this;
+    },
+    setTension(tension: AutomationMeta): NoteGroupProxy {
+      this.tension = tension as AutomationProxy;
+      return this;
+    },
+    setVibratoEnv(vibratoEnv: AutomationMeta): NoteGroupProxy {
+      this.vibratoEnv = vibratoEnv as AutomationProxy;
+      return this;
+    },
+    setVoicing(voicing: AutomationMeta): NoteGroupProxy {
+      this.voicing = voicing as AutomationProxy;
+      return this;
     },
 
     _rawNoteGroup: (): NoteGroup => {
@@ -89,95 +177,66 @@ export const noteGroupProxyOf = (noteGroup: NoteGroup): NoteGroupProxy => {
       noteGroup.removeNote(rawNotes.indexOf(note._rawNote()));
     },
 
-    newNote: (): NoteProxyBuilder => {
-      const note = SV.create('Note');
-      const noteProxy = noteProxyOf(note);
-      const builder: NoteProxyBuilder = {
-        create(): NoteProxy {
-          noteGroup.addNote(note);
-          return noteProxy;
-        },
-        setAlt(alt: number[]): NoteProxyBuilder {
-          noteProxy.alt = alt;
-          return builder;
-        },
-        setDF0Left(dF0Left: semitone): NoteProxyBuilder {
-          noteProxy.dF0Left = dF0Left;
-          return builder;
-        },
-        setDF0Right(dF0Right: semitone): NoteProxyBuilder {
-          noteProxy.dF0Right = dF0Right;
-          return builder;
-        },
-        setDF0Vbr(dF0Vbr: semitone): NoteProxyBuilder {
-          noteProxy.dF0Vbr = dF0Vbr;
-          return builder;
-        },
-        setDur(dur: number[]): NoteProxyBuilder {
-          noteProxy.dur = dur;
-          return builder;
-        },
-        setDuration(duration: blick): NoteProxyBuilder {
-          noteProxy.duration = duration;
-          return builder;
-        },
-        setExprGroup(exprGroup: string | undefined): NoteProxyBuilder {
-          noteProxy.exprGroup = exprGroup;
-          return builder;
-        },
-        setFF0Vbr(fF0Vbr: Hz): NoteProxyBuilder {
-          noteProxy.fF0Vbr = fF0Vbr;
-          return builder;
-        },
-        setLyrics(lyrics: string): NoteProxyBuilder {
-          noteProxy.lyrics = lyrics;
-          return builder;
-        },
-        setOnset(onset: blick): NoteProxyBuilder {
-          noteProxy.onset = onset;
-          return builder;
-        },
-        setPF0Vbr(pF0Vbr: number): NoteProxyBuilder {
-          noteProxy.pF0Vbr = pF0Vbr;
-          return builder;
-        },
-        setPitch(pitch: number): NoteProxyBuilder {
-          noteProxy.pitch = pitch;
-          return builder;
-        },
-        setTF0Left(tF0Left: second): NoteProxyBuilder {
-          noteProxy.tF0Left = tF0Left;
-          return builder;
-        },
-        setTF0Offset(tF0Offset: second): NoteProxyBuilder {
-          noteProxy.tF0Offset = tF0Offset;
-          return builder;
-        },
-        setTF0Right(tF0Right: second): NoteProxyBuilder {
-          noteProxy.tF0Right = tF0Right;
-          return builder;
-        },
-        setTF0VbrLeft(tF0VbrLeft: second): NoteProxyBuilder {
-          noteProxy.tF0VbrLeft = tF0VbrLeft;
-          return builder;
-        },
-        setTF0VbrRight(tF0VbrRight: second): NoteProxyBuilder {
-          noteProxy.tF0VbrRight = tF0VbrRight;
-          return builder;
-        },
-        setTF0VbrStart(tF0VbrStart: second): NoteProxyBuilder {
-          noteProxy.tF0VbrStart = tF0VbrStart;
-          return builder;
-        },
-        setTNoteOffset(tNoteOffset: second): NoteProxyBuilder {
-          noteProxy.tNoteOffset = tNoteOffset;
-          return builder;
-        },
-      };
-
-      return builder;
-    },
+    newNote: (): NoteProxyBuilder => createNoteProxyBuilder(noteGroupProxy),
   };
 
   return noteGroupProxy;
+};
+
+export const createNoteGroupProxyBuilder = (project: Project): NoteGroupProxyBuilder => {
+  const noteGroup = SV.create('NoteGroup');
+  const noteGroupProxy = noteGroupProxyOf(noteGroup);
+
+  const builder: NoteGroupProxyBuilder = {
+    addNote(note: NoteProxy): NoteGroupProxyBuilder {
+      noteGroup.addNote(note._rawNote());
+      return builder;
+    },
+    assignTo(noteGroupReference: NoteGroupReferenceProxy): NoteGroupProxyBuilder {
+      noteGroupReference.setTarget(noteGroupProxy);
+      return builder;
+    },
+    removeNote(note: NoteProxy): NoteGroupProxyBuilder {
+      noteGroupProxy.removeNote(note);
+      return builder;
+    },
+    setBreathiness(breathiness: NoteGroupParameterMap['breathiness']): NoteGroupProxyBuilder {
+      noteGroupProxy.setBreathiness(breathiness);
+      return builder;
+    },
+    setGender(gender: NoteGroupParameterMap['gender']): NoteGroupProxyBuilder {
+      noteGroupProxy.setGender(gender);
+      return builder;
+    },
+    setLoudness(loudness: NoteGroupParameterMap['loudness']): NoteGroupProxyBuilder {
+      noteGroupProxy.setLoudness(loudness);
+      return builder;
+    },
+    setName(name: string): NoteGroupProxyBuilder {
+      noteGroup.setName(name);
+      return builder;
+    },
+    setPitchDelta(pitchDelta: NoteGroupParameterMap['pitchDelta']): NoteGroupProxyBuilder {
+      noteGroupProxy.setPitchDelta(pitchDelta);
+      return builder;
+    },
+    setTension(tension: NoteGroupParameterMap['tension']): NoteGroupProxyBuilder {
+      noteGroupProxy.setTension(tension);
+      return builder;
+    },
+    setVibratoEnv(vibratoEnv: NoteGroupParameterMap['vibratoEnv']): NoteGroupProxyBuilder {
+      noteGroupProxy.setVibratoEnv(vibratoEnv);
+      return builder;
+    },
+    setVoicing(voicing: NoteGroupParameterMap['voicing']): NoteGroupProxyBuilder {
+      noteGroupProxy.setVoicing(voicing);
+      return builder;
+    },
+    create(): NoteGroupProxy {
+      project.addNoteGroup(noteGroup);
+      return noteGroupProxy;
+    },
+  };
+
+  return builder;
 };

@@ -2,10 +2,11 @@ import { Note } from 'svstudio-scripts-typing';
 
 import { Hz, blick, second, semitone } from '../../types';
 
-export interface NoteProxy {
+export interface NoteMeta {
   duration: blick;
   lyrics: string;
   onset: blick;
+  phonemes: string;
   pitch: number;
   tF0Offset?: second;
   tF0Left?: second;
@@ -20,28 +21,32 @@ export interface NoteProxy {
   fF0Vbr?: Hz;
   tNoteOffset?: second;
   exprGroup?: string;
-  dur: number[];
-  alt: number[];
+  dur?: number[];
+  alt?: number[];
+}
+
+export interface NoteProxy extends NoteMeta {
   getEnd(): blick;
   setDuration(duration: blick): this;
   setLyrics(lyrics: string): this;
   setOnset(onset: blick): this;
+  setPhonemes(phonemes: string): this;
   setPitch(pitch: number): this;
-  setTF0Offset(tF0Offset: second): this;
-  setTF0Left(tF0Left: second): this;
-  setTF0Right(tF0Right: second): this;
-  setDF0Left(dF0Left: semitone): this;
-  setDF0Right(dF0Right: semitone): this;
-  setTF0VbrStart(tF0VbrStart: second): this;
-  setTF0VbrLeft(tF0VbrLeft: second): this;
-  setTF0VbrRight(tF0VbrRight: second): this;
-  setDF0Vbr(dF0Vbr: semitone): this;
-  setPF0Vbr(pF0Vbr: number): this;
-  setFF0Vbr(fF0Vbr: Hz): this;
-  setTNoteOffset(tNoteOffset: second): this;
+  setTF0Offset(tF0Offset: second | undefined): this;
+  setTF0Left(tF0Left: second | undefined): this;
+  setTF0Right(tF0Right: second | undefined): this;
+  setDF0Left(dF0Left: semitone | undefined): this;
+  setDF0Right(dF0Right: semitone | undefined): this;
+  setTF0VbrStart(tF0VbrStart: second | undefined): this;
+  setTF0VbrLeft(tF0VbrLeft: second | undefined): this;
+  setTF0VbrRight(tF0VbrRight: second | undefined): this;
+  setDF0Vbr(dF0Vbr: semitone | undefined): this;
+  setPF0Vbr(pF0Vbr: number | undefined): this;
+  setFF0Vbr(fF0Vbr: Hz | undefined): this;
+  setTNoteOffset(tNoteOffset: second | undefined): this;
   setExprGroup(exprGroup: string | undefined): this;
-  setDur(dur: number[]): this;
-  setAlt(alt: number[]): this;
+  setDur(dur: number[] | undefined): this;
+  setAlt(alt: number[] | undefined): this;
   _rawNote(): Note;
 }
 
@@ -49,21 +54,22 @@ export interface NoteProxyBuilder {
   setDuration(duration: blick): this;
   setLyrics(lyrics: string): this;
   setOnset(onset: blick): this;
+  setPhonemes(phonemes: string): this;
   setPitch(pitch: number): this;
-  setTF0Offset(tF0Offset: second): this;
-  setTF0Left(tF0Left: second): this;
-  setTF0Right(tF0Right: second): this;
-  setDF0Left(dF0Left: semitone): this;
-  setDF0Right(dF0Right: semitone): this;
-  setTF0VbrStart(tF0VbrStart: second): this;
-  setTF0VbrLeft(tF0VbrLeft: second): this;
-  setTF0VbrRight(tF0VbrRight: second): this;
-  setDF0Vbr(dF0Vbr: semitone): this;
-  setPF0Vbr(pF0Vbr: number): this;
-  setFF0Vbr(fF0Vbr: Hz): this;
-  setTNoteOffset(tNoteOffset: second): this;
+  setTF0Offset(tF0Offset: second | undefined): this;
+  setTF0Left(tF0Left: second | undefined): this;
+  setTF0Right(tF0Right: second | undefined): this;
+  setDF0Left(dF0Left: semitone | undefined): this;
+  setDF0Right(dF0Right: semitone | undefined): this;
+  setTF0VbrStart(tF0VbrStart: second | undefined): this;
+  setTF0VbrLeft(tF0VbrLeft: second | undefined): this;
+  setTF0VbrRight(tF0VbrRight: second | undefined): this;
+  setDF0Vbr(dF0Vbr: semitone | undefined): this;
+  setPF0Vbr(pF0Vbr: number | undefined): this;
+  setFF0Vbr(fF0Vbr: Hz | undefined): this;
+  setTNoteOffset(tNoteOffset: second | undefined): this;
   setExprGroup(exprGroup: string | undefined): this;
-  setDur(dur: number[]): this;
-  setAlt(alt: number[]): this;
+  setDur(dur: number[] | undefined): this;
+  setAlt(alt: number[] | undefined): this;
   create(): NoteProxy;
 }

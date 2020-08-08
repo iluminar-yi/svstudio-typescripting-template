@@ -8,13 +8,16 @@ import {
   NoteGroupReferenceProxyBuilder,
 } from './note-group-reference-proxy';
 
-export interface TrackProxy {
+export interface TrackMeta {
   displayColor: string;
+  name: string;
+  bounced: boolean;
+}
+
+export interface TrackProxy extends TrackMeta {
   readonly displayOrder: number;
   readonly duration: blick;
   readonly noteGroupReferences: (NoteGroupReferenceProxy | InstrumentalReferenceProxy)[];
-  name: string;
-  bounced: boolean;
   mainNoteGroupReference(): NoteGroupReferenceProxy | InstrumentalReferenceProxy;
   addNoteGroupReferences(...noteGroupReferences: NoteGroupReferenceProxy[]): this;
   removeNoteGroupReferences(index: number): void;

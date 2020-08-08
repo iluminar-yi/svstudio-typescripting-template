@@ -2,10 +2,10 @@ import { HostInfo, LanguageCode, MeasureMark, PlaybackStatus, TempoMark } from '
 
 import { ManagedSynthV, blick, measure, pixel, pixelPerBlick, pixelPerSemitone, second, semitone } from '../types';
 
-import { noteGroupProxyOf } from './note-group-proxy';
+import { createNoteGroupProxyBuilder, noteGroupProxyOf } from './note-group-proxy';
 import { instrumentalOrNoteGroupReferenceProxyOf, noteGroupReferenceProxyOf } from './note-group-reference-proxy';
 import { noteProxyOf } from './note-proxy';
-import { TrackProxyImpl } from './track-proxy';
+import { createTrackProxyBuilder, trackProxyOf } from './track-proxy';
 import {
   ArrangementViewDisplay,
   ArrangementViewUserSelection,
@@ -73,7 +73,7 @@ export const contextFactory = (SV: ManagedSynthV): Context => {
       return noteGroupReferenceProxyOf(mainEditor.getCurrentGroup());
     },
     get currentTrack(): TrackProxy {
-      return TrackProxyImpl.of(mainEditor.getCurrentTrack());
+      return trackProxyOf(mainEditor.getCurrentTrack());
     },
     get playbackStatus(): PlaybackStatus {
       return playbackControl.getStatus();
@@ -203,7 +203,7 @@ export const contextFactory = (SV: ManagedSynthV): Context => {
         const tracks: TrackProxy[] = [];
         for (let i = 0; i < project.getNumTracks(); i++) {
           const track = project.getTrack(i);
-          tracks.push(TrackProxyImpl.of(track));
+          tracks.push(trackProxyOf(track));
         }
         return tracks.sort((a, b): number => a.displayOrder - b.displayOrder);
       },
@@ -241,56 +241,10 @@ export const contextFactory = (SV: ManagedSynthV): Context => {
         return timeAxis.removeTempoMark(timePoint);
       },
       newNoteGroup(): NoteGroupProxyBuilder {
-        const noteGroup = SV.create('NoteGroup');
-        const noteGroupProxy = noteGroupProxyOf(noteGroup);
-        return {
-          addNote(note: NoteProxy): NoteGroupProxyBuilder {
-            noteGroup.addNote(note._rawNote());
-            return this;
-          },
-          assignTo(noteGroupReference: NoteGroupReferenceProxy): NoteGroupProxyBuilder {
-            noteGroupReference.setTarget(noteGroupProxy);
-            return this;
-          },
-          removeNote(note: NoteProxy): NoteGroupProxyBuilder {
-            noteGroupProxy.removeNote(note);
-            return this;
-          },
-          setName(name: string): NoteGroupProxyBuilder {
-            noteGroup.setName(name);
-            return this;
-          },
-          create(): NoteGroupProxy {
-            project.addNoteGroup(noteGroup);
-            return noteGroupProxy;
-          },
-        };
+        return createNoteGroupProxyBuilder(project);
       },
       newTrack(): TrackProxyBuilder {
-        const track = SV.create('Track');
-        const trackProxy = TrackProxyImpl.of(track);
-        return {
-          addNoteGroupReferences(...noteGroupReferences: NoteGroupReferenceProxy[]): TrackProxyBuilder {
-            trackProxy.addNoteGroupReferences(...noteGroupReferences);
-            return this;
-          },
-          setBounced(bounced: boolean): TrackProxyBuilder {
-            track.setBounced(bounced);
-            return this;
-          },
-          setDisplayColor(color: string): TrackProxyBuilder {
-            track.setDisplayColor(color);
-            return this;
-          },
-          setName(name: string): TrackProxyBuilder {
-            track.setName(name);
-            return this;
-          },
-          create(): TrackProxy {
-            project.addTrack(track);
-            return trackProxy;
-          },
-        };
+        return createTrackProxyBuilder(project);
       },
     },
     arrangementView: {
