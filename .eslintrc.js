@@ -5,6 +5,9 @@ module.exports = {
   env: {
     jest: true,
   },
+  plugins: [
+    'eslint-plugin-tsdoc',
+  ],
   extends: [
     'plugin:import/errors',
     'plugin:import/warnings',
@@ -47,5 +50,6 @@ module.exports = {
         },
       },
     ],
+    'tsdoc/syntax': 'warn',
   },
 };
