@@ -16,6 +16,7 @@
     "lint-rule-timings": "cross-env TIMING=1 npm run lint"
   },
   "devDependencies": {
+    "@semantic-release/git": "^9.0.0",
     "@types/jest": "^24.9.1",
     "@types/uuid": "^8.0.0",
     "@typescript-eslint/eslint-plugin": "^1.11.0",
@@ -32,6 +33,7 @@
     "jest": "^26.1.0",
     "prettier": "1.18.2",
     "rimraf": "^2.6.1",
+    "semantic-release": "^17.1.1",
     "svstudio-scripts-typing": "git+https://github.com/iluminar-yi/svstudio-scripts-typing.git",
     "ts-jest": "^26.1.2",
     "ts-loader": "^6.0.0",

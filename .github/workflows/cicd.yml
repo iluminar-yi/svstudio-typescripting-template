@@ -1,0 +1,103 @@
+name: CI/CD
+
+on:
+  push:
+    branches: '**'
+
+jobs:
+  find-release-version:
+    name: Find Release Version
+    if: "!contains(github.event.head_commit.message, '[ci/cd]')"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Legacy Checkout Source Code
+        uses: actions/checkout@v1
+      - run: git tag -l
+      - name: Use Node.js 12.16.2
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12.16.2
+      - name: Detect New Version
+        id: find-new-version
+        run: |
+          npm i -D conventional-changelog-angular conventional-recommended-bump
+          npm version --allow-same-version --no-git-tag-version $(npx conventional-recommended-bump -p angular) \
+            | sed 's/[v]//g' > NEXT_VERSION
+      - run: cat NEXT_VERSION
+      - name: Upload Version Number
+        uses: actions/upload-artifact@v1
+        with:
+          # We add ".zip" to the artifact name because GitHub puts artifacts into zip files before uploading
+          name: NEXT_VERSION.zip
+          path: NEXT_VERSION
+
+  build:
+    name: Build
+    needs: find-release-version
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Source Code
+        uses: actions/checkout@v2
+      - name: Use Node.js 12.16.2
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12.16.2
+      - name: Download Version Number
+        uses: actions/download-artifact@v1
+        with:
+          name: NEXT_VERSION.zip
+      - name: Find New Version
+        id: find-new-version
+        run: |
+          NEW_RELEASE_VERSION=$(cat NEXT_VERSION.zip/NEXT_VERSION)
+          rm -r NEXT_VERSION.zip
+          echo "::set-output name=new_release_version::${NEW_RELEASE_VERSION}"
+      - name: Use New Version
+        run: npm version --allow-same-version --no-git-tag-version ${{ steps.find-new-version.outputs.new_release_version }}
+      - run: npm ci
+      - run: npm run lint
+      - run: npm run doc
+      - run: npm run build
+      - run: npm run test
+
+  create-release:
+    name: Semantic Release
+    if: github.ref == 'refs/heads/master'
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Source Code
+        uses: actions/checkout@v2
+        with:
+          # https://github.com/semantic-release/git/issues/196#issuecomment-601310576
+          persist-credentials: false
+      - name: Download Version Number
+        uses: actions/download-artifact@v1
+        with:
+          name: NEXT_VERSION.zip
+      - name: Find New Version
+        id: find-new-version
+        run: |
+          NEW_RELEASE_VERSION=$(cat NEXT_VERSION.zip/NEXT_VERSION)
+          rm -r NEXT_VERSION.zip
+          echo "::set-output name=new_release_version::${NEW_RELEASE_VERSION}"
+      - run: npm ci
+      - name: Use New Version
+        run: npm version --no-git-tag-version ${{ steps.find-new-version.outputs.new_release_version }}
+      - name: Commit NPM Version
+        uses: EndBug/add-and-commit@v4
+        with:
+          message: 'chore: Bump version to ${{ steps.find-new-version.outputs.new_release_version }} [ci/cd]'
+      - name: Update Documentation
+        run: npm run doc
+      - name: Commit Updated Documentaion
+        uses: EndBug/add-and-commit@v4
+        with:
+          message: 'chore: Regenerate documentation [ci/cd]'
+        env:
+          GITHUB_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+      - name: Run Semantic Release
+        uses: cycjimmy/semantic-release-action@v2
+        env:
+          # Only PAT can be used on protected branch
+          GH_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
