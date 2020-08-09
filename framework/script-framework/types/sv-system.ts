@@ -6,7 +6,9 @@ export interface SvSystem {
   QUARTER: 705600000;
   finish(): void;
   newUndoRecord(): void;
-  setTimeout(timeout: number, callback: () => void): void;
+  setTimeout(handler: Function, timeout?: number, ...args: unknown[]): void;
+  setImmediate(handler: Function, ...args: unknown[]): void;
+  setInterval(handler: Function, timeout?: number, ...args: unknown[]): void;
   showCustomDialog: ManagedSynthV['showCustomDialog'];
   showInputBox: ManagedSynthV['showInputBox'];
   showMessageBox: ManagedSynthV['showMessageBox'];

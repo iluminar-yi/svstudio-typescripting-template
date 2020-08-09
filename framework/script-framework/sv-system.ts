@@ -6,11 +6,32 @@ export const svSystemFactory = (SV: ManagedSynthV): SvSystem => {
   const project = SV.getProject();
   const playbackControl = SV.getPlayback();
 
+  const setTimeout = (handler: Function, timeout?: number, ...args: unknown[]): void => {
+    SV.setTimeout(timeout || 0, (): void => {
+      handler(...args);
+    });
+  };
+
+  const setImmediate = (handler: Function, ...args: unknown[]): void => {
+    setTimeout(handler, 0, ...args);
+  };
+
+  const setInterval = (handler: Function, timeout?: number, ...args: unknown[]): void => {
+    const repeatedHandler = (): void => {
+      handler(...args);
+      setTimeout(repeatedHandler, timeout);
+    };
+
+    setTimeout(repeatedHandler, timeout);
+  };
+
   return {
     QUARTER: SV.QUARTER,
     finish: SV.finish.bind(SV),
     newUndoRecord: project.newUndoRecord.bind(project),
-    setTimeout: SV.setTimeout.bind(SV),
+    setTimeout,
+    setImmediate,
+    setInterval,
     showCustomDialog: SV.showCustomDialog.bind(SV),
     showInputBox: SV.showInputBox.bind(SV),
     showMessageBox: SV.showMessageBox.bind(SV),

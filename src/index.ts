@@ -18,9 +18,9 @@ const svScriptFactory: SVScriptFactory = ({
       log.info(
         `Current project duration is ${context.duration} blicks, or ${getTimePointInSeconds(context.duration)} seconds`,
       );
-      setTimeout(3000, (): void => {
+      setTimeout((): void => {
         showMessageBox('Farewell', 'Bye world!');
-      });
+      }, 3000);
     },
     getTranslations(): Translation[] {
       return [];
