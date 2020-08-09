@@ -85,7 +85,7 @@ export interface Context {
   clipboard: string;
   readonly osType: string;
   readonly osName: string;
-  readonly hostName: string;
+  readonly hostName: 'Synthesizer V Studio Pro' | 'Synthesizer V Studio Basic';
   readonly hostVersion: string;
   readonly hostVersionNumber: number;
   readonly languageCode: LanguageCode;

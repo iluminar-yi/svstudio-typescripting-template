@@ -28,7 +28,6 @@ export interface Global {
 }
 
 export type blick = number;
-export type quarter = number;
 export type measure = number;
 export type semitone = number;
 export type second = number;
