@@ -13,6 +13,7 @@ Original scaffolding found at this [ts-loader example](https://github.com/TypeSt
 
 ## NPM Commands Explained
 * `start`: Runs Webpack in watch mode, and continuously build the project and outputs to the `dist` folder.
+* `doc`: Runs `typedoc` to regenerate the API documentation.
 * `prebuild`: Deletes all the files in `dist` folder.
 * `build`: Runs Webpack with minification turned on to build a production build.
 * `test`: Runs `jest` to test this project.

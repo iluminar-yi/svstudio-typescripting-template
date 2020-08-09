@@ -19,8 +19,8 @@ import {
   YesNoCancelAnswer,
 } from 'svstudio-scripts-typing';
 
-import { Logger } from './log/types';
-import { Context, SvSystem, Utils } from './script-framework/types';
+import { Logger } from '../log/types';
+import { Context, SvSystem, Utils } from '../script-framework/types';
 
 export interface Global {
   SV: SynthV;
@@ -36,7 +36,7 @@ export type pixelPerBlick = number;
 export type pixelPerSemitone = number;
 export type Hz = number;
 
-export interface SVScript {
+export interface SvScript {
   getClientInfo(): ClientInfo;
   main(): void | Promise<void>;
   getTranslations?(langCode: LanguageCode): Translation[];
@@ -355,4 +355,4 @@ export interface FrameworkEnvironment {
   utils: Utils;
 }
 
-export type SVScriptFactory = (env: FrameworkEnvironment) => SVScript;
+export type SvScriptFactory = (env: FrameworkEnvironment) => SvScript;

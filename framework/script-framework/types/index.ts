@@ -1,3 +1,6 @@
+/**
+ * @internal
+ */
 export interface LifeCycleManager {
   showCallbackCount(): void;
   start(): void;

@@ -1,10 +1,11 @@
 {
   "name": "svstudio-typescripting-template",
-  "version": "0.0.0",
+  "version": "0.0.0-alpha",
   "private": true,
   "license": "MIT",
   "author": "Iluminar",
   "scripts": {
+    "doc": "typedoc",
     "prestart": "npm run prebuild",
     "start": "webpack --watch --progress --color --mode development --config webpack.config.development.js",
     "prebuild": "rimraf ./dist/*",
@@ -34,8 +35,8 @@
     "svstudio-scripts-typing": "git+https://github.com/iluminar-yi/svstudio-scripts-typing.git",
     "ts-jest": "^26.1.2",
     "ts-loader": "^6.0.0",
-    "tsdoc": "0.0.4",
     "tslib": "^1.7.1",
+    "typedoc": "^0.18.0",
     "typescript": "^3.5.3",
     "webpack": "^4.43.0",
     "webpack-cli": "^3.3.12"

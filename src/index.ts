@@ -1,15 +1,15 @@
 import { Translation } from 'svstudio-scripts-typing';
 
-import { FrameworkEnvironment, SVScript, SVScriptFactory } from '../framework/types';
+import { FrameworkEnvironment, SvScript, SvScriptFactory } from '../framework/types';
 
 import packageJsonClientInfo from './package-json-client-info';
 
-const svScriptFactory: SVScriptFactory = ({
+const svScriptFactory: SvScriptFactory = ({
   context,
   svSystem: { showMessageBox, setTimeout },
   utils: { getTimePointInSeconds },
   log,
-}: FrameworkEnvironment): SVScript => {
+}: FrameworkEnvironment): SvScript => {
   return {
     getClientInfo: packageJsonClientInfo,
     async main(): Promise<void> {

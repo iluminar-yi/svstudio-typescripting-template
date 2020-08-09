@@ -12,6 +12,7 @@
 
 ## NPM命令解释
 * `start`：让Webpack在监视模式下，持续编译整个工程并输出至`dist`文件夹。
+* `doc`: 运行`typedoc`以重新生成API文档
 * `prebuild`：删除`dist`文件夹内所有文件。
 * `build`：让Webpack在打开所有精简功能的情况下编译出用于生产环境的文件。
 * `test`：用`jest`来测试工程内代码。
