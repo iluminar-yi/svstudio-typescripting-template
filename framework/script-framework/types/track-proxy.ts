@@ -8,12 +8,18 @@ import {
   NoteGroupReferenceProxyBuilder,
 } from './note-group-reference-proxy';
 
+/**
+ * Serializable information from {@link Track}.
+ */
 export interface TrackMeta {
   displayColor: string;
   name: string;
   bounced: boolean;
 }
 
+/**
+ * Full functional replacement for {@link Track}.
+ */
 export interface TrackProxy extends TrackMeta {
   readonly displayOrder: number;
   readonly duration: blick;

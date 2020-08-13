@@ -11,6 +11,9 @@ export interface NoteGroupReferenceProxyBase {
   timeOffset: blick;
 }
 
+/**
+ * Serializable information from {@link NoteGroupReference}.
+ */
 export interface NoteGroupReferenceMeta {
   pitchOffset: semitone;
   target: NoteGroupMeta;
@@ -29,6 +32,9 @@ export interface NoteGroupReferenceMeta {
   baseGender: number;
 }
 
+/**
+ * Full functional replacement for {@link NoteGroupReference} when it does not represent an instrumental `NoteGroup`.
+ */
 export interface NoteGroupReferenceProxy extends NoteGroupReferenceProxyBase, NoteGroupReferenceMeta {
   readonly instrumental: false;
   readonly main: boolean;

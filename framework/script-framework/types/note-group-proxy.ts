@@ -4,6 +4,10 @@ import { AutomationMeta, AutomationProxy } from './automation-proxy';
 import { NoteGroupReferenceProxy } from './note-group-reference-proxy';
 import { NoteMeta, NoteProxy, NoteProxyBuilder } from './note-proxy';
 
+/**
+ * A simple map to map available parameter names to their type.
+ * Reason for using a map is to preserve the ability to generify `AutomationMeta`.
+ */
 export interface NoteGroupParameterMap {
   pitchDelta: AutomationMeta;
   vibratoEnv: AutomationMeta;
@@ -14,12 +18,18 @@ export interface NoteGroupParameterMap {
   gender: AutomationMeta;
 }
 
+/**
+ * Serializable information from {@link NoteGroup}.
+ */
 export interface NoteGroupMeta extends NoteGroupParameterMap {
   id?: string;
   name: string;
   notes: NoteMeta[];
 }
 
+/**
+ * Full functional replacement for {@link NoteGroup}.
+ */
 export interface NoteGroupProxy extends NoteGroupMeta {
   readonly id: string;
   notes: NoteProxy[];

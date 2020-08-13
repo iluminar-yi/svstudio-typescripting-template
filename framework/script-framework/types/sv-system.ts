@@ -3,7 +3,7 @@ import { ManagedSynthV, second } from '../../types';
 import { NoteGroupReferenceProxy } from './note-group-reference-proxy';
 
 export interface SvSystem {
-  QUARTER: 705600000;
+  QUARTER: number;
   finish(): void;
   newUndoRecord(): void;
   setTimeout(handler: Function, timeout?: number, ...args: unknown[]): void;

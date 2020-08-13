@@ -9,7 +9,7 @@ export const automationProxyOf = (automation: Automation): AutomationProxy => {
    * Due to a SV bug, raw values from {@link SV#get} and {@link SV#getAllPoints} will show extremely large values
    * where values are negative.
    *
-   * @param timePoint Time point in blick
+   * @param timePoint - Time point in blick
    */
   const getActualValueMapper = ([timePoint]: [blick, number]): [blick, number] => [
     timePoint,
@@ -26,8 +26,12 @@ export const automationProxyOf = (automation: Automation): AutomationProxy => {
     get type(): ParameterType {
       return automation.getType();
     },
-    get controlPoints(): [blick, number][] {
+    get controlPoints(): readonly [blick, number][] {
       return automation.getAllPoints().map(getActualValueMapper);
+    },
+    set controlPoints(controlPoints: readonly [blick, number][]) {
+      automation.removeAll();
+      controlPoints.forEach(([timePoint, value]): boolean => automation.add(timePoint, value));
     },
     add(timePoint: blick, value: number): boolean {
       return automation.add(timePoint, value);
@@ -51,6 +55,12 @@ export const automationProxyOf = (automation: Automation): AutomationProxy => {
     },
     removeInRange(begin: blick, end: blick): boolean {
       return automation.remove(begin, end);
+    },
+    simplify(begin: number, end: number, threshold?: number): boolean {
+      return automation.simplify(begin, end, threshold);
+    },
+    _rawAutomation(): Automation {
+      return automation;
     },
   };
 };

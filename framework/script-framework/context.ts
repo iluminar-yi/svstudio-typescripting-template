@@ -10,6 +10,7 @@ import {
   ArrangementViewDisplay,
   ArrangementViewUserSelection,
   Context,
+  InstrumentalReferenceProxy,
   MainEditorDisplay,
   MainEditorUserSelection,
   NoteGroupProxy,
@@ -102,14 +103,22 @@ export const contextFactory = (SV: ManagedSynthV): Context => {
           removeAllGroupReferences(): boolean {
             return mainEditor.getSelection().clearGroups();
           },
-          notes: SV.getMainEditor()
-            .getSelection()
-            .hasSelectedNotes()
-            ? mainEditor
-                .getSelection()
-                .getSelectedNotes()
-                .map(noteProxyOf)
-            : undefined,
+          get notes(): readonly NoteProxy[] | undefined {
+            return SV.getMainEditor()
+              .getSelection()
+              .hasSelectedNotes()
+              ? mainEditor
+                  .getSelection()
+                  .getSelectedNotes()
+                  .map(noteProxyOf)
+              : undefined;
+          },
+          set notes(notes: readonly NoteProxy[] | undefined) {
+            mainEditor.getSelection().clearNotes();
+            if (notes) {
+              notes.forEach((note: NoteProxy): void => mainEditor.getSelection().selectNote(note._rawNote()));
+            }
+          },
           addNote(note: NoteProxy): void {
             mainEditor.getSelection().selectNote(note._rawNote());
           },
@@ -132,20 +141,20 @@ export const contextFactory = (SV: ManagedSynthV): Context => {
           get timeLeft(): blick {
             return mainEditor.getNavigation().getTimeViewRange()[0];
           },
-          set timeLeft(timePosition: blick) {
-            mainEditor.getNavigation().setTimeLeft(timePosition);
+          set timeLeft(timePoint: blick) {
+            mainEditor.getNavigation().setTimeLeft(timePoint);
           },
           get timeRight(): blick {
             return mainEditor.getNavigation().getTimeViewRange()[1];
           },
-          set timeRight(timePosition: blick) {
-            mainEditor.getNavigation().setTimeRight(timePosition);
+          set timeRight(timePoint: blick) {
+            mainEditor.getNavigation().setTimeRight(timePoint);
           },
-          snap(timePosition: blick): blick {
-            return mainEditor.getNavigation().snap(timePosition);
+          snap(timePoint: blick): blick {
+            return mainEditor.getNavigation().snap(timePoint);
           },
-          t2x(timePosition: blick): pixel {
-            return mainEditor.getNavigation().t2x(timePosition);
+          t2x(timePoint: blick): pixel {
+            return mainEditor.getNavigation().t2x(timePoint);
           },
           x2t(xPosition: pixel): blick {
             return mainEditor.getNavigation().x2t(xPosition);
@@ -256,12 +265,29 @@ export const contextFactory = (SV: ManagedSynthV): Context => {
           removeAllSelected(): boolean {
             return arrangementView.getSelection().clearAll();
           },
-          noteGroupReferences: arrangementView.getSelection().hasSelectedGroups()
-            ? arrangementView
-                .getSelection()
-                .getSelectedGroups()
-                .map(instrumentalOrNoteGroupReferenceProxyOf)
-            : undefined,
+          get noteGroupReferences(): readonly (InstrumentalReferenceProxy | NoteGroupReferenceProxy)[] | undefined {
+            return arrangementView.getSelection().hasSelectedGroups()
+              ? arrangementView
+                  .getSelection()
+                  .getSelectedGroups()
+                  .map(instrumentalOrNoteGroupReferenceProxyOf)
+              : undefined;
+          },
+          set noteGroupReferences(
+            noteGroupReferences: readonly (InstrumentalReferenceProxy | NoteGroupReferenceProxy)[] | undefined,
+          ) {
+            if (noteGroupReferences && noteGroupReferences[0].instrumental) {
+              throw new Error('Cannot set instrumental note group reference!');
+            } else {
+              arrangementView.getSelection().clearGroups();
+              if (noteGroupReferences) {
+                (noteGroupReferences as NoteGroupReferenceProxy[]).forEach(
+                  (noteGroupReference: NoteGroupReferenceProxy): void =>
+                    arrangementView.getSelection().selectGroup(noteGroupReference._rawNoteGroupReference()),
+                );
+              }
+            }
+          },
           addGroupReference(noteGroupReference: NoteGroupReferenceProxy): void {
             arrangementView.getSelection().selectGroup(noteGroupReference._rawNoteGroupReference());
           },
@@ -284,20 +310,20 @@ export const contextFactory = (SV: ManagedSynthV): Context => {
           get timeLeft(): blick {
             return arrangementView.getNavigation().getTimeViewRange()[0];
           },
-          set timeLeft(timePosition: blick) {
-            arrangementView.getNavigation().setTimeLeft(timePosition);
+          set timeLeft(timePoint: blick) {
+            arrangementView.getNavigation().setTimeLeft(timePoint);
           },
           get timeRight(): blick {
             return arrangementView.getNavigation().getTimeViewRange()[1];
           },
-          set timeRight(timePosition: blick) {
-            arrangementView.getNavigation().setTimeRight(timePosition);
+          set timeRight(timePoint: blick) {
+            arrangementView.getNavigation().setTimeRight(timePoint);
           },
-          snap(timePosition: blick): blick {
-            return arrangementView.getNavigation().snap(timePosition);
+          snap(timePoint: blick): blick {
+            return arrangementView.getNavigation().snap(timePoint);
           },
-          t2x(timePosition: blick): pixel {
-            return arrangementView.getNavigation().t2x(timePosition);
+          t2x(timePoint: blick): pixel {
+            return arrangementView.getNavigation().t2x(timePoint);
           },
           x2t(xPosition: pixel): blick {
             return arrangementView.getNavigation().x2t(xPosition);

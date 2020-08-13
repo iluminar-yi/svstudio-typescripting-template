@@ -2,6 +2,9 @@ import { Note } from 'svstudio-scripts-typing';
 
 import { Hz, blick, second, semitone } from '../../types';
 
+/**
+ * Serializable information from {@link Note}.
+ */
 export interface NoteMeta {
   duration: blick;
   lyrics: string;
@@ -25,6 +28,9 @@ export interface NoteMeta {
   alt?: number[];
 }
 
+/**
+ * Full functional replacement for {@link Note}.
+ */
 export interface NoteProxy extends NoteMeta {
   getEnd(): blick;
   setDuration(duration: blick): this;

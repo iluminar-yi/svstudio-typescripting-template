@@ -227,8 +227,6 @@ export interface ManagedSynthV {
   /**
    * Indicate to the framework that execution has started.
    * This should not need to be called by user script.
-   *
-   * @see https://dreamtonics.com/synthv/scripting/SV.html#start
    */
   start(): void;
 
