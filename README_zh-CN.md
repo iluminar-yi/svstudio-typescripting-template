@@ -8,7 +8,7 @@
 ## 如何使用
 1. 点击`Use this template`来用这个模板生成你自己的库。
 1. 修改`package.json`、`LICENSE`（这个文件里也有"作者姓名"）。
-1. 可以开始在`src`文件夹里写代码啦！（但请确保`src/index.js`文件导出一个`SVScriptFactory`.
+1. 可以开始在`src`文件夹里写代码啦！（但请确保`src/index.ts`文件导出一个`SVScriptFactory`.
 
 ## NPM命令解释
 * `start`：让Webpack在监视模式下，持续编译整个工程并输出至`dist`文件夹。
