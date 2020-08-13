@@ -66,6 +66,24 @@
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>A decorated (almost) instance of {@link SynthV} where the any callback-taking APIs are decorated
+							to register the callback with <a href="lifecyclemanager.html">LifeCycleManager</a>.
+							If a method has both a synchronous version and an asynchronous version, the synchronous version
+							is overwritten to return a Promise, making it asynchronous.
+						For documentation purposes, many documentations here are directly taken from the {@link SynthV} documentation.</p>
+					</div>
+					<dl class="tsd-comment-tags">
+						<dt>see</dt>
+						<dd><p><a href="https://dreamtonics.com/synthv/scripting/SV.html">https://dreamtonics.com/synthv/scripting/SV.html</a></p>
+						</dd>
+						<dt>internal</dt>
+						<dd></dd>
+					</dl>
+				</div>
+			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
@@ -131,21 +149,27 @@
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="quarter" class="tsd-anchor"></a>
 					<h3>QUARTER</h3>
-					<div class="tsd-signature tsd-kind-icon">QUARTER<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">705600000</span></div>
+					<div class="tsd-signature tsd-kind-icon">QUARTER<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/iluminar-yi/svstudio-typescripting-template/blob/169a051/framework/types/index.ts#L54">types/index.ts:54</a></li>
+							<li>Defined in <a href="https://github.com/iluminar-yi/svstudio-typescripting-template/blob/ec89007/framework/types/index.ts#L106">types/index.ts:106</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>Number of blicks in a quarter. The value is 705600000.
-								<br>
-								We denote <em>musical time</em> (e.g. a quarter, a beat) differently from <em>physical time</em> (e.g. one second).
-								A blick is the smallest unit of <em>musical time</em> that the GUI works with internally.
-								It is a large number chosen to be divisible by a lot of similarly purposed numbers used in music software.
-							The name originates from <a href="https://github.com/facebookarchive/Flicks">Flicks</a>.</p>
+							<p>Number of blicks in a quarter. The value is 705600000.</p>
 						</div>
+						<dl class="tsd-comment-tags">
+							<dt>remarks</dt>
+							<dd><p>We denote <em>musical time</em> (e.g. a quarter, a beat) differently from <em>physical time</em> (e.g. one second).
+									A blick is the smallest unit of <em>musical time</em> that the GUI works with internally.
+									It is a large number chosen to be divisible by a lot of similarly purposed numbers used in music software.
+								The name originates from <a href="https://github.com/facebookarchive/Flicks">Flicks</a>.</p>
+							</dd>
+							<dt>see</dt>
+							<dd><p><a href="https://dreamtonics.com/synthv/scripting/SV.html#QUARTER">https://dreamtonics.com/synthv/scripting/SV.html#QUARTER</a></p>
+							</dd>
+						</dl>
 					</div>
 				</section>
 			</section>
@@ -161,7 +185,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/iluminar-yi/svstudio-typescripting-template/blob/169a051/framework/types/index.ts#L331">types/index.ts:331</a></li>
+									<li>Defined in <a href="https://github.com/iluminar-yi/svstudio-typescripting-template/blob/ec89007/framework/types/index.ts#L488">types/index.ts:488</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -170,11 +194,19 @@
 										<br>
 									See <a href="https://dreamtonics.com/synthv/scripting/tutorial-Localization.html">Localization</a> for more information.</p>
 								</div>
+								<dl class="tsd-comment-tags">
+									<dt>see</dt>
+									<dd><p><a href="https://dreamtonics.com/synthv/scripting/SV.html">https://dreamtonics.com/synthv/scripting/SV.html</a></p>
+									</dd>
+								</dl>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>text: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Input text that needs translated.</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
@@ -191,7 +223,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/iluminar-yi/svstudio-typescripting-template/blob/169a051/framework/types/index.ts#L62">types/index.ts:62</a></li>
+									<li>Defined in <a href="https://github.com/iluminar-yi/svstudio-typescripting-template/blob/ec89007/framework/types/index.ts#L116">types/index.ts:116</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -200,12 +232,18 @@
 										<br>
 									Conversions between musical and physical time in the context of a project are done by {@link TimeAxis}.</p>
 								</div>
+								<dl class="tsd-comment-tags">
+									<dt>see</dt>
+									<dd><p><a href="https://dreamtonics.com/synthv/scripting/SV.html#blackKey">https://dreamtonics.com/synthv/scripting/SV.html#blackKey</a></p>
+									</dd>
+								</dl>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>k: <span class="tsd-signature-type">number</span></h5>
 									<div class="tsd-comment tsd-typography">
+										<p>MIDI number representing a key.</p>
 									</div>
 								</li>
 							</ul>
@@ -223,7 +261,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/iluminar-yi/svstudio-typescripting-template/blob/169a051/framework/types/index.ts#L72">types/index.ts:72</a></li>
+									<li>Defined in <a href="https://github.com/iluminar-yi/svstudio-typescripting-template/blob/ec89007/framework/types/index.ts#L128">types/index.ts:128</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -234,12 +272,18 @@
 										<br>
 									Conversions between musical and physical time in the context of a project are done by {@link TimeAxis}.</p>
 								</div>
+								<dl class="tsd-comment-tags">
+									<dt>see</dt>
+									<dd><p><a href="https://dreamtonics.com/synthv/scripting/SV.html#blick2Quarter">https://dreamtonics.com/synthv/scripting/SV.html#blick2Quarter</a></p>
+									</dd>
+								</dl>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>b: <span class="tsd-signature-type">number</span></h5>
 									<div class="tsd-comment tsd-typography">
+										<p>A timespan value in blicks.</p>
 									</div>
 								</li>
 							</ul>
@@ -257,7 +301,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/iluminar-yi/svstudio-typescripting-template/blob/169a051/framework/types/index.ts#L83">types/index.ts:83</a></li>
+									<li>Defined in <a href="https://github.com/iluminar-yi/svstudio-typescripting-template/blob/ec89007/framework/types/index.ts#L141">types/index.ts:141</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -268,15 +312,24 @@
 										<br>
 									Conversions between musical and physical time in the context of a project are done by {@link TimeAxis}.</p>
 								</div>
+								<dl class="tsd-comment-tags">
+									<dt>see</dt>
+									<dd><p><a href="https://dreamtonics.com/synthv/scripting/SV.html#blick2Seconds">https://dreamtonics.com/synthv/scripting/SV.html#blick2Seconds</a></p>
+									</dd>
+								</dl>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>b: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>A timespan value in blicks.</p>
+									</div>
 								</li>
 								<li>
 									<h5>bpm: <span class="tsd-signature-type">number</span></h5>
 									<div class="tsd-comment tsd-typography">
+										<p>Speed of music, in beats per minute.</p>
 									</div>
 								</li>
 							</ul>
@@ -294,7 +347,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/iluminar-yi/svstudio-typescripting-template/blob/169a051/framework/types/index.ts#L92">types/index.ts:92</a></li>
+									<li>Defined in <a href="https://github.com/iluminar-yi/svstudio-typescripting-template/blob/ec89007/framework/types/index.ts#L152">types/index.ts:152</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -303,15 +356,24 @@
 										<br>
 									Conversions between musical and physical time in the context of a project are done by {@link TimeAxis}.</p>
 								</div>
+								<dl class="tsd-comment-tags">
+									<dt>see</dt>
+									<dd><p><a href="https://dreamtonics.com/synthv/scripting/SV.html#blickRoundDiv">https://dreamtonics.com/synthv/scripting/SV.html#blickRoundDiv</a></p>
+									</dd>
+								</dl>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>dividend: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Dividend. The &quot;a&quot; as in <code>a / b</code>.</p>
+									</div>
 								</li>
 								<li>
 									<h5>divisor: <span class="tsd-signature-type">number</span></h5>
 									<div class="tsd-comment tsd-typography">
+										<p>Divisor. The &quot;b&quot; as in <code>a / b</code>.</p>
 									</div>
 								</li>
 							</ul>
@@ -329,26 +391,35 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/iluminar-yi/svstudio-typescripting-template/blob/169a051/framework/types/index.ts#L103">types/index.ts:103</a></li>
+									<li>Defined in <a href="https://github.com/iluminar-yi/svstudio-typescripting-template/blob/ec89007/framework/types/index.ts#L165">types/index.ts:165</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>Returns the closest multiple of interval (blicks) from b (blick).
 										<br>
-										Equivalent to blickRoundDiv(b, interval) * interval.
+										Equivalent to <code>blickRoundDiv(b, interval) * interval</code>.
 										<br>
 									Conversions between musical and physical time in the context of a project are done by {@link TimeAxis}.</p>
 								</div>
+								<dl class="tsd-comment-tags">
+									<dt>see</dt>
+									<dd><p><a href="https://dreamtonics.com/synthv/scripting/SV.html#blickRoundTo">https://dreamtonics.com/synthv/scripting/SV.html#blickRoundTo</a></p>
+									</dd>
+								</dl>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>b: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>A timespan value in blicks.</p>
+									</div>
 								</li>
 								<li>
 									<h5>interval: <span class="tsd-signature-type">number</span></h5>
 									<div class="tsd-comment tsd-typography">
+										<p>Number of intervals to multiply by.</p>
 									</div>
 								</li>
 							</ul>
@@ -366,7 +437,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/iluminar-yi/svstudio-typescripting-template/blob/169a051/framework/types/index.ts#L346">types/index.ts:346</a></li>
+									<li>Defined in <a href="https://github.com/iluminar-yi/svstudio-typescripting-template/blob/ec89007/framework/types/index.ts#L503">types/index.ts:503</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -404,13 +475,18 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/iluminar-yi/svstudio-typescripting-template/blob/169a051/framework/types/index.ts#L109">types/index.ts:109</a></li>
+									<li>Defined in <a href="https://github.com/iluminar-yi/svstudio-typescripting-template/blob/ec89007/framework/types/index.ts#L173">types/index.ts:173</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Create a new object. type can be one of the following type-specifying strings.</p>
+									<p>Create a new Note.</p>
 								</div>
+								<dl class="tsd-comment-tags">
+									<dt>see</dt>
+									<dd><p><a href="https://dreamtonics.com/synthv/scripting/SV.html#create">https://dreamtonics.com/synthv/scripting/SV.html#create</a></p>
+									</dd>
+								</dl>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
@@ -426,13 +502,26 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/iluminar-yi/svstudio-typescripting-template/blob/169a051/framework/types/index.ts#L110">types/index.ts:110</a></li>
+									<li>Defined in <a href="https://github.com/iluminar-yi/svstudio-typescripting-template/blob/ec89007/framework/types/index.ts#L180">types/index.ts:180</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Create a new Automation.</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>see</dt>
+									<dd><p><a href="https://dreamtonics.com/synthv/scripting/SV.html#create">https://dreamtonics.com/synthv/scripting/SV.html#create</a></p>
+									</dd>
+								</dl>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>type: <span class="tsd-signature-type">"Automation"</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>A type-specifying string.</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Automation</span></h4>
@@ -440,13 +529,26 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/iluminar-yi/svstudio-typescripting-template/blob/169a051/framework/types/index.ts#L111">types/index.ts:111</a></li>
+									<li>Defined in <a href="https://github.com/iluminar-yi/svstudio-typescripting-template/blob/ec89007/framework/types/index.ts#L187">types/index.ts:187</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Create a new NoteGroup.</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>see</dt>
+									<dd><p><a href="https://dreamtonics.com/synthv/scripting/SV.html#create">https://dreamtonics.com/synthv/scripting/SV.html#create</a></p>
+									</dd>
+								</dl>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>type: <span class="tsd-signature-type">"NoteGroup"</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>A type-specifying string.</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">NoteGroup</span></h4>
@@ -454,13 +556,26 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/iluminar-yi/svstudio-typescripting-template/blob/169a051/framework/types/index.ts#L112">types/index.ts:112</a></li>
+									<li>Defined in <a href="https://github.com/iluminar-yi/svstudio-typescripting-template/blob/ec89007/framework/types/index.ts#L194">types/index.ts:194</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Create a new NoteGroupReference.</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>see</dt>
+									<dd><p><a href="https://dreamtonics.com/synthv/scripting/SV.html#create">https://dreamtonics.com/synthv/scripting/SV.html#create</a></p>
+									</dd>
+								</dl>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>type: <span class="tsd-signature-type">"NoteGroupReference"</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>A type-specifying string.</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">NoteGroupReference</span></h4>
@@ -468,13 +583,26 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/iluminar-yi/svstudio-typescripting-template/blob/169a051/framework/types/index.ts#L113">types/index.ts:113</a></li>
+									<li>Defined in <a href="https://github.com/iluminar-yi/svstudio-typescripting-template/blob/ec89007/framework/types/index.ts#L201">types/index.ts:201</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Create a new <code>TrackMixer</code>. Currently undocumented.</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>see</dt>
+									<dd><p><a href="https://dreamtonics.com/synthv/scripting/SV.html#create">https://dreamtonics.com/synthv/scripting/SV.html#create</a></p>
+									</dd>
+								</dl>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>type: <span class="tsd-signature-type">"TrackMixer"</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>A type-specifying string.</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-symbol">{}</span></h4>
@@ -484,13 +612,26 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/iluminar-yi/svstudio-typescripting-template/blob/169a051/framework/types/index.ts#L114">types/index.ts:114</a></li>
+									<li>Defined in <a href="https://github.com/iluminar-yi/svstudio-typescripting-template/blob/ec89007/framework/types/index.ts#L208">types/index.ts:208</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Create a new Track.</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>see</dt>
+									<dd><p><a href="https://dreamtonics.com/synthv/scripting/SV.html#create">https://dreamtonics.com/synthv/scripting/SV.html#create</a></p>
+									</dd>
+								</dl>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>type: <span class="tsd-signature-type">"Track"</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>A type-specifying string.</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Track</span></h4>
@@ -498,13 +639,26 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/iluminar-yi/svstudio-typescripting-template/blob/169a051/framework/types/index.ts#L115">types/index.ts:115</a></li>
+									<li>Defined in <a href="https://github.com/iluminar-yi/svstudio-typescripting-template/blob/ec89007/framework/types/index.ts#L215">types/index.ts:215</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Create a new TimeAxis.</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>see</dt>
+									<dd><p><a href="https://dreamtonics.com/synthv/scripting/SV.html#create">https://dreamtonics.com/synthv/scripting/SV.html#create</a></p>
+									</dd>
+								</dl>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>type: <span class="tsd-signature-type">"TimeAxis"</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>A type-specifying string.</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">TimeAxis</span></h4>
@@ -512,13 +666,26 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/iluminar-yi/svstudio-typescripting-template/blob/169a051/framework/types/index.ts#L116">types/index.ts:116</a></li>
+									<li>Defined in <a href="https://github.com/iluminar-yi/svstudio-typescripting-template/blob/ec89007/framework/types/index.ts#L222">types/index.ts:222</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Create a new Project.</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>see</dt>
+									<dd><p><a href="https://dreamtonics.com/synthv/scripting/SV.html#create">https://dreamtonics.com/synthv/scripting/SV.html#create</a></p>
+									</dd>
+								</dl>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>type: <span class="tsd-signature-type">"Project"</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>A type-specifying string.</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Project</span></h4>
@@ -535,7 +702,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/iluminar-yi/svstudio-typescripting-template/blob/169a051/framework/types/index.ts#L129">types/index.ts:129</a></li>
+									<li>Defined in <a href="https://github.com/iluminar-yi/svstudio-typescripting-template/blob/ec89007/framework/types/index.ts#L239">types/index.ts:239</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -544,6 +711,11 @@
 										All subsequent async callbacks will not be executed.
 									Note that this does not cause the current script to exit immediately.</p>
 								</div>
+								<dl class="tsd-comment-tags">
+									<dt>see</dt>
+									<dd><p><a href="https://dreamtonics.com/synthv/scripting/SV.html#finish">https://dreamtonics.com/synthv/scripting/SV.html#finish</a></p>
+									</dd>
+								</dl>
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 						</li>
@@ -559,7 +731,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/iluminar-yi/svstudio-typescripting-template/blob/169a051/framework/types/index.ts#L137">types/index.ts:137</a></li>
+									<li>Defined in <a href="https://github.com/iluminar-yi/svstudio-typescripting-template/blob/ec89007/framework/types/index.ts#L249">types/index.ts:249</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -568,12 +740,18 @@
 										<br>
 									Conversions between musical and physical time in the context of a project are done by {@link TimeAxis}.</p>
 								</div>
+								<dl class="tsd-comment-tags">
+									<dt>see</dt>
+									<dd><p><a href="https://dreamtonics.com/synthv/scripting/SV.html#freq2Pitch">https://dreamtonics.com/synthv/scripting/SV.html#freq2Pitch</a></p>
+									</dd>
+								</dl>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>f: <span class="tsd-signature-type">number</span></h5>
 									<div class="tsd-comment tsd-typography">
+										<p>Frequency in Hz.</p>
 									</div>
 								</li>
 							</ul>
@@ -591,13 +769,18 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/iluminar-yi/svstudio-typescripting-template/blob/169a051/framework/types/index.ts#L142">types/index.ts:142</a></li>
+									<li>Defined in <a href="https://github.com/iluminar-yi/svstudio-typescripting-template/blob/ec89007/framework/types/index.ts#L256">types/index.ts:256</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>Get the UI state object for arrangement view.</p>
 								</div>
+								<dl class="tsd-comment-tags">
+									<dt>see</dt>
+									<dd><p><a href="https://dreamtonics.com/synthv/scripting/SV.html#getArrangement">https://dreamtonics.com/synthv/scripting/SV.html#getArrangement</a></p>
+									</dd>
+								</dl>
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">ArrangementView</span></h4>
 						</li>
@@ -613,13 +796,18 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/iluminar-yi/svstudio-typescripting-template/blob/169a051/framework/types/index.ts#L147">types/index.ts:147</a></li>
+									<li>Defined in <a href="https://github.com/iluminar-yi/svstudio-typescripting-template/blob/ec89007/framework/types/index.ts#L263">types/index.ts:263</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>Get the text on the system clipboard.</p>
 								</div>
+								<dl class="tsd-comment-tags">
+									<dt>see</dt>
+									<dd><p><a href="https://dreamtonics.com/synthv/scripting/SV.html#getHostClipboard">https://dreamtonics.com/synthv/scripting/SV.html#getHostClipboard</a></p>
+									</dd>
+								</dl>
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
 						</li>
@@ -635,13 +823,18 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/iluminar-yi/svstudio-typescripting-template/blob/169a051/framework/types/index.ts#L152">types/index.ts:152</a></li>
+									<li>Defined in <a href="https://github.com/iluminar-yi/svstudio-typescripting-template/blob/ec89007/framework/types/index.ts#L270">types/index.ts:270</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>Get {@link HostInfo}.</p>
 								</div>
+								<dl class="tsd-comment-tags">
+									<dt>see</dt>
+									<dd><p><a href="https://dreamtonics.com/synthv/scripting/SV.html#getHostInfo">https://dreamtonics.com/synthv/scripting/SV.html#getHostInfo</a></p>
+									</dd>
+								</dl>
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">HostInfo</span></h4>
 						</li>
@@ -657,13 +850,18 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/iluminar-yi/svstudio-typescripting-template/blob/169a051/framework/types/index.ts#L157">types/index.ts:157</a></li>
+									<li>Defined in <a href="https://github.com/iluminar-yi/svstudio-typescripting-template/blob/ec89007/framework/types/index.ts#L277">types/index.ts:277</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>Get the UI state object for the piano roll.</p>
 								</div>
+								<dl class="tsd-comment-tags">
+									<dt>see</dt>
+									<dd><p><a href="https://dreamtonics.com/synthv/scripting/SV.html#getMainEditor">https://dreamtonics.com/synthv/scripting/SV.html#getMainEditor</a></p>
+									</dd>
+								</dl>
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">MainEditorView</span></h4>
 						</li>
@@ -679,7 +877,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/iluminar-yi/svstudio-typescripting-template/blob/169a051/framework/types/index.ts#L173">types/index.ts:173</a></li>
+									<li>Defined in <a href="https://github.com/iluminar-yi/svstudio-typescripting-template/blob/ec89007/framework/types/index.ts#L295">types/index.ts:295</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -696,12 +894,18 @@
 										There&#39;s a slight chance of returning an empty array if text-to-phoneme conversion has not yet finished on the group.
 									We recommend script authors to wrap getPhonemesForGroup in a {@link SV#setTimeout} call in such cases.</p>
 								</div>
+								<dl class="tsd-comment-tags">
+									<dt>see</dt>
+									<dd><p><a href="https://dreamtonics.com/synthv/scripting/SV.html#getPhonemesForGroup">https://dreamtonics.com/synthv/scripting/SV.html#getPhonemesForGroup</a></p>
+									</dd>
+								</dl>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>group: <span class="tsd-signature-type">NoteGroupReference</span></h5>
 									<div class="tsd-comment tsd-typography">
+										<p>A <code>NoteGroupReference</code> to get phonemes for.</p>
 									</div>
 								</li>
 							</ul>
@@ -719,13 +923,18 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/iluminar-yi/svstudio-typescripting-template/blob/169a051/framework/types/index.ts#L178">types/index.ts:178</a></li>
+									<li>Defined in <a href="https://github.com/iluminar-yi/svstudio-typescripting-template/blob/ec89007/framework/types/index.ts#L302">types/index.ts:302</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>Get the UI state object for controlling the playback.</p>
 								</div>
+								<dl class="tsd-comment-tags">
+									<dt>see</dt>
+									<dd><p><a href="https://dreamtonics.com/synthv/scripting/SV.html#getPlayback">https://dreamtonics.com/synthv/scripting/SV.html#getPlayback</a></p>
+									</dd>
+								</dl>
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">PlaybackControl</span></h4>
 						</li>
@@ -741,13 +950,18 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/iluminar-yi/svstudio-typescripting-template/blob/169a051/framework/types/index.ts#L183">types/index.ts:183</a></li>
+									<li>Defined in <a href="https://github.com/iluminar-yi/svstudio-typescripting-template/blob/ec89007/framework/types/index.ts#L309">types/index.ts:309</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>Get the currently open project.</p>
 								</div>
+								<dl class="tsd-comment-tags">
+									<dt>see</dt>
+									<dd><p><a href="https://dreamtonics.com/synthv/scripting/SV.html#getProject">https://dreamtonics.com/synthv/scripting/SV.html#getProject</a></p>
+									</dd>
+								</dl>
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Project</span></h4>
 						</li>
@@ -763,7 +977,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/iluminar-yi/svstudio-typescripting-template/blob/169a051/framework/types/index.ts#L191">types/index.ts:191</a></li>
+									<li>Defined in <a href="https://github.com/iluminar-yi/svstudio-typescripting-template/blob/ec89007/framework/types/index.ts#L319">types/index.ts:319</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -772,12 +986,18 @@
 										<br>
 									Conversions between musical and physical time in the context of a project are done by {@link TimeAxis}.</p>
 								</div>
+								<dl class="tsd-comment-tags">
+									<dt>see</dt>
+									<dd><p><a href="https://dreamtonics.com/synthv/scripting/SV.html#pitch2Freq">https://dreamtonics.com/synthv/scripting/SV.html#pitch2Freq</a></p>
+									</dd>
+								</dl>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>p: <span class="tsd-signature-type">number</span></h5>
 									<div class="tsd-comment tsd-typography">
+										<p>Pitch in MIDI number.</p>
 									</div>
 								</li>
 							</ul>
@@ -795,7 +1015,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/iluminar-yi/svstudio-typescripting-template/blob/169a051/framework/types/index.ts#L201">types/index.ts:201</a></li>
+									<li>Defined in <a href="https://github.com/iluminar-yi/svstudio-typescripting-template/blob/ec89007/framework/types/index.ts#L331">types/index.ts:331</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -806,12 +1026,18 @@
 										<br>
 									Conversions between musical and physical time in the context of a project are done by {@link TimeAxis}.</p>
 								</div>
+								<dl class="tsd-comment-tags">
+									<dt>see</dt>
+									<dd><p><a href="https://dreamtonics.com/synthv/scripting/SV.html#quarter2Blick">https://dreamtonics.com/synthv/scripting/SV.html#quarter2Blick</a></p>
+									</dd>
+								</dl>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>q: <span class="tsd-signature-type">number</span></h5>
 									<div class="tsd-comment tsd-typography">
+										<p>Number of quarters.</p>
 									</div>
 								</li>
 							</ul>
@@ -829,7 +1055,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/iluminar-yi/svstudio-typescripting-template/blob/169a051/framework/types/index.ts#L212">types/index.ts:212</a></li>
+									<li>Defined in <a href="https://github.com/iluminar-yi/svstudio-typescripting-template/blob/ec89007/framework/types/index.ts#L344">types/index.ts:344</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -840,15 +1066,24 @@
 										<br>
 									Conversions between musical and physical time in the context of a project are done by {@link TimeAxis}.</p>
 								</div>
+								<dl class="tsd-comment-tags">
+									<dt>see</dt>
+									<dd><p><a href="https://dreamtonics.com/synthv/scripting/SV.html#seconds2Blick">https://dreamtonics.com/synthv/scripting/SV.html#seconds2Blick</a></p>
+									</dd>
+								</dl>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>s: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Time in seconds.</p>
+									</div>
 								</li>
 								<li>
 									<h5>bpm: <span class="tsd-signature-type">number</span></h5>
 									<div class="tsd-comment tsd-typography">
+										<p>Speed of music, in beats per minute.</p>
 									</div>
 								</li>
 							</ul>
@@ -866,19 +1101,25 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/iluminar-yi/svstudio-typescripting-template/blob/169a051/framework/types/index.ts#L218">types/index.ts:218</a></li>
+									<li>Defined in <a href="https://github.com/iluminar-yi/svstudio-typescripting-template/blob/ec89007/framework/types/index.ts#L352">types/index.ts:352</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>Set the system clipboard.</p>
 								</div>
+								<dl class="tsd-comment-tags">
+									<dt>see</dt>
+									<dd><p><a href="https://dreamtonics.com/synthv/scripting/SV.html#setHostClipboard">https://dreamtonics.com/synthv/scripting/SV.html#setHostClipboard</a></p>
+									</dd>
+								</dl>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>text: <span class="tsd-signature-type">string</span></h5>
 									<div class="tsd-comment tsd-typography">
+										<p>Text to be set as clipboard content.</p>
 									</div>
 								</li>
 							</ul>
@@ -896,7 +1137,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/iluminar-yi/svstudio-typescripting-template/blob/169a051/framework/types/index.ts#L340">types/index.ts:340</a></li>
+									<li>Defined in <a href="https://github.com/iluminar-yi/svstudio-typescripting-template/blob/ec89007/framework/types/index.ts#L497">types/index.ts:497</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -940,7 +1181,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/iluminar-yi/svstudio-typescripting-template/blob/169a051/framework/types/index.ts#L229">types/index.ts:229</a></li>
+									<li>Defined in <a href="https://github.com/iluminar-yi/svstudio-typescripting-template/blob/ec89007/framework/types/index.ts#L365">types/index.ts:365</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -951,15 +1192,24 @@
 										The callback function is pushed onto a queue and delayed.
 									This is not a preemptive callback, i.e. the execution of callback will not interrupt the currently running task.</p>
 								</div>
+								<dl class="tsd-comment-tags">
+									<dt>see</dt>
+									<dd><p><a href="https://dreamtonics.com/synthv/scripting/SV.html#setTimeout">https://dreamtonics.com/synthv/scripting/SV.html#setTimeout</a></p>
+									</dd>
+								</dl>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>timeout: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Number of seconds at least, before running the callback</p>
+									</div>
 								</li>
 								<li>
 									<h5>callback: <span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span></h5>
 									<div class="tsd-comment tsd-typography">
+										<p>Callback to run</p>
 									</div>
 									<ul class="tsd-parameters">
 										<li class="tsd-parameter-signature">
@@ -989,20 +1239,26 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/iluminar-yi/svstudio-typescripting-template/blob/169a051/framework/types/index.ts#L236">types/index.ts:236</a></li>
+									<li>Defined in <a href="https://github.com/iluminar-yi/svstudio-typescripting-template/blob/ec89007/framework/types/index.ts#L374">types/index.ts:374</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>The promise version of {@link SV#showCustomDialogAsync} that blocks the script execution until the user closes the dialog.
+									<p>The promise version of {@link SV#showCustomDialogAsync}.
 									It returns the inputs (the completed form) from the user.</p>
 								</div>
+								<dl class="tsd-comment-tags">
+									<dt>see</dt>
+									<dd><p><a href="https://dreamtonics.com/synthv/scripting/SV.html#showCustomDialogAsync">https://dreamtonics.com/synthv/scripting/SV.html#showCustomDialogAsync</a></p>
+									</dd>
+								</dl>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>form: <span class="tsd-signature-type">CustomDialogForm</span></h5>
 									<div class="tsd-comment tsd-typography">
+										<p>Form options to create the dialog from.</p>
 									</div>
 								</li>
 							</ul>
@@ -1020,7 +1276,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/iluminar-yi/svstudio-typescripting-template/blob/169a051/framework/types/index.ts#L248">types/index.ts:248</a></li>
+									<li>Defined in <a href="https://github.com/iluminar-yi/svstudio-typescripting-template/blob/ec89007/framework/types/index.ts#L388">types/index.ts:388</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1032,15 +1288,24 @@
 										<br>
 									See <a href="https://dreamtonics.com/synthv/scripting/tutorial-Custom%20Dialogs.html">Custom Dialogs</a> for more information.</p>
 								</div>
+								<dl class="tsd-comment-tags">
+									<dt>see</dt>
+									<dd><p><a href="https://dreamtonics.com/synthv/scripting/SV.html#showCustomDialogAsync">https://dreamtonics.com/synthv/scripting/SV.html#showCustomDialogAsync</a></p>
+									</dd>
+								</dl>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>form: <span class="tsd-signature-type">CustomDialogForm</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Form options to create the dialog from.</p>
+									</div>
 								</li>
 								<li>
 									<h5>callback: <span class="tsd-signature-symbol">(</span>answers<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">WidgetAnswers</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span></h5>
 									<div class="tsd-comment tsd-typography">
+										<p>Callback to run on the user response</p>
 									</div>
 									<ul class="tsd-parameters">
 										<li class="tsd-parameter-signature">
@@ -1076,26 +1341,38 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/iluminar-yi/svstudio-typescripting-template/blob/169a051/framework/types/index.ts#L257">types/index.ts:257</a></li>
+									<li>Defined in <a href="https://github.com/iluminar-yi/svstudio-typescripting-template/blob/ec89007/framework/types/index.ts#L399">types/index.ts:399</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>The promise version of {@link SV#showInputBoxAsync} that blocks the script execution until the user closes the dialog.
+									<p>The promise version of {@link SV#showInputBoxAsync}.
 									It returns the text input from the user.</p>
 								</div>
+								<dl class="tsd-comment-tags">
+									<dt>see</dt>
+									<dd><p><a href="https://dreamtonics.com/synthv/scripting/SV.html#showInputBoxAsync">https://dreamtonics.com/synthv/scripting/SV.html#showInputBoxAsync</a></p>
+									</dd>
+								</dl>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>title: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Title of the input box.</p>
+									</div>
 								</li>
 								<li>
 									<h5>message: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Body of the question prompt.</p>
+									</div>
 								</li>
 								<li>
 									<h5>defaultText: <span class="tsd-signature-type">string</span></h5>
 									<div class="tsd-comment tsd-typography">
+										<p>Default value if the user does not enter text.</p>
 									</div>
 								</li>
 							</ul>
@@ -1113,7 +1390,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/iluminar-yi/svstudio-typescripting-template/blob/169a051/framework/types/index.ts#L269">types/index.ts:269</a></li>
+									<li>Defined in <a href="https://github.com/iluminar-yi/svstudio-typescripting-template/blob/ec89007/framework/types/index.ts#L413">types/index.ts:413</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1123,21 +1400,36 @@
 										callback will be invoked once the dialog is closed.
 									The callback function takes one string argument that is the content of the text box.</p>
 								</div>
+								<dl class="tsd-comment-tags">
+									<dt>see</dt>
+									<dd><p><a href="https://dreamtonics.com/synthv/scripting/SV.html#showInputBoxAsync">https://dreamtonics.com/synthv/scripting/SV.html#showInputBoxAsync</a></p>
+									</dd>
+								</dl>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>title: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Title of the input box.</p>
+									</div>
 								</li>
 								<li>
 									<h5>message: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Body of the question prompt.</p>
+									</div>
 								</li>
 								<li>
 									<h5>defaultText: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Default value if the user does not enter text.</p>
+									</div>
 								</li>
 								<li>
 									<h5>callback: <span class="tsd-signature-symbol">(</span>answer<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span></h5>
 									<div class="tsd-comment tsd-typography">
+										<p>Callback to run on the user response</p>
 									</div>
 									<ul class="tsd-parameters">
 										<li class="tsd-parameter-signature">
@@ -1173,22 +1465,31 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/iluminar-yi/svstudio-typescripting-template/blob/169a051/framework/types/index.ts#L276">types/index.ts:276</a></li>
+									<li>Defined in <a href="https://github.com/iluminar-yi/svstudio-typescripting-template/blob/ec89007/framework/types/index.ts#L422">types/index.ts:422</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>The promise version of {@link SV#showMessageBoxAsync} that blocks the script execution until the user closes the message box.</p>
+									<p>The promise version of {@link SV#showMessageBoxAsync}.</p>
 								</div>
+								<dl class="tsd-comment-tags">
+									<dt>see</dt>
+									<dd><p><a href="https://dreamtonics.com/synthv/scripting/SV.html#showMessageBoxAsync">https://dreamtonics.com/synthv/scripting/SV.html#showMessageBoxAsync</a></p>
+									</dd>
+								</dl>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>title: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Title of the input box.</p>
+									</div>
 								</li>
 								<li>
 									<h5>message: <span class="tsd-signature-type">string</span></h5>
 									<div class="tsd-comment tsd-typography">
+										<p>Body of the question prompt.</p>
 									</div>
 								</li>
 							</ul>
@@ -1206,7 +1507,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/iluminar-yi/svstudio-typescripting-template/blob/169a051/framework/types/index.ts#L286">types/index.ts:286</a></li>
+									<li>Defined in <a href="https://github.com/iluminar-yi/svstudio-typescripting-template/blob/ec89007/framework/types/index.ts#L434">types/index.ts:434</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1215,18 +1516,30 @@
 										<br>
 									If a callback is given, it is invoked once the message box is closed. The callback function takes no argument.</p>
 								</div>
+								<dl class="tsd-comment-tags">
+									<dt>see</dt>
+									<dd><p><a href="https://dreamtonics.com/synthv/scripting/SV.html#showMessageBoxAsync">https://dreamtonics.com/synthv/scripting/SV.html#showMessageBoxAsync</a></p>
+									</dd>
+								</dl>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>title: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Title of the input box.</p>
+									</div>
 								</li>
 								<li>
 									<h5>message: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Body of the question prompt.</p>
+									</div>
 								</li>
 								<li>
 									<h5><span class="tsd-flag ts-flagOptional">Optional</span> callback: <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">)</span></h5>
 									<div class="tsd-comment tsd-typography">
+										<p>Callback to run on the user response</p>
 									</div>
 								</li>
 							</ul>
@@ -1244,23 +1557,32 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/iluminar-yi/svstudio-typescripting-template/blob/169a051/framework/types/index.ts#L294">types/index.ts:294</a></li>
+									<li>Defined in <a href="https://github.com/iluminar-yi/svstudio-typescripting-template/blob/ec89007/framework/types/index.ts#L444">types/index.ts:444</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>The promise version of {@link SV#showOkCancelBoxAsync} that blocks the script execution until the user closes the message box.
+									<p>The promise version of {@link SV#showOkCancelBoxAsync}.
 									It returns true if &quot;OK&quot; button is pressed.</p>
 								</div>
+								<dl class="tsd-comment-tags">
+									<dt>see</dt>
+									<dd><p><a href="https://dreamtonics.com/synthv/scripting/SV.html#showOkCancelBoxAsync">https://dreamtonics.com/synthv/scripting/SV.html#showOkCancelBoxAsync</a></p>
+									</dd>
+								</dl>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>title: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Title of the input box.</p>
+									</div>
 								</li>
 								<li>
 									<h5>message: <span class="tsd-signature-type">string</span></h5>
 									<div class="tsd-comment tsd-typography">
+										<p>Body of the question prompt.</p>
 									</div>
 								</li>
 							</ul>
@@ -1278,7 +1600,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/iluminar-yi/svstudio-typescripting-template/blob/169a051/framework/types/index.ts#L305">types/index.ts:305</a></li>
+									<li>Defined in <a href="https://github.com/iluminar-yi/svstudio-typescripting-template/blob/ec89007/framework/types/index.ts#L457">types/index.ts:457</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1288,18 +1610,30 @@
 										callback will be invoked once the message box is closed.
 									The callback function takes one boolean argument that is true if &quot;OK&quot; button is pressed.</p>
 								</div>
+								<dl class="tsd-comment-tags">
+									<dt>see</dt>
+									<dd><p><a href="https://dreamtonics.com/synthv/scripting/SV.html#showOkCancelBoxAsync">https://dreamtonics.com/synthv/scripting/SV.html#showOkCancelBoxAsync</a></p>
+									</dd>
+								</dl>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>title: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Title of the input box.</p>
+									</div>
 								</li>
 								<li>
 									<h5>message: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Body of the question prompt.</p>
+									</div>
 								</li>
 								<li>
 									<h5>callback: <span class="tsd-signature-symbol">(</span>answer<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span></h5>
 									<div class="tsd-comment tsd-typography">
+										<p>Callback to run on the user response</p>
 									</div>
 									<ul class="tsd-parameters">
 										<li class="tsd-parameter-signature">
@@ -1335,22 +1669,31 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/iluminar-yi/svstudio-typescripting-template/blob/169a051/framework/types/index.ts#L312">types/index.ts:312</a></li>
+									<li>Defined in <a href="https://github.com/iluminar-yi/svstudio-typescripting-template/blob/ec89007/framework/types/index.ts#L466">types/index.ts:466</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>The promise version of {@link SV#showYesNoCancelBoxAsync} that blocks the script execution until the user closes the message box.</p>
+									<p>The promise version of {@link SV#showYesNoCancelBoxAsync}.</p>
 								</div>
+								<dl class="tsd-comment-tags">
+									<dt>see</dt>
+									<dd><p><a href="https://dreamtonics.com/synthv/scripting/SV.html#showYesNoCancelBoxAsync">https://dreamtonics.com/synthv/scripting/SV.html#showYesNoCancelBoxAsync</a></p>
+									</dd>
+								</dl>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>title: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Title of the input box.</p>
+									</div>
 								</li>
 								<li>
 									<h5>message: <span class="tsd-signature-type">string</span></h5>
 									<div class="tsd-comment tsd-typography">
+										<p>Body of the question prompt.</p>
 									</div>
 								</li>
 							</ul>
@@ -1368,7 +1711,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/iluminar-yi/svstudio-typescripting-template/blob/169a051/framework/types/index.ts#L322">types/index.ts:322</a></li>
+									<li>Defined in <a href="https://github.com/iluminar-yi/svstudio-typescripting-template/blob/ec89007/framework/types/index.ts#L478">types/index.ts:478</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1377,18 +1720,30 @@
 										<br>
 									callback will be invoked once the message box is closed. The callback function takes one string argument that can be &quot;yes&quot;, &quot;no&quot; or &quot;cancel&quot;.</p>
 								</div>
+								<dl class="tsd-comment-tags">
+									<dt>see</dt>
+									<dd><p><a href="https://dreamtonics.com/synthv/scripting/SV.html#showYesNoCancelBoxAsync">https://dreamtonics.com/synthv/scripting/SV.html#showYesNoCancelBoxAsync</a></p>
+									</dd>
+								</dl>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>title: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Title of the input box.</p>
+									</div>
 								</li>
 								<li>
 									<h5>message: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Body of the question prompt.</p>
+									</div>
 								</li>
 								<li>
 									<h5>callback: <span class="tsd-signature-symbol">(</span>answer<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">YesNoCancelAnswer</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span></h5>
 									<div class="tsd-comment tsd-typography">
+										<p>Callback to run on the user response</p>
 									</div>
 									<ul class="tsd-parameters">
 										<li class="tsd-parameter-signature">
@@ -1424,7 +1779,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/iluminar-yi/svstudio-typescripting-template/blob/169a051/framework/types/index.ts#L122">types/index.ts:122</a></li>
+									<li>Defined in <a href="https://github.com/iluminar-yi/svstudio-typescripting-template/blob/ec89007/framework/types/index.ts#L230">types/index.ts:230</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1432,6 +1787,11 @@
 									<p>Indicate to the framework that execution has started.
 									This should not need to be called by user script.</p>
 								</div>
+								<dl class="tsd-comment-tags">
+									<dt>see</dt>
+									<dd><p><a href="https://dreamtonics.com/synthv/scripting/SV.html#start">https://dreamtonics.com/synthv/scripting/SV.html#start</a></p>
+									</dd>
+								</dl>
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 						</li>
