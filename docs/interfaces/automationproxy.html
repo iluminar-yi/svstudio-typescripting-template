@@ -66,6 +66,13 @@
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>Full functional replacement for {@link Automation}.</p>
+					</div>
+				</div>
+			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
@@ -86,7 +93,7 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-overwrite"><a href="automationproxy.html#controlpoints" class="tsd-kind-icon">control<wbr>Points</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="automationproxy.html#controlpoints" class="tsd-kind-icon">control<wbr>Points</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="automationproxy.html#definition" class="tsd-kind-icon">definition</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="automationproxy.html#interpolationmethod" class="tsd-kind-icon">interpolation<wbr>Method</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="automationproxy.html#type" class="tsd-kind-icon">type</a></li>
@@ -95,6 +102,7 @@
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="automationproxy.html#_rawautomation" class="tsd-kind-icon">_raw<wbr>Automation</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="automationproxy.html#add" class="tsd-kind-icon">add</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="automationproxy.html#getinterpolatedvalueat" class="tsd-kind-icon">get<wbr>Interpolated<wbr>Value<wbr>At</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="automationproxy.html#getlinearinterpolatedvaluat" class="tsd-kind-icon">get<wbr>Linear<wbr>Interpolated<wbr>Valu<wbr>At</a></li>
@@ -102,6 +110,7 @@
 								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="automationproxy.html#removeall" class="tsd-kind-icon">remove<wbr>All</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="automationproxy.html#removeat" class="tsd-kind-icon">remove<wbr>At</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="automationproxy.html#removeinrange" class="tsd-kind-icon">remove<wbr>InRange</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="automationproxy.html#simplify" class="tsd-kind-icon">simplify</a></li>
 							</ul>
 						</section>
 					</div>
@@ -109,16 +118,26 @@
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-overwrite">
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
 					<a name="controlpoints" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagReadonly">Readonly</span> control<wbr>Points</h3>
-					<div class="tsd-signature tsd-kind-icon">control<wbr>Points<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">[</span><a href="../globals.html#blick" class="tsd-signature-type">blick</a><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">[]</span></div>
+					<h3>control<wbr>Points</h3>
+					<div class="tsd-signature tsd-kind-icon">control<wbr>Points<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">keyof </span><span class="tsd-signature-symbol">[</span><a href="../globals.html#blick" class="tsd-signature-type">blick</a><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
-						<p>Overrides <a href="automationmeta.html">AutomationMeta</a>.<a href="automationmeta.html#controlpoints">controlPoints</a></p>
+						<p>Inherited from <a href="automationmeta.html">AutomationMeta</a>.<a href="automationmeta.html#controlpoints">controlPoints</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/iluminar-yi/svstudio-typescripting-template/blob/ec89007/framework/script-framework/types/automation-proxy.ts#L12">script-framework/types/automation-proxy.ts:12</a></li>
+							<li>Defined in <a href="https://github.com/iluminar-yi/svstudio-typescripting-template/blob/95f7755/framework/script-framework/types/automation-proxy.ts#L14">script-framework/types/automation-proxy.ts:14</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Get/set all control points of this automation.</p>
+						</div>
+						<dl class="tsd-comment-tags">
+							<dt>see</dt>
+							<dd><p><a href="https://dreamtonics.com/synthv/scripting/Automation.html#getAllPoints">https://dreamtonics.com/synthv/scripting/Automation.html#getAllPoints</a></p>
+							</dd>
+						</dl>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="definition" class="tsd-anchor"></a>
@@ -126,19 +145,39 @@
 					<div class="tsd-signature tsd-kind-icon">definition<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Definition</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/iluminar-yi/svstudio-typescripting-template/blob/ec89007/framework/script-framework/types/automation-proxy.ts#L13">script-framework/types/automation-proxy.ts:13</a></li>
+							<li>Defined in <a href="https://github.com/iluminar-yi/svstudio-typescripting-template/blob/95f7755/framework/script-framework/types/automation-proxy.ts#L48">script-framework/types/automation-proxy.ts:48</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Get a {@link Definition} object.</p>
+						</div>
+						<dl class="tsd-comment-tags">
+							<dt>see</dt>
+							<dd><p><a href="https://dreamtonics.com/synthv/scripting/Automation.html#getDefinition">https://dreamtonics.com/synthv/scripting/Automation.html#getDefinition</a></p>
+							</dd>
+						</dl>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="interpolationmethod" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagReadonly">Readonly</span> interpolation<wbr>Method</h3>
-					<div class="tsd-signature tsd-kind-icon">interpolation<wbr>Method<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<div class="tsd-signature tsd-kind-icon">interpolation<wbr>Method<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"Linear"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"Cosine"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"Cubic"</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/iluminar-yi/svstudio-typescripting-template/blob/ec89007/framework/script-framework/types/automation-proxy.ts#L14">script-framework/types/automation-proxy.ts:14</a></li>
+							<li>Defined in <a href="https://github.com/iluminar-yi/svstudio-typescripting-template/blob/95f7755/framework/script-framework/types/automation-proxy.ts#L55">script-framework/types/automation-proxy.ts:55</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Get how values between control points are interpolated in this automation.</p>
+						</div>
+						<dl class="tsd-comment-tags">
+							<dt>see</dt>
+							<dd><p><a href="https://dreamtonics.com/synthv/scripting/Automation.html#getInterpolationMethod">https://dreamtonics.com/synthv/scripting/Automation.html#getInterpolationMethod</a></p>
+							</dd>
+						</dl>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="type" class="tsd-anchor"></a>
@@ -146,13 +185,45 @@
 					<div class="tsd-signature tsd-kind-icon">type<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">ParameterType</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/iluminar-yi/svstudio-typescripting-template/blob/ec89007/framework/script-framework/types/automation-proxy.ts#L17">script-framework/types/automation-proxy.ts:17</a></li>
+							<li>Defined in <a href="https://github.com/iluminar-yi/svstudio-typescripting-template/blob/95f7755/framework/script-framework/types/automation-proxy.ts#L82">script-framework/types/automation-proxy.ts:82</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Get the parameter type for this Automation. See the {@link ParameterType}..</p>
+						</div>
+						<dl class="tsd-comment-tags">
+							<dt>see</dt>
+							<dd><p><a href="https://dreamtonics.com/synthv/scripting/Automation.html#getType">https://dreamtonics.com/synthv/scripting/Automation.html#getType</a></p>
+							</dd>
+						</dl>
+					</div>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Methods</h2>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
+					<a name="_rawautomation" class="tsd-anchor"></a>
+					<h3>_raw<wbr>Automation</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
+						<li class="tsd-signature tsd-kind-icon">_raw<wbr>Automation<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Automation</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/iluminar-yi/svstudio-typescripting-template/blob/95f7755/framework/script-framework/types/automation-proxy.ts#L129">script-framework/types/automation-proxy.ts:129</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Returns the underlying {@link Automation} object.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Automation</span></h4>
+						</li>
+					</ul>
+				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
 					<a name="add" class="tsd-anchor"></a>
 					<h3>add</h3>
@@ -163,16 +234,35 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/iluminar-yi/svstudio-typescripting-template/blob/ec89007/framework/script-framework/types/automation-proxy.ts#L10">script-framework/types/automation-proxy.ts:10</a></li>
+									<li>Defined in <a href="https://github.com/iluminar-yi/svstudio-typescripting-template/blob/95f7755/framework/script-framework/types/automation-proxy.ts#L31">script-framework/types/automation-proxy.ts:31</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Add a control point with position b (blicks) and parameter value v.
+										If there is already a point on b, the parameter value will get updated to v.
+										<br>
+									Return true if a new point has been created.</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>see</dt>
+									<dd><p><a href="https://dreamtonics.com/synthv/scripting/Automation.html#add">https://dreamtonics.com/synthv/scripting/Automation.html#add</a></p>
+									</dd>
+								</dl>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>timePoint: <a href="../globals.html#blick" class="tsd-signature-type">blick</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>A specific point in time (measured in blicks).</p>
+									</div>
 								</li>
 								<li>
 									<h5>value: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>An automation value to be set at.</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
@@ -189,13 +279,28 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/iluminar-yi/svstudio-typescripting-template/blob/ec89007/framework/script-framework/types/automation-proxy.ts#L11">script-framework/types/automation-proxy.ts:11</a></li>
+									<li>Defined in <a href="https://github.com/iluminar-yi/svstudio-typescripting-template/blob/95f7755/framework/script-framework/types/automation-proxy.ts#L41">script-framework/types/automation-proxy.ts:41</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Get the interpolated parameter value at position b (blicks).
+										If a point exists at b, the interpolation is guaranteed to return the value for the point,
+									regardless of the interpolation method.</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>see</dt>
+									<dd><p><a href="https://dreamtonics.com/synthv/scripting/Automation.html#get">https://dreamtonics.com/synthv/scripting/Automation.html#get</a></p>
+									</dd>
+								</dl>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>timePoint: <a href="../globals.html#blick" class="tsd-signature-type">blick</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>A specific point in time (measured in blicks).</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
@@ -212,13 +317,26 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/iluminar-yi/svstudio-typescripting-template/blob/ec89007/framework/script-framework/types/automation-proxy.ts#L15">script-framework/types/automation-proxy.ts:15</a></li>
+									<li>Defined in <a href="https://github.com/iluminar-yi/svstudio-typescripting-template/blob/95f7755/framework/script-framework/types/automation-proxy.ts#L63">script-framework/types/automation-proxy.ts:63</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>A version of {@link Automation#get} that uses linear interpolation (even if {@link Automation#getInterpolationMethod} is not &quot;Linear&quot;)..</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>see</dt>
+									<dd><p><a href="https://dreamtonics.com/synthv/scripting/Automation.html#getLinear">https://dreamtonics.com/synthv/scripting/Automation.html#getLinear</a></p>
+									</dd>
+								</dl>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>timePoint: <a href="../globals.html#blick" class="tsd-signature-type">blick</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>A specific point in time (measured in blicks).</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
@@ -235,16 +353,35 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/iluminar-yi/svstudio-typescripting-template/blob/ec89007/framework/script-framework/types/automation-proxy.ts#L16">script-framework/types/automation-proxy.ts:16</a></li>
+									<li>Defined in <a href="https://github.com/iluminar-yi/svstudio-typescripting-template/blob/95f7755/framework/script-framework/types/automation-proxy.ts#L75">script-framework/types/automation-proxy.ts:75</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Get an array of control points whose positions are between begin and end (blicks).
+										Each element in the array is an array of two elements: a number for the position (blicks) and a number
+										for the parameter value.
+									For example, [[0, 0.1], [5000, 0], [10000, -0.1]]..</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>see</dt>
+									<dd><p><a href="https://dreamtonics.com/synthv/scripting/Automation.html#getPoints">https://dreamtonics.com/synthv/scripting/Automation.html#getPoints</a></p>
+									</dd>
+								</dl>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>begin: <a href="../globals.html#blick" class="tsd-signature-type">blick</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Beginning point in time to process.</p>
+									</div>
 								</li>
 								<li>
 									<h5>end: <a href="../globals.html#blick" class="tsd-signature-type">blick</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Ending point in time to process.</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-symbol">[</span><a href="../globals.html#blick" class="tsd-signature-type">blick</a><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">[]</span></h4>
@@ -261,9 +398,19 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/iluminar-yi/svstudio-typescripting-template/blob/ec89007/framework/script-framework/types/automation-proxy.ts#L20">script-framework/types/automation-proxy.ts:20</a></li>
+									<li>Defined in <a href="https://github.com/iluminar-yi/svstudio-typescripting-template/blob/95f7755/framework/script-framework/types/automation-proxy.ts#L110">script-framework/types/automation-proxy.ts:110</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Remove all control points in the Automation..</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>see</dt>
+									<dd><p><a href="https://dreamtonics.com/synthv/scripting/Automation.html#removeAll">https://dreamtonics.com/synthv/scripting/Automation.html#removeAll</a></p>
+									</dd>
+								</dl>
+							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 						</li>
 					</ul>
@@ -278,13 +425,28 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/iluminar-yi/svstudio-typescripting-template/blob/ec89007/framework/script-framework/types/automation-proxy.ts#L18">script-framework/types/automation-proxy.ts:18</a></li>
+									<li>Defined in <a href="https://github.com/iluminar-yi/svstudio-typescripting-template/blob/95f7755/framework/script-framework/types/automation-proxy.ts#L92">script-framework/types/automation-proxy.ts:92</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Remove the control point at position b (blicks) if there is one.
+										<br>
+									Return true if any point has been removed..</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>see</dt>
+									<dd><p><a href="https://dreamtonics.com/synthv/scripting/Automation.html#remove">https://dreamtonics.com/synthv/scripting/Automation.html#remove</a></p>
+									</dd>
+								</dl>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>timePoint: <a href="../globals.html#blick" class="tsd-signature-type">blick</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>A specific point in time (measured in blicks).</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
@@ -301,16 +463,86 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/iluminar-yi/svstudio-typescripting-template/blob/ec89007/framework/script-framework/types/automation-proxy.ts#L19">script-framework/types/automation-proxy.ts:19</a></li>
+									<li>Defined in <a href="https://github.com/iluminar-yi/svstudio-typescripting-template/blob/95f7755/framework/script-framework/types/automation-proxy.ts#L103">script-framework/types/automation-proxy.ts:103</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Remove all control points between position begin (blicks) and end (blicks).
+										<br>
+									Return true if any point has been removed; return false if there&#39;s no point in the specified range..</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>see</dt>
+									<dd><p><a href="https://dreamtonics.com/synthv/scripting/Automation.html#remove">https://dreamtonics.com/synthv/scripting/Automation.html#remove</a></p>
+									</dd>
+								</dl>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>begin: <a href="../globals.html#blick" class="tsd-signature-type">blick</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Beginning point in time to process.</p>
+									</div>
 								</li>
 								<li>
 									<h5>end: <a href="../globals.html#blick" class="tsd-signature-type">blick</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Ending point in time to process.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
+					<a name="simplify" class="tsd-anchor"></a>
+					<h3>simplify</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
+						<li class="tsd-signature tsd-kind-icon">simplify<span class="tsd-signature-symbol">(</span>begin<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, end<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, threshold<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/iluminar-yi/svstudio-typescripting-template/blob/95f7755/framework/script-framework/types/automation-proxy.ts#L124">script-framework/types/automation-proxy.ts:124</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Simplify the parameter curve from position begin (blicks) to position end (blicks) by removing control points
+										that do not significantly contribute to the curve&#39;s shape.
+										If threshold is not provided, it will be set to 0.002. Higher values of threshold will result in more simplification.
+										<br>
+									Return true if any point has been removed.</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>see</dt>
+									<dd><p><a href="https://dreamtonics.com/synthv/scripting/Automation.html#simplify">https://dreamtonics.com/synthv/scripting/Automation.html#simplify</a></p>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>begin: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Beginning point in time to process.</p>
+									</div>
+								</li>
+								<li>
+									<h5>end: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Ending point in time to process.</p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> threshold: <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Threshold of simplification. Default to 0.002.</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
@@ -334,7 +566,7 @@
 					<li class="current tsd-kind-interface">
 						<a href="automationproxy.html" class="tsd-kind-icon">Automation<wbr>Proxy</a>
 						<ul>
-							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-overwrite">
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
 								<a href="automationproxy.html#controlpoints" class="tsd-kind-icon">control<wbr>Points</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
@@ -345,6 +577,9 @@
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
 								<a href="automationproxy.html#type" class="tsd-kind-icon">type</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface">
+								<a href="automationproxy.html#_rawautomation" class="tsd-kind-icon">_raw<wbr>Automation</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface">
 								<a href="automationproxy.html#add" class="tsd-kind-icon">add</a>
@@ -366,6 +601,9 @@
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface">
 								<a href="automationproxy.html#removeinrange" class="tsd-kind-icon">remove<wbr>InRange</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface">
+								<a href="automationproxy.html#simplify" class="tsd-kind-icon">simplify</a>
 							</li>
 						</ul>
 					</li>

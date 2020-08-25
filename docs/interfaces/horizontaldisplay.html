@@ -66,6 +66,13 @@
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>An interface to describe functions supported in the UI in the horizontal direction.</p>
+					</div>
+				</div>
+			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
@@ -110,9 +117,20 @@
 					<div class="tsd-signature tsd-kind-icon">time<wbr>Left<span class="tsd-signature-symbol">:</span> <a href="../globals.html#blick" class="tsd-signature-type">blick</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/iluminar-yi/svstudio-typescripting-template/blob/ec89007/framework/script-framework/types/context.ts#L34">script-framework/types/context.ts:34</a></li>
+							<li>Defined in <a href="https://github.com/iluminar-yi/svstudio-typescripting-template/blob/95f7755/framework/script-framework/types/context.ts#L139">script-framework/types/context.ts:139</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Get/set the left end of the current visible time range.
+							The time unit is blicks.</p>
+						</div>
+						<dl class="tsd-comment-tags">
+							<dt>see</dt>
+							<dd><p><a href="https://dreamtonics.com/synthv/scripting/CoordinateSystem.html#getTimeViewRange">https://dreamtonics.com/synthv/scripting/CoordinateSystem.html#getTimeViewRange</a></p>
+							</dd>
+						</dl>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="timeright" class="tsd-anchor"></a>
@@ -120,9 +138,20 @@
 					<div class="tsd-signature tsd-kind-icon">time<wbr>Right<span class="tsd-signature-symbol">:</span> <a href="../globals.html#blick" class="tsd-signature-type">blick</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/iluminar-yi/svstudio-typescripting-template/blob/ec89007/framework/script-framework/types/context.ts#L35">script-framework/types/context.ts:35</a></li>
+							<li>Defined in <a href="https://github.com/iluminar-yi/svstudio-typescripting-template/blob/95f7755/framework/script-framework/types/context.ts#L147">script-framework/types/context.ts:147</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Get/set the right end of the current visible time range.
+							The time unit is blicks.</p>
+						</div>
+						<dl class="tsd-comment-tags">
+							<dt>see</dt>
+							<dd><p><a href="https://dreamtonics.com/synthv/scripting/CoordinateSystem.html#getTimeViewRange">https://dreamtonics.com/synthv/scripting/CoordinateSystem.html#getTimeViewRange</a></p>
+							</dd>
+						</dl>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="timescale" class="tsd-anchor"></a>
@@ -130,9 +159,21 @@
 					<div class="tsd-signature tsd-kind-icon">time<wbr>Scale<span class="tsd-signature-symbol">:</span> <a href="../globals.html#pixelperblick" class="tsd-signature-type">pixelPerBlick</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/iluminar-yi/svstudio-typescripting-template/blob/ec89007/framework/script-framework/types/context.ts#L33">script-framework/types/context.ts:33</a></li>
+							<li>Defined in <a href="https://github.com/iluminar-yi/svstudio-typescripting-template/blob/95f7755/framework/script-framework/types/context.ts#L131">script-framework/types/context.ts:131</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Get the scaling factor in the horizontal direction.
+								<br>
+							The unit is pixels per blick so expect this to be a very small number.</p>
+						</div>
+						<dl class="tsd-comment-tags">
+							<dt>see</dt>
+							<dd><p><a href="https://dreamtonics.com/synthv/scripting/CoordinateSystem.html#getTimePxPerUnit">https://dreamtonics.com/synthv/scripting/CoordinateSystem.html#getTimePxPerUnit</a></p>
+							</dd>
+						</dl>
+					</div>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
@@ -141,19 +182,32 @@
 					<a name="snap" class="tsd-anchor"></a>
 					<h3>snap</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
-						<li class="tsd-signature tsd-kind-icon">snap<span class="tsd-signature-symbol">(</span>timePosition<span class="tsd-signature-symbol">: </span><a href="../globals.html#blick" class="tsd-signature-type">blick</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../globals.html#blick" class="tsd-signature-type">blick</a></li>
+						<li class="tsd-signature tsd-kind-icon">snap<span class="tsd-signature-symbol">(</span>timePoint<span class="tsd-signature-symbol">: </span><a href="../globals.html#blick" class="tsd-signature-type">blick</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../globals.html#blick" class="tsd-signature-type">blick</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/iluminar-yi/svstudio-typescripting-template/blob/ec89007/framework/script-framework/types/context.ts#L36">script-framework/types/context.ts:36</a></li>
+									<li>Defined in <a href="https://github.com/iluminar-yi/svstudio-typescripting-template/blob/95f7755/framework/script-framework/types/context.ts#L155">script-framework/types/context.ts:155</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Round a time position b based on snapping settings.</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>see</dt>
+									<dd><p><a href="https://dreamtonics.com/synthv/scripting/CoordinateSystem.html#snap">https://dreamtonics.com/synthv/scripting/CoordinateSystem.html#snap</a></p>
+									</dd>
+								</dl>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>timePosition: <a href="../globals.html#blick" class="tsd-signature-type">blick</a></h5>
+									<h5>timePoint: <a href="../globals.html#blick" class="tsd-signature-type">blick</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>A point in time to be rounded</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="../globals.html#blick" class="tsd-signature-type">blick</a></h4>
@@ -164,19 +218,32 @@
 					<a name="t2x" class="tsd-anchor"></a>
 					<h3>t2x</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
-						<li class="tsd-signature tsd-kind-icon">t2x<span class="tsd-signature-symbol">(</span>timePosition<span class="tsd-signature-symbol">: </span><a href="../globals.html#blick" class="tsd-signature-type">blick</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../globals.html#pixel" class="tsd-signature-type">pixel</a></li>
+						<li class="tsd-signature tsd-kind-icon">t2x<span class="tsd-signature-symbol">(</span>timePoint<span class="tsd-signature-symbol">: </span><a href="../globals.html#blick" class="tsd-signature-type">blick</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../globals.html#pixel" class="tsd-signature-type">pixel</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/iluminar-yi/svstudio-typescripting-template/blob/ec89007/framework/script-framework/types/context.ts#L37">script-framework/types/context.ts:37</a></li>
+									<li>Defined in <a href="https://github.com/iluminar-yi/svstudio-typescripting-template/blob/95f7755/framework/script-framework/types/context.ts#L163">script-framework/types/context.ts:163</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Convert a time position to an x-position (pixels).</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>see</dt>
+									<dd><p><a href="https://dreamtonics.com/synthv/scripting/CoordinateSystem.html#t2x">https://dreamtonics.com/synthv/scripting/CoordinateSystem.html#t2x</a></p>
+									</dd>
+								</dl>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>timePosition: <a href="../globals.html#blick" class="tsd-signature-type">blick</a></h5>
+									<h5>timePoint: <a href="../globals.html#blick" class="tsd-signature-type">blick</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>A blick value to convert.</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="../globals.html#pixel" class="tsd-signature-type">pixel</a></h4>
@@ -193,13 +260,26 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/iluminar-yi/svstudio-typescripting-template/blob/ec89007/framework/script-framework/types/context.ts#L38">script-framework/types/context.ts:38</a></li>
+									<li>Defined in <a href="https://github.com/iluminar-yi/svstudio-typescripting-template/blob/95f7755/framework/script-framework/types/context.ts#L171">script-framework/types/context.ts:171</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Convert an x-position (pixels) to a time position.</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>see</dt>
+									<dd><p><a href="https://dreamtonics.com/synthv/scripting/CoordinateSystem.html#x2t">https://dreamtonics.com/synthv/scripting/CoordinateSystem.html#x2t</a></p>
+									</dd>
+								</dl>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>xPosition: <a href="../globals.html#pixel" class="tsd-signature-type">pixel</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>A pixel value to convert.</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="../globals.html#blick" class="tsd-signature-type">blick</a></h4>

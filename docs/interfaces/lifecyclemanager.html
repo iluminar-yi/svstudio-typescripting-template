@@ -68,6 +68,11 @@
 		<div class="col-8 col-content">
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p><code>LifeCycleManager</code> is the core service that maintains the number of pending callback functions (<code>main()</code>
+							included). When that number drops to 0, it will automatically call {@link SynthV#finish} to end the
+						execution of the script. Hence the name.</p>
+					</div>
 					<dl class="tsd-comment-tags">
 						<dt>internal</dt>
 						<dd></dd>
@@ -112,16 +117,28 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/iluminar-yi/svstudio-typescripting-template/blob/ec89007/framework/script-framework/types/index.ts#L10">script-framework/types/index.ts:10</a></li>
+									<li>Defined in <a href="https://github.com/iluminar-yi/svstudio-typescripting-template/blob/95f7755/framework/script-framework/types/index.ts#L48">script-framework/types/index.ts:48</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>A utility function to generate a composed callback that runs the specified callback
+									and then release the callback.</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>callback: <span class="tsd-signature-type">Function</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Callback function to be composed.</p>
+									</div>
 								</li>
 								<li>
 									<h5>id: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Callback ID returned by {@link LifeCycleManager#reserveNewCallback}.</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">...</span>args<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span></h4>
@@ -156,16 +173,25 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/iluminar-yi/svstudio-typescripting-template/blob/ec89007/framework/script-framework/types/index.ts#L8">script-framework/types/index.ts:8</a></li>
+									<li>Defined in <a href="https://github.com/iluminar-yi/svstudio-typescripting-template/blob/95f7755/framework/script-framework/types/index.ts#L32">script-framework/types/index.ts:32</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Check to see if a callback ID is (still) pending.</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>callbackId: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Callback ID to check</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+							<p>True if still pending/reserved/registered. False otherwise.</p>
 						</li>
 					</ul>
 				</section>
@@ -179,13 +205,21 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/iluminar-yi/svstudio-typescripting-template/blob/ec89007/framework/script-framework/types/index.ts#L9">script-framework/types/index.ts:9</a></li>
+									<li>Defined in <a href="https://github.com/iluminar-yi/svstudio-typescripting-template/blob/95f7755/framework/script-framework/types/index.ts#L39">script-framework/types/index.ts:39</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Release a callback from the pending state, after it has run.</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>callbackId: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>ID of the callback that has run.</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -202,10 +236,16 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/iluminar-yi/svstudio-typescripting-template/blob/ec89007/framework/script-framework/types/index.ts#L7">script-framework/types/index.ts:7</a></li>
+									<li>Defined in <a href="https://github.com/iluminar-yi/svstudio-typescripting-template/blob/95f7755/framework/script-framework/types/index.ts#L24">script-framework/types/index.ts:24</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Generates a new callback ID.</p>
+								</div>
+							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+							<p>New callback ID. Don&#39;t forget to release it if called.</p>
 						</li>
 					</ul>
 				</section>
@@ -219,9 +259,14 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/iluminar-yi/svstudio-typescripting-template/blob/ec89007/framework/script-framework/types/index.ts#L5">script-framework/types/index.ts:5</a></li>
+									<li>Defined in <a href="https://github.com/iluminar-yi/svstudio-typescripting-template/blob/95f7755/framework/script-framework/types/index.ts#L12">script-framework/types/index.ts:12</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>A debug utility function. Display the number of callbacks in a message box.</p>
+								</div>
+							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 						</li>
 					</ul>
@@ -236,9 +281,14 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/iluminar-yi/svstudio-typescripting-template/blob/ec89007/framework/script-framework/types/index.ts#L6">script-framework/types/index.ts:6</a></li>
+									<li>Defined in <a href="https://github.com/iluminar-yi/svstudio-typescripting-template/blob/95f7755/framework/script-framework/types/index.ts#L17">script-framework/types/index.ts:17</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Start monitoring the number of callbacks. Must be called to be effective.</p>
+								</div>
+							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 						</li>
 					</ul>

@@ -66,6 +66,18 @@
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>A collection of note group selection behaviors.</p>
+					</div>
+					<dl class="tsd-comment-tags">
+						<dt>see</dt>
+						<dd><p><a href="https://dreamtonics.com/synthv/scripting/GroupSelection.html">https://dreamtonics.com/synthv/scripting/GroupSelection.html</a></p>
+						</dd>
+					</dl>
+				</div>
+			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
@@ -107,13 +119,23 @@
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="notegroupreferences" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> <span class="tsd-flag ts-flagReadonly">Readonly</span> note<wbr>Group<wbr>References</h3>
-					<div class="tsd-signature tsd-kind-icon">note<wbr>Group<wbr>References<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span><a href="notegroupreferenceproxy.html" class="tsd-signature-type">NoteGroupReferenceProxy</a><span class="tsd-signature-symbol"> | </span><a href="instrumentalreferenceproxy.html" class="tsd-signature-type">InstrumentalReferenceProxy</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">[]</span></div>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> note<wbr>Group<wbr>References</h3>
+					<div class="tsd-signature tsd-kind-icon">note<wbr>Group<wbr>References<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">keyof </span><span class="tsd-signature-symbol">(</span><a href="notegroupreferenceproxy.html" class="tsd-signature-type">NoteGroupReferenceProxy</a><span class="tsd-signature-symbol"> | </span><a href="instrumentalreferenceproxy.html" class="tsd-signature-type">InstrumentalReferenceProxy</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/iluminar-yi/svstudio-typescripting-template/blob/ec89007/framework/script-framework/types/context.ts#L16">script-framework/types/context.ts:16</a></li>
+							<li>Defined in <a href="https://github.com/iluminar-yi/svstudio-typescripting-template/blob/95f7755/framework/script-framework/types/context.ts#L44">script-framework/types/context.ts:44</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Get/set an array of selected <a href="notegroupreferenceproxy.html">NoteGroupReferenceProxy</a> following the order of selection.</p>
+						</div>
+						<dl class="tsd-comment-tags">
+							<dt>see</dt>
+							<dd><p><a href="https://dreamtonics.com/synthv/scripting/GroupSelection.html">https://dreamtonics.com/synthv/scripting/GroupSelection.html</a></p>
+							</dd>
+						</dl>
+					</div>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
@@ -128,13 +150,28 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/iluminar-yi/svstudio-typescripting-template/blob/ec89007/framework/script-framework/types/context.ts#L17">script-framework/types/context.ts:17</a></li>
+									<li>Defined in <a href="https://github.com/iluminar-yi/svstudio-typescripting-template/blob/95f7755/framework/script-framework/types/context.ts#L54">script-framework/types/context.ts:54</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Add a <a href="notegroupreferenceproxy.html">NoteGroupReferenceProxy</a> to the selection.
+										<br>
+									The argument must be part of the currently open project.</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>see</dt>
+									<dd><p><a href="https://dreamtonics.com/synthv/scripting/GroupSelection.html#selectGroup">https://dreamtonics.com/synthv/scripting/GroupSelection.html#selectGroup</a></p>
+									</dd>
+								</dl>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>noteGroupReference: <a href="notegroupreferenceproxy.html" class="tsd-signature-type">NoteGroupReferenceProxy</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p><code>NoteGroupReference</code> to select.</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -151,9 +188,19 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/iluminar-yi/svstudio-typescripting-template/blob/ec89007/framework/script-framework/types/context.ts#L19">script-framework/types/context.ts:19</a></li>
+									<li>Defined in <a href="https://github.com/iluminar-yi/svstudio-typescripting-template/blob/95f7755/framework/script-framework/types/context.ts#L69">script-framework/types/context.ts:69</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Unselect all <a href="notegroupreferenceproxy.html">NoteGroupReferenceProxy</a>. Return true if the selection has changed.</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>see</dt>
+									<dd><p><a href="https://dreamtonics.com/synthv/scripting/GroupSelection.html#clearGroups">https://dreamtonics.com/synthv/scripting/GroupSelection.html#clearGroups</a></p>
+									</dd>
+								</dl>
+							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
 						</li>
 					</ul>
@@ -168,13 +215,26 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/iluminar-yi/svstudio-typescripting-template/blob/ec89007/framework/script-framework/types/context.ts#L18">script-framework/types/context.ts:18</a></li>
+									<li>Defined in <a href="https://github.com/iluminar-yi/svstudio-typescripting-template/blob/95f7755/framework/script-framework/types/context.ts#L62">script-framework/types/context.ts:62</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Unselect a <a href="notegroupreferenceproxy.html">NoteGroupReferenceProxy</a>. Return true if the selection has changed.</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>see</dt>
+									<dd><p><a href="https://dreamtonics.com/synthv/scripting/GroupSelection.html#unselectGroup">https://dreamtonics.com/synthv/scripting/GroupSelection.html#unselectGroup</a></p>
+									</dd>
+								</dl>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>noteGroupReference: <a href="notegroupreferenceproxy.html" class="tsd-signature-type">NoteGroupReferenceProxy</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p><code>NoteGroupReference</code> to unselect.</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>

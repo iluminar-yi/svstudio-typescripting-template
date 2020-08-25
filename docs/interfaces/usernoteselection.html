@@ -66,6 +66,18 @@
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>A collection of note selection behaviors.</p>
+					</div>
+					<dl class="tsd-comment-tags">
+						<dt>see</dt>
+						<dd><p><a href="https://dreamtonics.com/synthv/scripting/TrackInnerSelectionState.html">https://dreamtonics.com/synthv/scripting/TrackInnerSelectionState.html</a></p>
+						</dd>
+					</dl>
+				</div>
+			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
@@ -104,13 +116,23 @@
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="notes" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> <span class="tsd-flag ts-flagReadonly">Readonly</span> notes</h3>
-					<div class="tsd-signature tsd-kind-icon">notes<span class="tsd-signature-symbol">:</span> <a href="noteproxy.html" class="tsd-signature-type">NoteProxy</a><span class="tsd-signature-symbol">[]</span></div>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> notes</h3>
+					<div class="tsd-signature tsd-kind-icon">notes<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">keyof </span><a href="noteproxy.html" class="tsd-signature-type">NoteProxy</a><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/iluminar-yi/svstudio-typescripting-template/blob/ec89007/framework/script-framework/types/context.ts#L23">script-framework/types/context.ts:23</a></li>
+							<li>Defined in <a href="https://github.com/iluminar-yi/svstudio-typescripting-template/blob/95f7755/framework/script-framework/types/context.ts#L83">script-framework/types/context.ts:83</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Get/set an array of selected <a href="noteproxy.html">NoteProxy</a> following the order of selection.</p>
+						</div>
+						<dl class="tsd-comment-tags">
+							<dt>see</dt>
+							<dd><p><a href="https://dreamtonics.com/synthv/scripting/TrackInnerSelectionState.html#getSelectedNotes">https://dreamtonics.com/synthv/scripting/TrackInnerSelectionState.html#getSelectedNotes</a></p>
+							</dd>
+						</dl>
+					</div>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
@@ -125,13 +147,27 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/iluminar-yi/svstudio-typescripting-template/blob/ec89007/framework/script-framework/types/context.ts#L24">script-framework/types/context.ts:24</a></li>
+									<li>Defined in <a href="https://github.com/iluminar-yi/svstudio-typescripting-template/blob/95f7755/framework/script-framework/types/context.ts#L92">script-framework/types/context.ts:92</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Select a <a href="noteproxy.html">NoteProxy</a>.
+									The note must be inside the current <a href="notegroupreferenceproxy.html">NoteGroupReferenceProxy</a> opened in the piano roll.</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>see</dt>
+									<dd><p><a href="https://dreamtonics.com/synthv/scripting/TrackInnerSelectionState.html#selectNote">https://dreamtonics.com/synthv/scripting/TrackInnerSelectionState.html#selectNote</a></p>
+									</dd>
+								</dl>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>note: <a href="noteproxy.html" class="tsd-signature-type">NoteProxy</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p><code>NoteProxy</code> to select.</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -148,9 +184,19 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/iluminar-yi/svstudio-typescripting-template/blob/ec89007/framework/script-framework/types/context.ts#L26">script-framework/types/context.ts:26</a></li>
+									<li>Defined in <a href="https://github.com/iluminar-yi/svstudio-typescripting-template/blob/95f7755/framework/script-framework/types/context.ts#L107">script-framework/types/context.ts:107</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Unselect all notes. Return true if the selection has changed.</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>see</dt>
+									<dd><p><a href="https://dreamtonics.com/synthv/scripting/TrackInnerSelectionState.html#clearNotes">https://dreamtonics.com/synthv/scripting/TrackInnerSelectionState.html#clearNotes</a></p>
+									</dd>
+								</dl>
+							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
 						</li>
 					</ul>
@@ -165,13 +211,26 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/iluminar-yi/svstudio-typescripting-template/blob/ec89007/framework/script-framework/types/context.ts#L25">script-framework/types/context.ts:25</a></li>
+									<li>Defined in <a href="https://github.com/iluminar-yi/svstudio-typescripting-template/blob/95f7755/framework/script-framework/types/context.ts#L100">script-framework/types/context.ts:100</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Unselect a <a href="noteproxy.html">NoteProxy</a>. Return true if the selection has changed.</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>see</dt>
+									<dd><p><a href="https://dreamtonics.com/synthv/scripting/TrackInnerSelectionState.html#unselectNote">https://dreamtonics.com/synthv/scripting/TrackInnerSelectionState.html#unselectNote</a></p>
+									</dd>
+								</dl>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>note: <a href="noteproxy.html" class="tsd-signature-type">NoteProxy</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p><code>NoteProxy</code> to unselect.</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
