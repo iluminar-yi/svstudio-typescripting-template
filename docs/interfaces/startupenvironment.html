@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>AutomationMeta | svstudio-typescripting-template</title>
+	<title>StartUpEnvironment | svstudio-typescripting-template</title>
 	<meta name="description" content="Documentation for svstudio-typescripting-template">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -56,33 +56,21 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="automationmeta.html">AutomationMeta</a>
+					<a href="startupenvironment.html">StartUpEnvironment</a>
 				</li>
 			</ul>
-			<h1>Interface AutomationMeta</h1>
+			<h1>Interface StartUpEnvironment</h1>
 		</div>
 	</div>
 </header>
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
-			<section class="tsd-panel tsd-comment">
-				<div class="tsd-comment tsd-typography">
-					<div class="lead">
-						<p>Serializable information from {@link Automation}.</p>
-					</div>
-				</div>
-			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">AutomationMeta</span>
-						<ul class="tsd-hierarchy">
-							<li>
-								<a href="automationproxy.html" class="tsd-signature-type">AutomationProxy</a>
-							</li>
-						</ul>
+						<span class="target">StartUpEnvironment</span>
 					</li>
 				</ul>
 			</section>
@@ -93,7 +81,8 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="automationmeta.html#controlpoints" class="tsd-kind-icon">control<wbr>Points</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="startupenvironment.html#context" class="tsd-kind-icon">context</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="startupenvironment.html#svsystem" class="tsd-kind-icon">sv<wbr>System</a></li>
 							</ul>
 						</section>
 					</div>
@@ -102,24 +91,24 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="controlpoints" class="tsd-anchor"></a>
-					<h3>control<wbr>Points</h3>
-					<div class="tsd-signature tsd-kind-icon">control<wbr>Points<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">keyof </span><span class="tsd-signature-symbol">[</span><a href="../globals.html#blick" class="tsd-signature-type">blick</a><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">[]</span></div>
+					<a name="context" class="tsd-anchor"></a>
+					<h3>context</h3>
+					<div class="tsd-signature tsd-kind-icon">context<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Pick</span><span class="tsd-signature-symbol">&lt;</span><a href="context.html" class="tsd-signature-type">Context</a><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">"osType"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"osName"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"hostName"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"hostVersion"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"hostVersionNumber"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"languageCode"</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/iluminar-yi/svstudio-typescripting-template/blob/fa0e1cd/framework/script-framework/types/automation-proxy.ts#L14">script-framework/types/automation-proxy.ts:14</a></li>
+							<li>Defined in <a href="https://github.com/iluminar-yi/svstudio-typescripting-template/blob/fa0e1cd/framework/types/index.ts#L526">types/index.ts:526</a></li>
 						</ul>
 					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Get/set all control points of this automation.</p>
-						</div>
-						<dl class="tsd-comment-tags">
-							<dt>see</dt>
-							<dd><p><a href="https://dreamtonics.com/synthv/scripting/Automation.html#getAllPoints">https://dreamtonics.com/synthv/scripting/Automation.html#getAllPoints</a></p>
-							</dd>
-						</dl>
-					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="svsystem" class="tsd-anchor"></a>
+					<h3>sv<wbr>System</h3>
+					<div class="tsd-signature tsd-kind-icon">sv<wbr>System<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Pick</span><span class="tsd-signature-symbol">&lt;</span><a href="svsystem.html" class="tsd-signature-type">SvSystem</a><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">"setTimeout"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"setImmediate"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"setInterval"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"showCustomDialog"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"showInputBox"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"showMessageBox"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"showOkCancelBox"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"showYesNoCancelBox"</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/iluminar-yi/svstudio-typescripting-template/blob/fa0e1cd/framework/types/index.ts#L527">types/index.ts:527</a></li>
+						</ul>
+					</aside>
 				</section>
 			</section>
 		</div>
@@ -136,10 +125,13 @@
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-interface">
-						<a href="automationmeta.html" class="tsd-kind-icon">Automation<wbr>Meta</a>
+						<a href="startupenvironment.html" class="tsd-kind-icon">Start<wbr>UpEnvironment</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="automationmeta.html#controlpoints" class="tsd-kind-icon">control<wbr>Points</a>
+								<a href="startupenvironment.html#context" class="tsd-kind-icon">context</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="startupenvironment.html#svsystem" class="tsd-kind-icon">sv<wbr>System</a>
 							</li>
 						</ul>
 					</li>
