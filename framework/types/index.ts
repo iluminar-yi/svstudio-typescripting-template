@@ -81,7 +81,7 @@ export type Hz = number;
  */
 export interface SvScript {
   getClientInfo(): ClientInfo;
-  main(): void | Promise<void>;
+  main: ((env: FrameworkEnvironment) => void) | ((env: FrameworkEnvironment) => Promise<void>);
   getTranslations?(langCode: LanguageCode): Translation[];
 }
 
@@ -522,7 +522,22 @@ export interface FrameworkEnvironment {
   utils: Utils;
 }
 
+export interface StartUpEnvironment {
+  context: Pick<Context, 'osType' | 'osName' | 'hostName' | 'hostVersion' | 'hostVersionNumber' | 'languageCode'>;
+  svSystem: Pick<
+    SvSystem,
+    | 'setTimeout'
+    | 'setImmediate'
+    | 'setInterval'
+    | 'showCustomDialog'
+    | 'showInputBox'
+    | 'showMessageBox'
+    | 'showOkCancelBox'
+    | 'showYesNoCancelBox'
+  >;
+}
+
 /**
  * The factory method signature. Please implement this in the script code.
  */
-export type SvScriptFactory = (env: FrameworkEnvironment) => SvScript;
+export type SvScriptFactory = (env: StartUpEnvironment) => SvScript;

@@ -3,8 +3,6 @@ import { ManagedSynthV, blick, measure, second } from '../types';
 import { Utils } from './types';
 
 export const utilsFactory = (SV: ManagedSynthV): Utils => {
-  const timeAxis = SV.getProject().getTimeAxis();
-
   return {
     blackKey: SV.blackKey.bind(SV),
     blick2Quarter: SV.blick2Quarter.bind(SV),
@@ -16,13 +14,19 @@ export const utilsFactory = (SV: ManagedSynthV): Utils => {
     freq2Pitch: SV.freq2Pitch.bind(SV),
     pitch2Freq: SV.pitch2Freq.bind(SV),
     getTimePointInSeconds(timePointInBlick: blick): second {
-      return timeAxis.getSecondsFromBlick(timePointInBlick);
+      return SV.getProject()
+        .getTimeAxis()
+        .getSecondsFromBlick(timePointInBlick);
     },
     getTimePointInBlicks(timePointInSeconds: second): blick {
-      return timeAxis.getBlickFromSeconds(timePointInSeconds);
+      return SV.getProject()
+        .getTimeAxis()
+        .getBlickFromSeconds(timePointInSeconds);
     },
     getMeasureAtTimePoint(timePoint: blick): measure {
-      return timeAxis.getMeasureAt(timePoint);
+      return SV.getProject()
+        .getTimeAxis()
+        .getMeasureAt(timePoint);
     },
   };
 };

@@ -1,18 +1,20 @@
 import { Translation } from 'svstudio-scripts-typing';
 
-import { FrameworkEnvironment, SvScript, SvScriptFactory } from '../framework/types';
+import { FrameworkEnvironment, StartUpEnvironment, SvScript, SvScriptFactory } from '../framework/types';
 
 import packageJsonClientInfo from './package-json-client-info';
 
-const svScriptFactory: SvScriptFactory = ({
-  context,
-  svSystem: { showMessageBox, setTimeout },
-  utils: { getTimePointInSeconds },
-  log,
-}: FrameworkEnvironment): SvScript => {
+const svScriptFactory: SvScriptFactory = ({ svSystem }: StartUpEnvironment): SvScript => {
+  svSystem.showMessageBox('Hello', 'Hi world!');
+
   return {
     getClientInfo: packageJsonClientInfo,
-    async main(): Promise<void> {
+    async main({
+      context,
+      svSystem: { showMessageBox, setTimeout },
+      utils: { getTimePointInSeconds },
+      log,
+    }: FrameworkEnvironment): Promise<void> {
       await showMessageBox('Greetings', 'Hello world!');
       log.debug('Greetings displayed');
       log.info(

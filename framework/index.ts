@@ -7,13 +7,8 @@ import { context, managedSynthV, svSystem, utils } from './script-framework';
 import { setImmediate } from './shim/shims';
 
 const { getClientInfo, main, getTranslations } = factory({
-  ..._global,
-  _SV: SV,
-  log,
-  SV: managedSynthV,
   svSystem,
   context,
-  utils,
 });
 
 const onFatalError = (e: Error): void => {
@@ -32,7 +27,15 @@ _global.main = (): void => {
   });
 
   try {
-    const maybePromise = main();
+    const maybePromise = main({
+      ..._global,
+      _SV: SV,
+      log,
+      SV: managedSynthV,
+      svSystem,
+      context,
+      utils,
+    });
     if (maybePromise) {
       maybePromise.catch(onFatalError);
     }

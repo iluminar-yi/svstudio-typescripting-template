@@ -1,11 +1,8 @@
-import { ManagedSynthV } from '../types';
+import { ManagedSynthV, second } from '../types';
 
 import { NoteGroupReferenceProxy, SvSystem } from './types';
 
 export const svSystemFactory = (SV: ManagedSynthV): SvSystem => {
-  const project = SV.getProject();
-  const playbackControl = SV.getPlayback();
-
   const setTimeout = (handler: Function, timeout?: number, ...args: unknown[]): void => {
     SV.setTimeout(timeout || 0, (): void => {
       handler(...args);
@@ -28,7 +25,7 @@ export const svSystemFactory = (SV: ManagedSynthV): SvSystem => {
   return {
     QUARTER: SV.QUARTER,
     finish: SV.finish.bind(SV),
-    newUndoRecord: project.newUndoRecord.bind(project),
+    newUndoRecord: (): void => SV.getProject().newUndoRecord(),
     setTimeout,
     setImmediate,
     setInterval,
@@ -41,9 +38,9 @@ export const svSystemFactory = (SV: ManagedSynthV): SvSystem => {
       return SV.getPhonemesForGroup(group._rawNoteGroupReference());
     },
     T: SV.T.bind(SV),
-    loop: playbackControl.loop.bind(playbackControl),
-    pause: playbackControl.pause.bind(playbackControl),
-    play: playbackControl.play.bind(playbackControl),
-    stop: playbackControl.stop.bind(playbackControl),
+    loop: (tBegin: second, tEnd: second): void => SV.getPlayback().loop(tBegin, tEnd),
+    pause: (): void => SV.getPlayback().pause(),
+    play: (): void => SV.getPlayback().play(),
+    stop: (): void => SV.getPlayback().stop(),
   };
 };
