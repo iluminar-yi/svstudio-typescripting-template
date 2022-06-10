@@ -33,7 +33,7 @@
     "jest": "^26.1.0",
     "prettier": "1.18.2",
     "rimraf": "^2.6.1",
-    "semantic-release": "^17.1.1",
+    "semantic-release": "^19.0.3",
     "svstudio-scripts-typing": "git+https://github.com/iluminar-yi/svstudio-scripts-typing.git",
     "ts-jest": "^26.1.2",
     "ts-loader": "^6.0.0",
